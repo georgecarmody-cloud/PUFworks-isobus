@@ -172,6 +172,11 @@ class ISOBUSController:
         self.ddi_157_val = 0
         self.ddi_158_val = 0
 
+        # Count of frames actually put on the wire per TX category (post-gate).
+        # Proves what cleared _tx_allowed()/interlocks — the bench asserts that
+        # 'section' stays flat in SHADOW and only grows at SECTION+ when ARMed.
+        self.tx_counts = {"claim": 0, "presence": 0, "rate": 0, "section": 0}
+
         try:
             with open(self.isobus_log_path, "a") as f:
                 f.write(f"\n--- PUFworks ISOBUS Logging Started {datetime.now()} ---\n")
@@ -698,6 +703,7 @@ class ISOBUSController:
             data = ddi_bytes + val_bytes + [0xFF, 0xFF]
             msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
             self.bus.send(msg)
+            self.tx_counts["rate"] += 1
             current_time = time.time()
             if not hasattr(self, 'last_ddi157_log_time') or current_time - self.last_ddi157_log_time >= 1.0 \
                     or getattr(self, 'last_logged_ddi157_val', -1) != self.ddi_157_val:
@@ -749,6 +755,7 @@ class ISOBUSController:
         msg = can.Message(arbitration_id=arbitration_id, data=self.name_payload, is_extended_id=True)
         try:
             self.bus.send(msg)
+            self.tx_counts["claim"] += 1
             self.log_isobus_event(f"TX PGN 60928: Sent Address Claim for SA {hex(self.source_address)}")
             self.address_claimed = True
             self.vt_handshake_state = "CLAIMING_ADDRESS"
@@ -1105,6 +1112,7 @@ class ISOBUSController:
             try:
                 msg = can.Message(arbitration_id=arb_id, data=data, is_extended_id=True)
                 self.bus.send(msg)
+                self.tx_counts["section"] += 1
             except Exception as e:
                 self.log_isobus_event(f"TX DDI 141 (GRC section) Error: {e}")
         else:
@@ -1115,6 +1123,7 @@ class ISOBUSController:
             try:
                 msg = can.Message(arbitration_id=arb_id, data=data, is_extended_id=True)
                 self.bus.send(msg)
+                self.tx_counts["section"] += 1
             except Exception:
                 pass
 
@@ -1438,6 +1447,7 @@ def build_telemetry(ctrl, gs_emitter):
         "vision_fresh": ctrl._vision_fresh(),
         "vision_seq": ctrl.vision_seq,
         "vision_source": ctrl.vision_source,
+        "tx_counts": dict(ctrl.tx_counts),
     }
     status.update(gs_emitter.get_status())
     return status
@@ -1611,6 +1621,34 @@ def main():
                         f"DDI 158 diagnostic injection: {ctrl.actual_flow_rate_l_min:.2f} L/ha")
                 except Exception as e:
                     print(f"Error simulating DDI 158 feedback: {e}", flush=True)
+        elif line.startswith('SIMULATE_GRC_EF00:'):
+            # Bench-only: feed a hex payload through the GRC EF00 decoder as if it
+            # arrived from the GRC. Also bumps last_rx_time so the rx interlock
+            # treats the (virtual) bus as alive. REFUSED on any non-virtual bus so
+            # field state can never be faked on a real wire.
+            if ctrl.interface != 'virtual':
+                ctrl.log_isobus_event("SIMULATE_GRC_EF00 refused: only allowed on the virtual bench bus.")
+            else:
+                parts = line.split(':', 1)
+                try:
+                    data = bytes.fromhex(parts[1].strip().replace(' ', ''))
+                    ctrl.last_rx_time = time.time()
+                    ctrl._parse_grc_ef00(ctrl.jdrc_address, 0xEF00, data)
+                    ctrl.log_isobus_event(f"GRC EF00 bench injection: {data.hex().upper()}")
+                except Exception as e:
+                    print(f"Error simulating GRC EF00: {e}", flush=True)
+        elif line.startswith('SIMULATE_SPEED:'):
+            # Bench-only: set ground speed for the speed interlock / flow estimate.
+            if ctrl.interface != 'virtual':
+                ctrl.log_isobus_event("SIMULATE_SPEED refused: only allowed on the virtual bench bus.")
+            else:
+                parts = line.split(':')
+                if len(parts) == 2:
+                    try:
+                        ctrl.speed_kmh = float(parts[1])
+                        ctrl.log_isobus_event(f"Bench speed injection: {ctrl.speed_kmh:.1f} km/h")
+                    except ValueError:
+                        pass
         elif line.startswith('TEST_BOOM_SECTIONS:'):
             parts = line.split(':')
             if len(parts) == 2:

@@ -89,6 +89,8 @@ select, input {
 .kv { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; font-size: 14px; }
 .kv span { color: #9fbb9f; }
 .kv b { margin-right: 6px; }
+.ok-text { color: #9fe2a8; }
+.danger-text { color: #e89f9f; }
 
 .pill {
   padding: 3px 10px; border-radius: 999px; border: 1px solid var(--edge);

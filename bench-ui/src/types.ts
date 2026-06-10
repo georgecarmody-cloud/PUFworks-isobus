@@ -42,6 +42,7 @@ export interface Telemetry {
   vision_fresh?: boolean;
   vision_seq?: number;
   vision_source?: string;
+  tx_counts?: Record<string, number>;
   gs_enabled?: boolean;
   gs_port?: string;
   gs_link_state?: string;

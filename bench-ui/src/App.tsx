@@ -72,6 +72,7 @@ export default function App() {
   const [iface, setIface] = useState(() => localStorage.getItem('bench.iface') ?? 'virtual');
   const [recordLabel, setRecordLabel] = useState('');
   const [manualBitmap, setManualBitmap] = useState('0x0');
+  const [simSpeed, setSimSpeed] = useState('5');
 
   // CAN monitor filters
   const [hideNoise, setHideNoise] = useState(true);
@@ -190,6 +191,9 @@ export default function App() {
           vision {t?.vision_seen ? (t?.vision_fresh ? 'fresh' : 'STALE') : 'none'}
         </span>
         <span className="pill">{t?.speed_kmh?.toFixed(1) ?? '—'} km/h</span>
+        <span className="pill" title="Frames actually transmitted per category (post-gate)">
+          TX sec {t?.tx_counts?.section ?? 0} · rate {t?.tx_counts?.rate ?? 0} · claim {t?.tx_counts?.claim ?? 0}
+        </span>
         {t?.record_session_active ? (
           <span className="pill danger">● REC {t?.record_session_id} ({t?.record_frame_count})</span>
         ) : null}
@@ -276,6 +280,28 @@ export default function App() {
               <b>{t?.record_shadow_count ?? 0} shadow rows</b>
             </div>
           </section>
+
+          {t?.can_interface === 'virtual' ? (
+            <section className="panel">
+              <h2>Bench sim (virtual bus)</h2>
+              <div className="row">
+                <input value={simSpeed} onChange={(e) => setSimSpeed(e.target.value)}
+                  placeholder="km/h" style={{ width: 80 }} />
+                <button onClick={() => send(`SIMULATE_SPEED:${simSpeed}`)}>Set speed</button>
+                <button onClick={() => send('SIMULATE_GRC_EF00:4F0101F401')}>Inject GRC rate (50 L/ha)</button>
+              </div>
+              <div className="row">
+                <button onClick={() => send('SIMULATE_GRC_EF00:4F060101FF01')}>GRC master ON</button>
+                <button onClick={() => send('SIMULATE_GRC_EF00:4F060100FF00')}>GRC master OFF</button>
+              </div>
+              <div className="kv">
+                <span>GRC</span>
+                <b className={t?.grc_alive ? 'ok-text' : ''}>
+                  {t?.grc_alive ? `alive · ${t?.grc_ef00_rate_l_ha ?? 0} L/ha` : 'no signal'}
+                </b>
+              </div>
+            </section>
+          ) : null}
 
           <section className="panel">
             <h2>GreenSeeker (616R)</h2>
