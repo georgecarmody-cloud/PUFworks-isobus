@@ -1,0 +1,598 @@
+﻿
+######################################################################
+PDF PAGE 1525 (len=152)
+######################################################################
+
+1525
+See & Spray CAN Bus ΓÇö Electrical Diagnostic (Section 240, Group 50L)
+See & Spray CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20L)
+
+
+######################################################################
+PDF PAGE 1527 (len=1343)
+######################################################################
+
+1527
+Related information:
+Boom CAN Bus ΓÇö Electrical Diagnostic (Section 240, Group 50D)
+Boom CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+GWC ΓÇö Electrical Diagnostic (Section 245, Group 50)
+GWC ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+Refer to the electrical schematic.
+7.
+Visually verify that relevant fuses are not blown.
+1.
+Identify relevant power and ground/return circuits.
+2.
+Test for proper voltage on the potentially faulty component, between the power circuit and the ground
+/return circuit.
+8.
+If the test between the power circuit and the ground/return circuit is bad, test for voltage
+between the power circuit and a frame ground.
+1.
+If the test between the power circuit and the ground/return circuit is bad, but the test between
+the power circuit and the frame ground is good, then the issue is on the ground/return circuit.
+2.
+If the test between the power circuit and the ground/return circuit is bad, and the test between
+the power circuit and the frame ground is bad, then the issue is on the power circuit.
+3.
+Refer to the electrical schematic. Narrow down any circuit issues to the root cause. Refer to Circuit
+ (Section 240, Group 10).
+Checks
+9.
+Reprogram the control unit. Refer toControl Unit Reprogramming(Section 245, Group 10C).
+10.
+Refer to the electrical system diagnostic.
+11.
+
+
+######################################################################
+PDF PAGE 1529 (len=1852)
+######################################################################
+
+1529
+VPU Not Connected to BoomTrac CAN
+With the machine running, check the LED indicator light on the VPU with the addressing fault.
+Sync Fault
+Check for a circuit fault on the sync line between the VPUs on the Address Sync In, Out, and Ground
+circuits. The Address Sync circuits are pins C3, C4, D3, and D4 on the VPU connectors.
+Related information:
+Boom CAN Bus ΓÇö Electrical Diagnostic (Section 240, Group 50D)
+Boom CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+See & Spray Addressing ΓÇö Electrical Diagnostic (Section 240, Group 50L)
+If the LED is off, a power issue is likely. Refer to the See & Spray Power and Ground ΓÇö Electrical
+ (Section 240, Group 30L).
+Schematic
+2.
+Check the fuse. Visually verify that the relevant fuses are not blown.
+1.
+Refer to the display's Diagnostic Center application > Controllers > and verify that message
+counts are changing on all control units along the applicable network or subnet
+2.
+If a flashing pattern of two purple flashes, pause, two purple flashes, pause, is witnessed, then 
+the faulty VPU does not have connectivity with the BoomTrac CAN.
+1.
+Check for issues with other devices on the BoomTrac CAN and determine where the issue is 
+located. Refer toBoom CAN Bus ΓÇö Electrical Schematic(Section 240, Group 30D) andSee & Spray 
+Addressing ΓÇö Electrical Schematic(Section 240, Group 30L) as necessary to help narrow down the 
+issue.
+2.
+With the machine running, check the LED indicator light on the VPU with the addressing fault. Expect
+a solid green indicator light if the VPU is powered and connected to BoomTrac CAN.
+1.
+From the center of the machine, diagnose the issue between last VPU without an addressing fault and
+the first VPU with an addressing fault. For example, if VPU 8 is online and VPUs 9 and 10 have
+addressing faults, check the sync circuits between VPUs 8 and 9.
+2.
+
+
+######################################################################
+PDF PAGE 1547 (len=436)
+######################################################################
+
+1547
+Related information:
+See & Spray CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20L)
+See & Spray CAN Bus ΓÇö Electrical Diagnostic (Section 240, Group 50L)
+NOTE:
+The xx value at the end of the TM number is a language code. If you are unsure of your
+language code, use the last two digits of the manual you are currently in.
+If your language code is not available, use 19 for the two-digit code for the English version.
+
+
+######################################################################
+PDF PAGE 1549 (len=149)
+######################################################################
+
+1549
+See & Spray CAN Bus ΓÇö Electrical Schematic (Section 240, Group 30L)
+See & Spray Power and Ground ΓÇö Electrical Schematic(Section 240, Group 30L)
+
+
+######################################################################
+PDF PAGE 1551 (len=240)
+######################################################################
+
+1551
+See & Spray Addressing ΓÇö Electrical Diagnostic (Section 240, Group 50L)
+See & Spray CAN Bus ΓÇö Electrical Diagnostic (Section 240, Group 50L)
+VPU ΓÇö Electrical Diagnostic (Section 245, Group 50)
+VPU Reprogramming(Section 245, Group 10C)
+
+
+######################################################################
+PDF PAGE 1554 (len=319)
+######################################################################
+
+1554
+Related information:
+Boom CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Boom CAN Bus ΓÇö Electrical Diagnostic (Section 240, Group 50D)
+VPU ΓÇö Electrical Diagnostic (Section 245, Group 50)
+VPU ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+Refer to the electrical system diagnostic.
+12.
+
+
+######################################################################
+PDF PAGE 4356 (len=1776)
+######################################################################
+
+4356
+[TOC-ANCHOR:sec-09001faa860fda2b]
+See & Spray Addressing ΓÇö Electrical Theory of Operation
+Component Information
+NOTE:
+Wake-up power requires the engine running.
+After the VPU receives wake-up power, the VPU begins the addressing process, which can take up to two minutes to complete. The addressing process utilizes
+increasing electrical frequencies at each VPU. This allows the VPUs to identify their relative position on the boom. This relative position is used to create unique
+identifiers for each VPU. These unique identifiers are then utilized whenever the VPUs report through the various controller area network (CAN) binary unit system
+(bus) circuits. This enables communication on both the BoomTrac CAN bus and the respective ExactApply nozzle subnet CAN bus.
+Addressing requires proper function of several circuits to complete:
+Vision processing unit (VPU) assemblies
+ΓÇó
+W0087 ΓÇö Center Frame Sensing Harness (249-40W)
+ΓÇó
+W0105 ΓÇö Left-Hand Inner Wing Sensing Harness(249-40W)
+ΓÇó
+W0106 ΓÇö Right-Hand Inner Wing Sensing Harness (249-40W)
+ΓÇó
+Each VPU addresses with a number starting from left and going to the right.
+ΓÇó
+The VPU addressing circuits are connected in series. These circuits address from the two inside VPUs 
+then flow out to either side.
+ΓÇó
+Specifically, addressing to the left of the operator's seat starts with VPU 5 and addressing circuits flow 
+out to VPU 1 on the left.
+ΓÇó
+Specifically, addressing to the right of the operator's seat starts with VPU L and addressing circuits flow 
+out to VPU A on the right.
+ΓÇó
+wakeup power in (provided by the gateway control unit [GWC])
+ΓÇó
+wakeup ground out (ground provided by the center frame right-hand ground buss bar)
+ΓÇó
+address/sync circuit in
+ΓÇó
+address/sync circuit out
+ΓÇó
+BoomTrac CAN bus high (reports to GWC)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4359 (len=2465)
+######################################################################
+
+4359
+[TOC-ANCHOR:sec-09001faa860ee76d]
+See & Spray CAN Bus ΓÇö Electrical Theory of Operation
+Component Information
+Controller Area Network binary unit system (CAN bus) systems transfer messages between every control
+unit on the machine. These messages include commands, requests, broadcast information, responses,
+acknowledgements, and various group functions. The CAN bus is a linear network, and the control units
+are connected along its length in series.
+The operator has no direct control of the CAN bus systems. CAN bus operates automatically whenever the
+key switch is in the ACC, RUN, or START positions.
+Can Circuits
+Digital messages transfer information from control unit to control unit along two circuits. One control unit
+sends a message, and that message is either addressed to another control unit or to all control units. The
+receiving control unit uses the information in the message to monitor or control the machine.
+Each CAN bus network includes a 2.5-3.5 V CAN Hi circuit (yellow wire) and a 1.5-2.5 V CAN Lo circuit (green
+wire). When no messages are being transmitted on the CAN bus, CAN bus high and CAN bus low circuits
+are both approximately 2.5 V. When messages are being sent between the control units, the CAN bus high
+voltage increases, and the CAN bus low voltage decreases.
+CAN Terminators
+Vision processing unit (VPU) assemblies
+ΓÇó
+A725 ΓÇö Gateway control unit (GWC)
+ΓÇó
+A4000 ΓÇö Master nozzle control unit (MNC)
+ΓÇó
+R4001 ΓÇö ExactApply Controller Area Network (CAN) binary unit system (bus) subnet 1 terminator 1
+ΓÇó
+R4002 ΓÇö ExactApply CAN bus subnet 1 terminator 2
+ΓÇó
+R4003 ΓÇö ExactApply CAN bus subnet 2 terminator 1
+ΓÇó
+R4004 ΓÇö ExactApply CAN bus subnet 2 terminator 2
+ΓÇó
+R4005 ΓÇö ExactApply CAN bus subnet 3 terminator 1
+ΓÇó
+R4006 ΓÇö ExactApply CAN bus subnet 3 terminator 2
+ΓÇó
+R4007 ΓÇö ExactApply CAN bus subnet 4 terminator 1
+ΓÇó
+R4008 ΓÇö ExactApply CAN bus subnet 4 terminator 2
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+W0087 ΓÇö Center Frame Sensing Harness (249-40W)
+ΓÇó
+W0093 ΓÇö Left-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0094 ΓÇö Right-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0095 ΓÇö Left-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0096 ΓÇö Right-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0098 ΓÇö Right-Hand Outer Wing Harness (249-40W)
+ΓÇó
+W0101 ΓÇö Left-Hand Breakaway Harness (249-40W)
+ΓÇó
+W0102 ΓÇö Right-Hand Breakaway Harness (249-40W)
+ΓÇó
+W0105 ΓÇö Left-Hand Inner Wing Sensing Harness(249-40W)
+ΓÇó
+W0106 ΓÇö Right-Hand Inner Wing Sensing Harness (249-40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4362 (len=2700)
+######################################################################
+
+4362
+[TOC-ANCHOR:sec-09001faa85b748b6]
+See & Spray Ethernet and FAKRA ΓÇö Electrical Theory of 
+Operation
+Component Information
+See & Spray Cameras and FAKRA Cables
+Each See & Spray camera sends video information to a vision processing unit (VPU), using a non-repairable
+Fachkreis Automobil (FAKRA) cable with integrated non-repairable connectors. FAKRA cables allow up to 6
+GHz of information to be transmitted. FAKRA connectors mechanically lock to ensure a secure connection.
+More See & Spray camera information, including how and when to calibrate these cameras, is provided in
+the appropriate OperatorΓÇÖs Manual (OM).
+VPUs
+VPUs 1, 2, 5, and 6 connect to eight FAKRA cables and eight See & Spray cameras respectively. VPU 3
+connects to four FAKRA cables and four See & Spray cameras. Each VPU processes the necessary
+information and sends that information along to the appropriate See & Spray Ethernet switch, using an
+Ethernet cable. The VPU periodically verifies that all of these FAKRA and Ethernet connections are
+functioning correctly.
+Each VPU also communicates necessary camera information through the BoomTrac CAN bus to the
+gateway control unit (GWC) and through the ExactApply CAN bus to the master nozzle control unit (MNC).
+This camera data provides the information necessary to automatically adjust the ExactApply nozzles (NZCs).
+See & Spray Ethernet Switches and Ethernet Cables
+See & Spray Ethernet switch 1 and 2, connects to four VPUs through four Ethernet cables. See & Spray
+Ethernet switch 1 and 2 process the necessary information and act as a hub for See and Spray camera data.
+Twisted pair circuits provide extra signal protection from magnetic influences. Ethernet cables provide
+high-speed communication, which allows real-time adjustments. When needed, these Ethernet cables
+provide the means to reprogram the VPUs. These Ethernet cables and integrated connectors are non-
+repairable.
+Ethernet Configuration 2
+See & Spray Ethernet switch 1 & 2 transmits all of the See & Spray camera data information along to
+configuration 2 Ethernet switch assembly, using two twisted pair Ethernet cables.
+Configuration 2 Ethernet switch assembly also receives camera data from the right-hand camera and the
+left-hand cameras when equipped on the machine. Each connection is made with a twisted pair of circuits.
+This information plus the See & Spray camera information is sent to configuration 1 Ethernet switch
+assembly, using two twisted pair Ethernet cables.
+A124 ΓÇö Configuration 1 Ethernet switch assembly
+ΓÇó
+A207 ΓÇö Configuration 2 Ethernet switch assembly
+ΓÇó
+A726 ΓÇö Ethernet switch 1
+ΓÇó
+A727 ΓÇö Ethernet switch 2
+ΓÇó
+Vision processing cameras
+ΓÇó
+Vision processing unit (VPU) assemblies
+ΓÇó
+
+
+######################################################################
+PDF PAGE 5680 (len=1304)
+######################################################################
+
+5680
+[TOC-ANCHOR:sec-09001faa859e3b20]
+ESU ΓÇö Electrical Theory of Operation
+The E ActiveSeat control unit (ESU) controls the operatorΓÇÖs seat functions, such as height adjustment,
+firmness adjustment, and seat position.
+Component Information:
+The ESU receives protected power from the battery through the ActiveSeat fuse within the cab load center.
+The ESU activates when wakeup power is supplied or when the key switch is moved out of the OFF position.
+The ESU communicates on the operator station domain (OSD) controller area network (CAN) binary unit
+system (bus).
+Ground is provided for the ESU by cab ground 2.
+Related Information:
+ESU ΓÇö Electrical Schematic(Section 245, Group 30)
+OSD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Load Center: Cab ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Grounds: Cab ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Wakeup Power ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+XEC ΓÇö Cab Load Center (Section 249, Group 40F)
+Grounds Overview (Section 249, Group 40X)
+A110 ΓÇö E ActiveSeat control unit (ESU)
+ΓÇó
+EC6 ΓÇö Cab load center
+ΓÇó
+F18 ΓÇö E ActiveSeat fuse
+ΓÇó
+GND101-2 ΓÇö Cab ground 2
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+W0050 ΓÇö Seat Base Active Harness (When Equipped)(Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 5681 (len=2669)
+######################################################################
+
+5681
+[TOC-ANCHOR:sec-09001faa861a9cfa]
+GWC ΓÇö Electrical Theory of Operation
+The gateway control unit (GWC) enables the See & Spray application within the display. The GWC is the
+bridge between the implement controller area network (CAN) binary unit system (bus) and the See & Spray
+components. If the GWC is offline, or not on the machine's implement CAN bus, the See & Spray page and
+run page modules are grayed out with See & Spray disabled.
+Component Information:
+Unswitched power is a constant 12 V power supply that comes directly from the batteries and battery
+disconnect switch. A system fuse within the battery box protects the supplied power circuit to the rear mid-
+chassis cab load center. The MNC/See & Spray control unit fuse within the rear mid-chassis load center
+protects the supplied power circuit to the ExactApply load center. Power is then supplied to the See &
+Spray load center.
+Unswitched power is provided through the gateway and Ethernet switch power fuse within the See & Spray
+load center.
+Switched power for the system to wake up the control units, as well as begin the proper shutdown
+procedure of the control units, comes from the power train domain control unit (PODC). The PODC receives
+the wakeup signal from the operator station domain control unit (OSDC). The PODC then sends 12 V to the
+GWC. The GWC then relays wakeup and shutdown signals to the Ethernet switch and the vision processing
+unit(s) (VPUs) through the GWC.
+The GWC acts as a gateway to connect the implement CAN bus and See & Spray/BoomTrac CAN bus. The
+VPUs' vision spray modules (VSMs) communicate status messages to the GWC. The GWC monitors
+messages on both busses and relays the necessary information to necessary control units on the
+implement bus.
+The GWC allows the operator interface with VPUs VSMs and cameras on the boom through the See & Spray
+screen on the display. The user can select a specific VPU VSM and camera lens. It also provides visual
+feedback to what the camera is sensing by sending the information from the VPU and broadcasting the
+video through ethernet from VPU to the ethernet switches and then back to the Generation 4 Display.
+A725 ΓÇö Gateway control unit
+ΓÇó
+F80-5 ΓÇöSee & Spray load center
+ΓÇó
+F95 ΓÇö Gateway and Ethernet switch power fuse
+ΓÇó
+F203 ΓÇö Cab chassis system fuse
+ΓÇó
+F302 ΓÇö Master nozzle control unit (MNC)/See & Spray control unit fuse
+ΓÇó
+F400-5A ΓÇö ExactApply load center 5A
+ΓÇó
+GND305-2B ΓÇö Ethernet wakeup ground
+ΓÇó
+W0076 ΓÇö Solution Skid Main Power Harness (249-40W)
+ΓÇó
+W0078 ΓÇö Solution Skid Center Frame Extension Harness (249-40W)
+ΓÇó
+W0082 ΓÇö ExactApply Battery Power Harness (249-40W)
+ΓÇó
+W0087 ΓÇö Center Frame Sensing Harness (249-40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 5684 (len=1062)
+######################################################################
+
+5684
+[TOC-ANCHOR:sec-09001faa85e3a954]
+MHC ΓÇö Electrical Theory of Operation
+The multi-function control unit (MHC) (A103) allows the operator to adjust the speed range, shut off
+multiple systems in case of emergency, and activate AutoTrac.
+Component Information:
+The MHC and the navigation bar receive power from the CommandARM control unit (ARMC) (A102).
+The MHC communicates with other control units along the operator station domain control unit (OSDC)
+controller area network (CAN) binary unit system (bus).
+The MHC ground is provided by battery box ground 2 (GND201-2).
+Related Information:
+OSD CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (240-20G)
+Wakeup Power ΓÇö Electrical Theory of Operation (245-20)
+A103 ΓÇö Multi-function lever (MHC)
+ΓÇó
+A107 ΓÇö Navigation bar
+ΓÇó
+A102 ΓÇö CommandARM control unit (ARMC)
+ΓÇó
+GND201-2 ΓÇö Battery box ground 2
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(249-40W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(249-40W)
+ΓÇó
+W0034 ΓÇö Roof Harness(249-40W)
+ΓÇó
+W0049 ΓÇö CommandARM Harness(249-40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 5685 (len=1664)
+######################################################################
+
+5685
+[TOC-ANCHOR:sec-09001faa860ef36d]
+MNC ΓÇö Electrical Theory of Operation
+The master nozzle control unit (MNC) operates on the implement controller area network (CAN) binary unit
+system (bus).
+Component Information:
+All individual nozzle control units (NZCs) are on one of the four subnetworks (subnets) of CAN bus. The four
+subnets are labeled:
+NZCs have synchronized in-out and CAN bus in-out lines. After every power cycle, the MNC uses the
+following four sync lines to establish CAN bus addresses for each of the NZCs on one of the ExactApply
+CAN buses:
+NZCs are addressed at each power cycle to establish a reference location for each NZC. Each NZC is
+assigned a unique address on one of the ExactApply CAN buses, numbering sequentially from far left-hand
+side to far right-hand side. Refer to the appropriate ExactApply Technical Manual for ExactApply
+functionality.
+Related Information:
+F400 ΓÇö ExactApply Load Center (When Equipped) (249-40F)
+Grounds: Boom ΓÇö Electrical Theory of Operation (240-20G)
+Grounds Overview (249-40X)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+Load Center: Rear Mid-Chassis Cab ΓÇö Electrical Theory of Operation (240-20G)
+MNC ΓÇö Electrical Schematic (245-30)
+A4000 ΓÇö Master nozzle control unit (MNC)
+ΓÇó
+F404 ΓÇö ExactApply nozzles fuse
+ΓÇó
+GND201-2 ΓÇö Battery box ground 2
+ΓÇó
+GND305-3A ΓÇöCenter frame right-hand ground bus bar
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(249-40W)
+ΓÇó
+W0075 ΓÇö Solution Skid Dual Product Harness(249-40W)
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+ExactApply CAN bus 1
+ΓÇó
+ExactApply CAN bus 2
+ΓÇó
+ExactApply CAN bus 3
+ΓÇó
+ExactApply CAN bus 4
+ΓÇó
+PWM ADDR1
+ΓÇó
+PWM ADDR2
+ΓÇó
+PWM ADDR3
+ΓÇó
+PWM ADDR4
+ΓÇó
+
+
+######################################################################
+PDF PAGE 5686 (len=1579)
+######################################################################
+
+5686
+[TOC-ANCHOR:sec-09001faa859e3b27]
+MTG ΓÇö Electrical Theory of Operation
+The modular telematics gateway (MTG) is one of the main components that enable JDLink
+communications. The MTG allows for data to transfer to and from the JDLink host server over a cellular
+network or wireless network. An active JDLink subscription is required.
+Component information:
+Power is provided through the MTG fuse.
+The MTG communicates on both the implement and vehicle controller area networks (CAN) binary unit
+system (bus) systems.
+The MTG activates when wakeup power is supplied or when the key switch is moved out of the OFF
+position.
+NOTE:
+If the MTG is not properly functioning, this could affect the ethernet network for See & Spray.
+The MTG ground is provided by battery box ground 2 connection within the battery box.
+Related Information:
+MTG ΓÇö Electrical Schematic (Section 245, Group 30)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Vehicle CAN Bus ΓÇö Electrical Theory of operation (Section 240, Group 20D)
+Wakeup Power ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+F100 ΓÇö Mid-Chassis Load Center (Section 249, Group 40F)
+Grounds Overview (Section 249, Group 40X)
+A123 ΓÇö Modular telematics gateway (MTG) control unit
+ΓÇó
+F100 ΓÇö Mid-chassis load center
+ΓÇó
+F103 ΓÇö MTG fuse
+ΓÇó
+GND201-2 ΓÇö Battery box ground 2
+ΓÇó
+Modular telematics gateway (MTG)
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0014 ΓÇö MTG Jumper Harness (Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 5687 (len=1744)
+######################################################################
+
+5687
+[TOC-ANCHOR:sec-09001faa860ef36e]
+NZC ΓÇö Electrical Theory of Operation
+The Master Nozzle Control Unit (MNC) operates on the implement controller area network (CAN) binary
+unit system (bus). The MNC controls each nozzle body on the booms. Each nozzle body is an inidividual
+nozzle control unit (NZC). All NZCs are on one of the four subnetworks (subnets) of CAN bus. There are
+varying numbers of NZCs on each subnet.
+Component Information:
+The four subnets are:
+NZCs have synchronized in-out and CAN bus in-out lines. After every power cycle, the MNC uses the
+following four sync lines to establish CAN bus addresses for each of the NZCs on one of the ExactApply
+subnets.
+When the address sequencing is complete, the sync and CAN bus lines are used to communicate with the
+MNC.
+Switched battery power is provided from the ExactApply nozzles center frame fuse within the ExactApply
+load center.
+Wakeup is provided when the key switch is turned from the OFF position.
+Ground is provided by the center frame right-hand ground.
+Related Information:
+F300 ΓÇö Rear Mid-Chassis Cab Load Center (249-40F)
+A4000 ΓÇö Master nozzle control unit
+ΓÇó
+F400 ΓÇö ExactApply load center
+ΓÇó
+F426 ΓÇö ExactApply nozzles center frame fuse
+ΓÇó
+GND305-3A ΓÇö Center frame right-hand ground
+ΓÇó
+K603 ΓÇö ExactApply nozzles relay
+ΓÇó
+R4001 ΓÇö ExactApply CAN 1 terminator
+ΓÇó
+R4002 ΓÇö ExactApply CAN 1 terminator
+ΓÇó
+R4005 ΓÇö ExactApply CAN 2 terminator
+ΓÇó
+R4007 ΓÇö ExactApply CAN 2 terminator
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+W0081 ΓÇö ExactApply Power Load Center Harness (249-40W)
+ΓÇó
+W0082 ΓÇö ExactApply Battery Power Harness (249-40W)
+ΓÇó
+ExactApply Subnet 1
+ΓÇó
+ExactApply Subnet 2
+ΓÇó
+ExactApply Subnet 3
+ΓÇó
+ExactApply Subnet 4
+ΓÇó
+PWM ADDR1
+ΓÇó
+PWM ADDR2
+ΓÇó
+PWM ADDR3
+ΓÇó
+PWM ADDR4
+ΓÇó
+

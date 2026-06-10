@@ -1,0 +1,636 @@
+﻿
+######################################################################
+PAGE 5692
+######################################################################
+5692
+[TOC-ANCHOR:sec-09001faa859eeaa7]
+PSSC ΓÇö Electrical Theory of Operation
+NOTE:
+System 2 uses the primary solution system control unit (PSSC).
+The PSSC is located at the rear of the machine. The PSSC monitors and controls many spraying functions
+such as pump speed, system pressure, valve positions, and application rates.
+Component Information:
+Unswitched battery power is provided from the BCHU/PSSC power fuse within the rear mid-chassis load
+center.
+Switched battery power is provided from the spray control power fuse within the mid-chassis load center.
+The PSSC communicates with other control units using the implement control area network (CAN) binary
+unit system (bus).
+Wakeup is provided when the keyswitch is turned from the OFF position.
+Ground is provided by the battery box ground and the solution skid ground.
+Related Information:
+PSSC ΓÇö Electrical Schematic (Section 245, Group 30)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Load Center: Mid-Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Wakeup Power ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+F100 ΓÇö Mid-Chassis Load Center (Section 249, Group 40F)
+F300 ΓÇö Rear Mid-Chassis Cab Load Center (Section 249, Group 40F)
+Grounds Overview (Section 249, Group 40X)
+A306 ΓÇö Primary solution system control unit (PSSC)
+ΓÇó
+F100 ΓÇö Mid-chassis load center
+ΓÇó
+F112 ΓÇö Spray control B+ fuse
+ΓÇó
+F300 ΓÇö Rear mid-chassis cab load center
+ΓÇó
+F303 ΓÇö BCHU/PSSC power fuse
+ΓÇó
+GND201-2 ΓÇö Battery box ground 2
+ΓÇó
+GND303-2A ΓÇö Solution skid ground 2A
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0075 ΓÇö Solution Skid Dual Product Harness(Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PAGE 5693
+######################################################################
+5693
+[TOC-ANCHOR:sec-09001faa859e4298]
+Premium Server ΓÇö Electrical Theory of Operation
+The premium server module connects to the CommandCenter display. The premium server performs as a
+central information hub.
+Component Information:
+Broadcast information is sent from the CommandCenter display through vehicle and implement controller
+area network (CAN) binary unit system (bus) systems to the premium server, and then on to the display.
+Power to the premium server is provided from the server fuse located within the cab load center.
+The premium server activates when wakeup power is supplied or when the key switch is moved out of the
+OFF position.
+The premium server communicates on the vehicle CAN bus and implement CAN bus.
+The premium server ground is provided by battery box ground 2 connection.
+Related Information:
+Premium Server ΓÇö Electrical Schematic(Section 245, Group 30)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Load Center: Cab ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Wakeup Power ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+XEC ΓÇö Cab Load Center (Section 249, Group 40F)
+Grounds Overview (Section 249, Group 40X)
+A121 ΓÇö Premium server
+ΓÇó
+A122 ΓÇö CommandCenter display
+ΓÇó
+EC6 ΓÇö Cab load center
+ΓÇó
+F10 ΓÇö Premium server fuse
+ΓÇó
+GND201-2 ΓÇö Battery box ground 2
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PAGE 5694
+######################################################################
+5694
+[TOC-ANCHOR:sec-09001faa859ed0fb]
+SSSC ΓÇö Electrical Theory of Operation
+NOTE:
+System 1 uses the secondary solution system control unit (SSSC).
+The secondary solution system control unit (SSSC) is located at the left-rear of the machine. The SSSC
+monitors and controls many spraying functions such as pump speed, system pressure, valve positions, and
+application rates.
+Component Information:
+Unswitched battery power is provided from the BCHU/PSSC power fuse within the rear mid-chassis load
+center.
+Switched battery power is provided from the SSSC power fuse within the mid-chassis load center.
+The SSSC relays controller area network (CAN) binary unit system (bus) signals over the implement CAN
+bus.
+Wakeup is provided when the key switch is turned from the OFF position.
+Ground is provided by the battery box ground and the solution skid ground.
+Related Information:
+F100 ΓÇö Mid-Chassis Load Center (Section 249, Group 40F)
+F300 ΓÇö Rear Mid-Chassis Cab Load Center (Section 249, Group 40F)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Load Center: Cab ΓÇö Electrical Schematic (Section 240, Group 30G)
+Load Center: Rear Mid-Chassis Cab ΓÇö Electrical Schematic(Section 240, Group 30G)
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Wakeup Power ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+A307 ΓÇö Secondary solution system control unit
+ΓÇó
+F100 ΓÇö Mid-chassis load center
+ΓÇó
+F121 ΓÇö SSSC fuse
+ΓÇó
+F300 ΓÇö Rear mid-chassis cab load center
+ΓÇó
+F303 ΓÇö BCHU/PSSC B+ fuse
+ΓÇó
+GND201-2 ΓÇö Battery box ground 2
+ΓÇó
+GND303-2A ΓÇö Solution skid ground 2A
+ΓÇó
+X503-1 ΓÇö Cab power bolt 1
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0075 ΓÇö Solution Skid Dual Product Harness(Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PAGE 5695
+######################################################################
+5695
+[TOC-ANCHOR:sec-09001faa861a9dd1]
+VPU ΓÇö Electrical Theory of Operation
+The vision processing unit (VPU) is the image processing module (IPM) that identifies live plants (green color) within an image. When an image is captured by a green
+detection camera on the boom, the VPU analyzes the image for green color spectrum within the image. The VPU interprets the objects size and determines whether
+to send spray message to the corresponding nozzle body to spray the object. When See & Spray Ultimate is active, only valve B of the individual nozzle responds to
+commands from the VPU to spray.
+Component Information:
+The VPU communicates on both BoomTrac controller area network (CAN) binary unit system (bus) and the respective ExactApply nozzle subnet CAN bus. The
+BoomTrac CAN bus is required to know the boom height for the proper camera region of interest to be used for image capture. The BoomTrac CAN bus also allows
+for communication to the gateway control unit (GWC) for user interface to the VPU.
+For correct weed analization, each aspect of the See & Spray system must communicate with each other appropriately. The cameras on the boom communicate
+through coaxial cable to the VPU for weed detection. The GWC and BoomTrac communicate to the VPU through BoomTrac CAN. The individual nozzles communicate
+through ExactApply CAN. Modular telematics/display communicates through the Ethernet system to the gateway control. The GWC communicates the information
+back to the Generaion 4 Display on the implement CAN bus. The GWC reports issues by displaying GWC diagnostic trouble codes (DTCs).
+Unswitched power is a constant 12 V power supply that comes directly from the batteries and battery disconnect switch. Power is supplied to the See & Spray load
+center via the ExactApply load center. Power is supplied from the mid-chassis power distribution center to the EA load center and on to the See & Spray load center
+(on the fixed center frame) with 12 V power circuit, protected by a 150A fuse master nozzle control/See & Spray fuse within the mid-chassis power distribution load
+center.
+A711ΓÇöA720 ΓÇö Vision processing units (VPUs)
+ΓÇó
+A725 ΓÇö Gateway control unit (GWC)
+ΓÇó
+A726 ΓÇö Ethernet switch 1 assembly
+ΓÇó
+A727 ΓÇö Ethernet switch 2 assembly
+ΓÇó
+A728 ΓÇö Ethernet switch 3 assembly
+ΓÇó
+F80 ΓÇö See & Spray load center
+ΓÇó
+F95 ΓÇö Gateway and Ethernet switch power fuse
+ΓÇó
+GND305 ΓÇö Center frame right ground buss bar
+ΓÇó
+W0087 ΓÇö Center Frame Sensing Harness (249-40W)
+ΓÇó
+W0105 ΓÇö Left-Hand Inner Wing Sensing Harness(249-40W)
+ΓÇó
+W0106 ΓÇö Right-Hand Inner Wing Sensing Harness (249-40W)
+ΓÇó
+
+
+######################################################################
+PAGE 5690
+######################################################################
+5690
+[TOC-ANCHOR:sec-09001faa859e3d4b]
+PDU ΓÇö Electrical Theory of Operation
+The corner post display unit (PDU) acts in conjunction with other electrical components to provide the
+operator information about ground speed, engine temperature, and other machine functions.
+Component Information:
+The PDU power fuse provides electrical power to the PDU. However, the PDU is inactive until power is also
+supplied with wakeup power. When wakeup power is removed, the PDU initiates a shutdown procedure.
+The PDU uses the vehicle controller area network (CAN) binary unit system (bus) to communicate with
+other control units on the machine. Presence of the PDU on the CAN bus is required for all machine
+adjustments.
+The PDU ground is provided by electronics battery box ground 2 connection within the battery box.
+Related Information:
+PDU ΓÇö Electrical Schematic (Section 245, Group 30)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Load Center: Cab ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Wakeup Power ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+XEC ΓÇö Cab Load Center (Section 249, Group 40F)
+Grounds Overview (Section 249, Group 40X)
+Corner post display unit (PDU)
+ΓÇó
+EC6 ΓÇö Cab load center
+ΓÇó
+F12 ΓÇö PDU fuse
+ΓÇó
+GND201-2 ΓÇö Battery box ground 2
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PAGE 5691
+######################################################################
+5691
+[TOC-ANCHOR:sec-09001faa859de242]
+PODC ΓÇö Electrical Theory of Operation
+The powertrain domain control unit (PODC) provides controller area network (CAN) binary unit system
+(bus) messages along the vehicle CAN bus. The PODC relays messages along the vehicle CAN bus that it
+receives on the POD CAN bus.
+Component Information:
+Power is provided through the PODC B+ power fuses.
+The PODC activates when wakeup power is supplied or when the key switch is moved out of the OFF
+position.
+Ground is provided for the PODC by battery box ground 4 and 9 within the battery box.
+Related Information:
+F100 ΓÇö Mid-Chassis Load Center (Section 249, Group 40F)
+F300 ΓÇö Rear Mid-Chassis Cab Load Center (Section 249, Group 40F)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Grounds Overview (Section 249, Group 40X)
+PODC ΓÇö Electrical Schematic (Section 245, Group 30)
+POD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Wakeup Power ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+A201 ΓÇö Powertrain domain control unit (PODC)
+ΓÇó
+F111 ΓÇö PODC B+ fuse
+ΓÇó
+F301 ΓÇö PODC B+ fuse
+ΓÇó
+GND201-4 ΓÇö Battery box ground 4
+ΓÇó
+GND201-9 ΓÇö Battery box ground 9
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group W)
+ΓÇó
+W0025 ΓÇö Load Center Power Harness (Section 249, Group W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+W0036 ΓÇö PODC Power Harness (Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PAGE 4150
+######################################################################
+4150
+ΓûíΓÇâIf all checks have been made with no problems identified, check power and ground circuits. Power
+inputs must be within 1 V of battery voltage with load on circuit and ground circuits should remain
+less than 0.5 V to vehicle single point ground.
+ΓûíΓÇâInspect all connectors and terminals of associated control units.
+
+
+######################################################################
+PAGE 4151
+######################################################################
+4151
+[TOC-ANCHOR:sec-09001faa858f50c2]
+Two-Wire Sensor Circuit Test
+Two-Wire Sensor Circuit Check
+NOTE:
+Unless instructed, use a chassis ground point for voltage checks.
+.03 Diagnostics - Voltage above normal can be caused by
+.04 Diagnostics - Voltage below normal can be caused by
+┬á 
+1┬á Preliminary Test
+Action:
+Result:
+OK:
+GO TO2
+NOT OK:
+Repair issue found and retest.
+┬á 
+2┬á Sensor Supply Circuit Test
+Action:
+Use a multi-meter to test for 5 V (┬▒0.2 V) sensor supply voltage on sensor supply terminal to ground.
+NOTE:
+Recommend testing circuit using approved flex probes to avoid connector damage.
+Open supply or return wire
+ΓÇó
+Return wire short to voltage
+ΓÇó
+Sensor malfunction
+ΓÇó
+Supply wire short to ground
+ΓÇó
+Sensor malfunction
+ΓÇó
+Key switch OFF
+ΓÇó
+Perform 
+ (Section 240, Group 10)
+Connector Terminal Test
+ΓÇó
+
+
+######################################################################
+PAGE 4152
+######################################################################
+4152
+E98082-UN: Sensor Supply Circuit Test
+Result:
+OK:
+GO TO3
+NOT OK:
+Repair sensor supply circuit.
+┬á 
+3┬á Sensor Ground Circuit Test
+Action:
+With the sensor disconnected, use a multi-meter to test for 5 V (┬▒0.2 V) from sensor supply terminal to
+sensor ground terminal.
+NOTE:
+Recommend testing circuit using approved flex probes to avoid connector damage.
+Result:
+
+
+######################################################################
+PAGE 4153
+######################################################################
+4153
+OK:
+Replace sensor.
+NOT OK:
+Sensor replaced but issue remains.
+GO TO4
+NOT OK:
+Repair sensor ground circuit
+┬á 
+4┬á Circuit Load Test
+Action:
+NOTE:
+Disconnect and isolate the suspect circuits before performing circuit load test.
+Perform an 
+ (Section 240, Group 10) on the sensor supply and sensor ground circuits.
+Open Circuit Load Test
+Result:
+OK:
+GO TO5
+NOT OK:
+Repair circuits as necessary.
+┬á 
+5┬á Control Unit Power and Ground Test
+Action:
+Refer to Control unit electrical schematics (Section 245, Group 30). Perform these steps to diagnose any
+issues with the control unit power and grounds.
+Result:
+OK:
+No Issues found. Replace the control unit.
+NOT OK:
+Repair issue that was found.
+Turn key switch on and verify battery voltage on fuse terminals.
+1.
+Disconnect the battery.
+2.
+Disconnect the control unit connectors and inspect harness, connectors, and pins for any damage.
+3.
+Connect battery and check for unswitched voltage to ground.
+4.
+Check for switched voltage to ground.
+5.
+Check for opens and high resistance on the control unit grounds.
+6.
+Disconnect all affected components and perform circuit load test.
+7.
+
+
+######################################################################
+PAGE 4154
+######################################################################
+4154
+[TOC-ANCHOR:sec-09001faa8554fa83]
+Wire Harness Test
+IMPORTANT:
+When testing wire harnesses, it is necessary to place spare mating terminals into the terminal
+sockets of the connectors that are to be tested. Apply test leads to those terminals instead of
+the terminal sockets. Inserting test leads into terminal sockets of harness connectors can
+damage the terminal socket and/or connector, causing unnecessary problems in the electrical
+system.
+T207090A-UN: Proper Wire Harness Test (DEUTSCH connectors shown)
+LEGEND:
+1
+-
+Test Lead
+2
+-
+Spare Mating Terminal
+Select proper mating terminal adapter from JDG10466 Flex Probe Kit.
+
+
+######################################################################
+PAGE 4155
+######################################################################
+4155
+[TOC-ANCHOR:sec-09001faa85b69a2a]
+Agitation ΓÇö Electrical Theory of Operation
+NOTE:
+System 1 uses the secondary solution system control (SSSC).
+System 2 uses the primary solution system control (PSSC).
+Agitation is used to keep chemicals mixed in the solution tank. Automatic and manual agitation can be
+selected from the display. Agitation can be modified as necessary from the display when:
+Component Information:
+Agitation is activated by one of two ways:
+When agitation is activated, the agitation level can be viewed on the corner post display (PDU).
+Solution contents require more or less agitation.
+ΓÇó
+Manual control of agitation is desired. Operator turns off automatic agitation.
+ΓÇó
+Reduced risk of foaming at low solution levels is desired. Operator turns on automatic agitation.
+ΓÇó
+A101 ΓÇö Operator station domain control unit (OSDC)
+ΓÇó
+A102 ΓÇö CommandARM control unit (ARMC)
+ΓÇó
+A103 ΓÇö Multi-function control lever
+ΓÇó
+A104 ΓÇö Settings control module (SCM)
+ΓÇó
+A120 ΓÇö Corner post display (PDU)
+ΓÇó
+A121 ΓÇö Premium server
+ΓÇó
+A122 ΓÇö Command center display
+ΓÇó
+A306 ΓÇö Primary solution system control (PSSC)
+ΓÇó
+A307 ΓÇö Secondary solution system control (SSSC)
+ΓÇó
+A311 ΓÇö Dual system keypad
+ΓÇó
+A312 ΓÇö Micro display system 1
+ΓÇó
+A313 ΓÇö Micro display system 2
+ΓÇó
+GND201 ΓÇö Battery box ground
+ΓÇó
+GND303 ΓÇö Solution skid ground buss bar
+ΓÇó
+M318 ΓÇö Agitation valve motor
+ΓÇó
+M364 ΓÇö Tank 1 agitation controller area network (CAN) valve motor
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+W0034 ΓÇö Roof Harness(Section 249, Group 40W)
+ΓÇó
+W0049 ΓÇö CommandARM Harness(Section 249, Group 40W)
+ΓÇó
+W0075 ΓÇö Solution Skid Dual Product Harness(Section 249, Group 40W)
+ΓÇó
+Switch on the settings control module (SCM)
+ΓÇó
+Switch outside the cab on the dual system keypad
+ΓÇó
+
+
+######################################################################
+PAGE 4156
+######################################################################
+4156
+The agitation system consists of an electric motor that turns a ball valve in the solution system to start and
+stop agitation. Agitation flow is set with how far the agitation valve is opened and where the spray-off
+pressure is set. Three agitation levels can be chosen from the display:
+Agitation levels can be further adjusted by altering the solution pump speed. The icon for the agitation
+level indicator on the PDU illuminates when agitation is active and displays the amount that the valve is
+opened.
+To stop agitation, press the solution pump button to stop the pump, then press the agitation button to
+close the agitation valve. Additional information can be found withing the appropriate Operator's Manual
+(OM).
+In Cab Agitation Switch
+When agitation is commanded, a message is sent to the operator station domain control unit (OSDC). The
+OSDC then sends a message on the implement controller area network (CAN) binary unit system (bus)
+indicating that the agitation has been commanded.
+The PSSC for system 2 receives the message and sends a request on the implement CAN bus to the
+agitation valve motor. The SSSC receives the message and sends a request on the secondary solution
+control CAN bus to the system 1 agitation CAN valve motor. The requests to the agitation valve motors
+move the valve to the desired position based on the rate selected.
+Dual System Keypad
+When the agitation switch on the dual system keypad is pressed to activate system 2 agitation, a message
+is sent on the implement CAN bus to the PSSC. The PSSC then sends the message to the agitation valve
+motor. The agitation valve then moves to the desired position based on the rate that has been selected.
+When the agitation switch on the dual system keypad is pressed to activate system 1 agitation, a message
+is sent on the implement CAN bus to the SSSC. The SSSC then sends the message on the secondary
+solution control CAN bus to the system 1 agitation CAN valve motor. The agitation valve then moves to the
+desired position based on the rate that has been selected.
+Agitation Valve
+The agitation valve motors receive position commands and report position status on the implement and
+secondary solution control CAN buses.
+Ground for the agitation systems are provided by the battery box ground and solution skid ground buss
+bar.
+Related information
+Agitation ΓÇö Electrical Schematic(Section 240, Group 30A)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Grounds: Solution Buss Bar ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Low ΓÇö To minimize foaming with easily mixed products.
+ΓÇó
+Medium ΓÇö For easily mixed products not likely to foam.
+ΓÇó
+High ΓÇö To keep dry flowable and heavy or thick liquids in suspension.
+ΓÇó
+
+
+######################################################################
+PAGE 4157
+######################################################################
+4157
+[TOC-ANCHOR:sec-09001faa860df59d]
+Application ExactApply ΓÇö Electrical Theory of Operation
+The theory of operation and schematics for the ExactApply (EA) system can be found in manual TM1781XX
+for ExactApply Nozzle Control and See & Spray Select. EA information within this diagnostic technical
+manual (DTM) is only as it applies to the See & Spray Ultimate operations. All See & Spray Ultimate
+information can be found within this DTM under the electrical 240-20L for theory of operation and 30L for
+schematics.
+Component Information
+Ground for the EA system is provided by the battery box ground system, which provides ground
+connection to the the right-hand buss bar ground.
+All CommandARM controls going to the EA system are broadcast over the implement controller area
+network (CAN) binary unit system (bus) network. Refer to theOverview: CAN and LIN Bus ΓÇö Electrical
+Schematic(240-30D) for more information.
+Related Information
+Application ExactApply ΓÇö Electrical Schematic(240-30A)
+Load Center: ExactApply ΓÇö Electrical Theory of Operation (240-20G)
+A4000 ΓÇö Master nozzle control unit (MNC)
+ΓÇó
+GND201 ΓÇö Battery box ground
+ΓÇó
+GND305 ΓÇö ExactApply (EA) miscellaneous ground
+ΓÇó
+H4901 ΓÇö ExactApply (EA) key fob horn
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+W0090 ΓÇö Center Frame Nozzle Harness (249-40W)
+ΓÇó
+W0091 ΓÇö Center Frame Left-Hand Harness (249-40W)
+ΓÇó
+W0092 ΓÇö Center Frame Right-Hand Harness (249-40W)
+ΓÇó
+W0093 ΓÇö Left-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0094 ΓÇö Right-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0095 ΓÇö Left-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0096 ΓÇö Right-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0097 ΓÇö Left-Hand Outer Wing Harness (249-40W)
+ΓÇó
+W0098 ΓÇö Right-Hand Outer Wing Harness (249-40W)
+ΓÇó
+W0101 ΓÇö Left-Hand Breakaway Harness (249-40W)
+ΓÇó
+W0102 ΓÇö Right-Hand Breakaway Harness (249-40W)
+ΓÇó
+
+
+######################################################################
+IMPLEMENT CAN THEORY PAGE 4212
+######################################################################
+4212
+[TOC-ANCHOR:sec-09001faa85a9b303]
+CommandARM Control Modules ΓÇö Electrical Theory of 
+Operation
+The CommandARM contains four modules, which allow the operator to control machine navigation and
+implement functions. For detailed operation of the controls, see the appropriate OperatorΓÇÖs Manual (OM).
+Component Information:
+The CommandARM control unit (ARMC) provides power and ground to the CommandARM modules. Each
+module connects to the ARMC through a local interconnect network (LIN) binary unit system (bus). The
+ARMC connects to the operator station domain control unit (OSDC) through the operator station domain
+CAN bus. The OSDC sends the ARMC signals along the implement CAN bus and the vehicle CAN bus.
+Driving Controls Module (DCM)
+The DCM allows the operator control of settings such as the park brake, engine speed, and transmission.
+The DCM communicates directly with the ARMC.
+House Controls Module (HCM)
+The HCM allows the operator control of exterior lighting, infotainment radio and the heating, ventilation,
+and air conditioning (HVAC). The HCM communicates with the ARMC on the ARMC LIN bus 1.
+Settings Control Module (SCM)
+The SCM allows manual control of the implement functions. The SCM communicates directly with the
+ARMC.
+Navigation Bar
+The navigation bar provides quick access to different applications. The navigation bar communicates with
+the ARMC on the ARMC LIN bus 1.
+Related Information:
+CommandARM Control Modules ΓÇö Electrical Schematic(Section 240, Group 30C)
+A101 ΓÇö Operator Station Domain Control Unit (OSDC)
+ΓÇó
+A102 ΓÇö CommandARM Control Unit (ARMC)
+ΓÇó
+A103 ΓÇö Multi-Function Control Lever
+ΓÇó
+A104 ΓÇö Settings Control Module (SCM)
+ΓÇó
+A105 ΓÇö House Control Module (HCM)
+ΓÇó
+A106 ΓÇö Driving Control Module (DCM)
+ΓÇó
+A107 ΓÇö Navigation Bar Module Control
+ΓÇó
+B110 ΓÇö Rotary Encoder Module
+ΓÇó
+S102 ΓÇö Secondary Brake Switch
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+W0034 ΓÇö Roof Harness(Section 249, Group 40W)
+ΓÇó
+W0049 ΓÇö CommandARM Harness(Section 249, Group 40W)
+ΓÇó
+W0062 ΓÇö Navigation Bar Harness (Section 249, Group 40W)
+ΓÇó
+W0072 ΓÇö Rotary Encoder Module Harness (Section 249, Group 40W)
+ΓÇó
+

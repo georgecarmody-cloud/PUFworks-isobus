@@ -1,0 +1,241 @@
+﻿
+######################################################################
+Boom CAN Bus ΓÇö PDF PAGE 1526
+######################################################################
+1526
+[TOC-ANCHOR:sec-09001faa862e0869]
+GWC 001231.14 ΓÇö Gateway Control Unit Communication 
+Fault
+There is a controller area network (CAN) binary unit system (bus) communication fault.
+Component Information:
+F95 ΓÇö See & Spray Gateway and ETH Switch Power Fuse
+W0087 ΓÇö Center Frame Sensing Harness
+XA725 ΓÇö Gateway Control Unit (GWC) Connector
+XGND305-2B ΓÇö Right-Hand Buss Bar Ground
+Schematic:
+Boom CAN Bus ΓÇö Electrical Schematic(240-30D)
+GWC ΓÇö Electrical Schematic (Section 245, Group 30)
+Diagnostic Steps:
+Disconnect the machine battery and reconnect the machine battery. This process reboots the system,
+clears out error messages, and re-establishes proper communication messages.
+1.
+Utilize Service ADVISOR to ensure that the appropriate control unit has the proper software. Update
+software as necessary. Refer toControl Unit Reprogramming(Section 245, Group 10C).
+2.
+Verify that the code is still active. Refer to 
+ (Section 211, Group 05). If
+Recall, Record, and Clear Codes
+inactive, refer to 
+ (Section 211, Group 05).
+Intermittent Diagnostic Trouble Code Diagnostics
+3.
+If repgrogramming failed again, utilize Service ADVISOR to ensure that the appropriate control unit
+has the proper software. Update software as necessary. Refer toControl Unit Reprogramming(Section
+245, Group 10C).
+4.
+Ensure that all control units are communicating on the applicable network or subnet.
+5.
+Refer to the display's Diagnostic Center application > Controllers > verify that message counts are
+changing on all control units along the applicable network or subnet.
+1.
+If faulty communication network has another application on the display, then refer to the
+display's Diagnostic Center application > applicable network > verify that all of the necessary
+components show up as available.
+2.
+Utilize the display information and the schematic to narrow down the possible locations of the
+fault.
+3.
+Refer to the component locations.
+6.
+Visually check all connectors, components, and harnesses for corrosion, binding, and damage.
+1.
+Verify that harness and circuit routing match the electrical schematic.
+2.
+
+
+######################################################################
+Implement CAN Bus ΓÇö PDF PAGE 1660
+######################################################################
+1660
+[TOC-ANCHOR:sec-09001faa85c37caa]
+GWC 518239.09 ΓÇö StarFire Receiver Message Not Detected 
+or Invalid
+The See & Spray control unit did not receive a message from the StarFire receiver.
+The associated nozzles reverted to the selected fallback mode.
+Component Information:
+A126 ΓÇö StarFire Global Positioning System (GPS) Receiver
+A725 ΓÇö Gateway Control Unit (GWC)
+W0008 ΓÇö Left-Hand Chassis Harness
+W0032 ΓÇö Cab Main Harness
+W0034 ΓÇö Roof Harness
+W0075 ΓÇö Solution Skid Dual Product Harness
+W0080 ΓÇö Center Frame Dual Product Harness
+W0087 ΓÇö Center Frame Sensing Harness
+Schematic:
+Implement CAN Bus ΓÇö Electrical Schematic(Section 240, Group 30D)
+Diagnostic Steps:
+Check the area for any obstructions that could be blocking the signal to the StarFire receiver. Move
+the machine to an area free of obstructions.
+1.
+Restart the machine to reboot the system and re-establish proper communication messages.
+2.
+Verify that the code is still active. Refer to 
+ (Section 211, Group 05). If
+Recall, Record, and Clear Codes
+inactive, refer to 
+ (Section 211, Group 05).
+Intermittent Diagnostic Trouble Code Diagnostics
+Utilize Service ADVISOR to ensure that all control units have the proper software.
+Ensure that all control units are communicating on the applicable network or subnet.
+3.
+Refer to the display's Diagnostic Center application > applicable CAN network (when available).
+1.
+Refer to the display's Diagnostic Center application > Controllers > and verify that message
+counts are changing on all control units along the applicable network or subnet.
+2.
+Refer to the appropriate StarFire Technical Manual (TM1354xx or TM1683xx) and diagnose any
+StarFire receiver issues.
+4.
+
+
+######################################################################
+ExactApply CAN Bus ΓÇö PDF PAGE 1725
+######################################################################
+1725
+[TOC-ANCHOR:sec-09001faa862e0fa2]
+GWC 519001.14 ΓÇö ExactApply Subnet 1 CAN Circuit 
+Swapped
+A See & Spray control unit detects that the incorrect controller area network (CAN) circuits are connected. 
+The ExactApply subnet 1 CAN circuit is swapped.
+The associated nozzles reverted to the selected fallback mode.
+Component Information:
+XA4000-2 ΓÇö Master Nozzle Control Unit (MNC) 2 Connector
+XA711-1 ΓÇö Vision Processing Unit 1 (VPU 1) Connector
+XR4001 ΓÇö ExactApply CAN Bus Subnet 1 Terminator 1
+XR4002 ΓÇö ExactApply CAN Bus Subnet 1 Terminator 2
+XX12 ΓÇö Left-Hand Service ADVISOR (SA) Connector
+Nozzle Assemblies (NZC)
+W0080 ΓÇö Center Frame Dual Product Harness
+W0093 ΓÇö Left-Hand Inner Wing 1 Harness
+W0095 ΓÇö Left-Hand Inner Wing 2 Harness
+W0101 ΓÇö Left-Hand Breakaway Harness
+W0105 ΓÇö Left-Hand Inner Wing Sensing Harness
+Schematic:
+See & Spray CAN Bus ΓÇö Electrical Schematic(240-30L)
+Diagnostic Steps:
+Disconnect the machine battery and reconnect the machine battery. This process reboots the system,
+clears out error messages, and re-establishes proper communication messages.
+1.
+Verify that the code is still active. Refer to 
+ (Section 211, Group 05). If
+Recall, Record, and Clear Codes
+inactive, refer to 
+ (Section 211, Group 05).
+Intermittent Diagnostic Trouble Code Diagnostics
+2.
+Verify that harness routing is correct and refer to the component locations.
+3.
+Verify that harness and circuit routing match the electrical schematic.
+1.
+Visually check all connectors, components, and harnesses for corrosion, binding, and damage.
+2.
+Refer to the electrical schematic.
+4.
+Visually verify that relevant fuses are not blown.
+1.
+Identify relevant power and ground/return circuits.
+2.
+5.
+
+
+######################################################################
+Vehicle CAN Bus ΓÇö PDF PAGE 2370
+######################################################################
+2370
+[TOC-ANCHOR:sec-09001faa85f21487]
+PDU 000237.31 ΓÇö VIN Security Data Missing
+There is a communication fault.
+The vehicle identification number (VIN) messages are missing or other control units on the network are
+not committed in the required time. Restart the engine to attempt recovery.
+If restarting the engine does not resolve the issue, refer to 
+ (245-10C) and
+VIN Security Fault Diagnosis
+follow all steps.
+Component Information:
+XA120 ΓÇö Corner Post Display (PDU) Connector
+XX120 ΓÇö ServiceADVISOR (SA) Port Interconnect
+W0032 ΓÇö Cab Main Harness(249-40W)
+Schematic:
+PDU ΓÇö Electrical Schematic (245-30)
+Vehicle CAN Bus ΓÇö Electrical Schematic(240-30D)
+┬á
+1┬á Procedure
+Action:
+NOTE:
+Part of the vehicle identification number data does not match the other control units in the
+network. This fault occurs when protected unit is moved from one vehicle to another. A control
+unit must be programmed with a payload associated to the particular vehicle on to which the
+control unit is installed.
+The system is detecting a control unit on the machine that does not match the correct
+configuration. The control unit must be reprogrammed with software specific to the machine
+identification number, or the original control unit must be reinstalled on the machine.
+Cycle the key switch to attempt recovery of the correct VIN.
+Did the key cycle clear the DTC?
+Result:
+YES:
+DONE
+NO:
+A control unit has been installed on the machine and has a non-matching VIN.
+Determine which control unit has the incorrect VIN and reprogram or replace that control unit.
+Refer toControl Unit Reprogramming(245-10C).
+If restarting the engine does not resolve the issue, refer to 
+ (245-10C) and
+VIN Security Fault Diagnosis
+follow all steps.
+
+
+######################################################################
+Overview: CAN Bus and LIN Bus ΓÇö PDF PAGE 2385
+######################################################################
+2385
+[TOC-ANCHOR:sec-09001faa85f21cdd]
+PDU 002001.09 ΓÇö Source Address 001 Message Missing
+The communication system message is missing.
+No controller area network (CAN) messages were received from source address 1 within the timeout
+period. Restart the engine to attempt recovery.
+Component Information:
+XA120 ΓÇö Corner Post Display (PDU) Connector
+XX120 ΓÇö ServiceADVISOR (SA) Port Interconnect
+W0032 ΓÇö Cab Main Harness(249-40W)
+Schematic:
+Overview: CAN and LIN Bus ΓÇö Electrical Schematic(240-30D)
+PDU ΓÇö Electrical Schematic (245-30)
+Vehicle CAN Bus ΓÇö Electrical Schematic(240-30D)
+Related information:
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (240-20D)
+PDU ΓÇö Electrical Theory of Operation (245-20)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+┬á
+1┬á Procedure
+Action:
+Perform 
+ (240-50D).
+Vehicle CAN Bus ΓÇö Electrical Diagnostic
+Does CAN Bus pass tests?
+Result:
+YES:
+GO TO2
+NO:
+Inspect wiring and connections for wear or damage and repair or replace components as needed.
+┬á
+2┬á Procedure
+Action:
+Are any other controllers identifying missing components on the CAN Bus?
+Result:
+YES:
+Identify missing component on CAN Bus and repair or replace as needed.
+NO:
+Perform 
+ (245-50).
+PDU ΓÇö Electrical Diagnostic
+

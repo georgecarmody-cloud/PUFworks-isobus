@@ -1,0 +1,1782 @@
+
+======== PAGE 21 ========
+GreenStar Rate Controller Overview
+CZ76372,00001E9 ­19­27OCT10­2/2
+CZ76372,00001EA ­19­27OCT10­1/1
+JS56696,00006F8 ­19­05APR10­1/1
+• John Deere planters with Non­CAN based frame
+control.
+The GreenStar Rate Controller can control engagement
+of electric clutches or solenoids on the following ground
+drive configurations:
+• Planters with individual row clutches (Tru Count) will
+have 1 to 16 sections available.
+• Planters with Non­CAN based frame control.
+• Planters with existing ½, ⅓, or ¼ electric disconnect
+clutches will have 2 to 4 sections available dependent
+on the disconnect sections.
+Implement Height Switch
+• An implement height switch is REQUIRED for NH3 and
+planter applications.
+• An implement height switch is OPTIONAL for liquid
+fertilizer applications.
+GreenStar Rate Controller
+To access the GreenStar Rate Controller main page,
+select the menu button followed by the GreenStar Rate
+Controller button. Each GreenStar Rate Controller will be
+identified by the controller serial number and implement
+name once the setup procedure has been completed.
+NOTE: The GreenStar Rate Controller icon will appear
+upon power up after the harness is installed and
+the GreenStar Rate Controller is connected.
+PC8663 —UN—05AUG05
+Menu Button
+PC12969 —UN—27OCT10
+Offsets
+It is necessary to set up machine and implement offsets
+and Swath Control parameters to optimize GreenStar
+Rate Controller performance. Refer to GS2 Basics and
+Guidance manuals.
+20­5
+111110
+PN=21
+
+======== PAGE 22 ========
+Sprayers and Liquid Fertilizer Tool Setup
+CZ76372,00001EB ­19­27OCT10­1/2
+CZ76372,00001EB ­19­27OCT10­2/2
+Implement Setup
+Select Setup menu button to enter GreenStar Rate
+Controller setup.
+NOTE: Master switch must be off to change most
+settings or values.
+PC9419 —UN—12SEP06
+Setup Softkey
+PC12970 —UN—27OCT10
+Pull­behind and Self­propelled Sprayer Implement Setup
+PC12971 —UN—27OCT10
+Liquid Fertilizer Tool Implement Setup
+A—Implement Tab
+B—Systems Tab
+C—Alarms Tab
+D—Rates Tab
+E—Implement Type Drop­Down
+Menu
+F—Implement Name Drop­Down
+Menu
+G—New Button
+H—Rename Button
+I— Remove Button
+J— Implement Section Widths
+K—Implement Width Input Box
+L—Setup Sections Button
+M—Left Fence Row Nozzle
+N—Associated Switchbox Switch
+Numbers
+O—Dual Boom ON/OFF Check
+Box
+P—Dual Boom Activation Speed
+Input Box
+Q—Height Switch Check Box
+R—Height Switch Message
+Drop­down Menu
+S—Disable Rate Controller Check
+Box
+Select the Implement tab (A) to enter implement setup.
+NOTE: Switchbox switch numbers (N) will only be
+available if a switchbox is connected.
+25­1
+111110
+PN=22
+
+======== PAGE 23 ========
+Sprayers and Liquid Fertilizer Tool Setup
+CZ76372,00001EC ­19­02NOV10­1/1
+Continued on next page
+CZ76372,00001ED ­19­27OCT10­1/3
+Implement Selection
+1. Select desired implement type (pull­behind sprayer,
+self­propelled sprayer, liquid fertilizer tool) from the
+drop­down menu.
+2. Select implement name from drop­down.
+If no name has been added yet:
+1. Select new.
+2. Type new name on keypad.
+3. Select enter.
+If name needs to be revised:
+1. Select implement name to be revised from drop­down.
+2. Select rename.
+3. Type new name on keypad.
+4. Select enter.
+If equipment name is no longer needed:
+1. Select implement name to be deleted from drop­down.
+2. Select remove.
+3. Accept pop­up notification.
+NOTE: If GRC will not be used but remain connected,
+check Disable this GRC check box to eliminate
+connection to display for Documentation, Swath
+Control, and controller warnings.
+NOTE: A maximum of three implement conﬁgura­
+tions/names may be saved per controller.
+NOTE: Rename does not affect System tab, Alarm
+tab, and Rates tab previously configured.
+Existing calibrations remain valid.
+NOTE: Implement name must be defined before the
+System tab, Alarm tab, and Rates tab are enabled.
+PC12972 —UN—27OCT10
+A—Implement Type Drop­Down
+Menu
+B—Implement Name
+Drop­Down Menu
+C—New Button
+D—Rename Button
+E—Remove Button
+F—Disable Rate Controller
+Check Box
+PC10477 —UN—01SEP07
+Implement Type Drop­Down Menu
+A—Pull­Behind Sprayer
+B—Self­Propelled Sprayer
+C—Liquid Fertilizer Tool
+D—NH3 Tool
+E—Planter
+Setup Implement Sections
+To setup implement sections:
+• Initial implement width may be entered into the
+implement width input box. The width entered is evenly
+distributed among the sections.
+• If implement sections are different widths or associated
+switches are different, select setup sections button and
+follow on screen instructions. Fence row nozzles are
+also included under setup sections.
+NOTE: It is recommended that the section valve type be
+determined prior to completing section setup.
+NOTE: Switchbox information will be hidden when
+no switchbox is connected.
+PC12973 —UN—27OCT10
+Setup Sections
+A—Implement Section Widths
+B—Associated Switchbox
+Switch Numbers
+C—Implement Width Input Box
+D—Setup Sections Button
+25­2
+111110
+PN=23
+
+======== PAGE 24 ========
+Sprayers and Liquid Fertilizer Tool Setup
+CZ76372,00001ED ­19­27OCT10­2/3
+CZ76372,00001ED ­19­27OCT10­3/3
+PC11278 —UN—17SEP08
+PC11279 —UN—17SEP08
+A—Number of Sections Input Box
+B—Left Fence Row Nozzle
+Enable/Disable
+C—Right Fence Row Nozzle
+Enable/Disable
+D—Left Fence Row Nozzle
+Switchbox Switch
+Association Drop­Down
+Menu
+E—Right Fence Row Nozzle
+Switchbox Switch
+Association Drop­Down
+Menu
+F—Cancel Button
+G—Next Page Button
+H—Previous Page Button
+I— Width of Section Button
+J— Switchbox Switch Number
+Association Drop­Down Menu
+1. Enter number of sections.
+2. Select fence row nozzle enable/disable check boxes
+as required.
+3. Indicate switch number associated with each fence
+row nozzle.
+4. Select page forward to enter each individual section
+width and associated switch box number.
+Dual Boom
+Dual boom allows for a second rank of nozzles to activate
+when high speeds and/or application rates are required.
+This allows for pressure and nozzle pattern to remain
+consistent.
+To setup Dual Boom:
+1. Select the Dual Boom ON/OFF check box (A) to
+enable Dual Boom.
+2. Enter speed value in the Dual Boom Activation input
+box (B). When speed value is reached, Dual Boom
+becomes active.
+PC11335 —UN—01OCT08
+A—Dual Boom ON/OFF Check
+Box
+B—Dual Boom Activation Input
+Box
+NOTE: Dual Boom is only available for sprayers
+with 3­wire section valve type.
+If current speed is above threshold indicated, the Dual
+Boom will be activated. When speed drops 10% below
+value, Dual Boom will be deactivated.
+25­3
+111110
+PN=24
+
+======== PAGE 25 ========
+Sprayers and Liquid Fertilizer Tool Setup
+JS56696,00008A7 ­19­19MAY10­1/1
+CZ76372,00001EE ­19­27OCT10­1/1
+Setup Height Switch CAN Message
+• Select Send Status, Receive Status, or Do Not Share.
+• If using GreenStar Rate Controllers in a Multi­Product
+configuration, a single height switch can be shared
+among multiple GreenStar Rate Controllers.
+• The height switch must be connected to one GreenStar
+Rate Controller and that GreenStar Rate Controller
+must be configured to SEND the height switch status to
+the other GreenStar Rate Controllers.
+• Each additional GreenStar Rate Controller must be
+configured to RECEIVE the height switch status.
+• There is an additional option of DO NOT SHARE that
+can be used if multiple height switches are desired in
+the application or operating with a single GreenStar
+Rate Controller.
+PC12603 —UN—12MAY10
+PC12605 —UN—12MAY10
+Height Switch Message drop down menu
+A—Height Switch Check Box
+B—Height Switch Message
+Drop­down Menu
+C—Do Not Share
+D—Send Status
+E—Receive Status
+System Setup
+Select System tab (B) to enter system setup.
+A—Implement Tab
+B—System Tab
+C—Alarms Tab
+D—Rates Tab
+E—Section Valve Type
+Drop­Down Menu
+F—Constant Flow
+Enable/Disable Box
+G—Control Valve Type
+Drop­Down Menu
+H—Tank Capacity Input Box
+I— Control Valve Calibration
+Input Box
+J— Flowmeter Calibration Input
+Box
+K—Flowmeter Units
+Drop­Down Menu
+L—Calibrate Flowmeter Button
+M—Flow Return Enable/Disable
+N—Pressure Sensor 1
+Enable/Disable
+O—Pressure Sensor 2
+Enable/Disable
+P—Calibrate Pressure Sensor
+Button
+Q—Agitator Valve
+Enable/Disable
+R—Agitator Duty Cycle
+Drop­Down Menu
+PC12974 —UN—27OCT10
+System Setup Page
+25­4
+111110
+PN=25
+
+======== PAGE 26 ========
+Sprayers and Liquid Fertilizer Tool Setup
+CZ76372,00001EF ­19­09NOV10­1/6
+Continued on next page
+CZ76372,00001EF ­19­09NOV10­2/6
+Initial Settings
+NOTE: Please refer to the COMPATIBILITY section for
+components compatible with the GreenStar
+Rate Controller.
+1. Select Section Valve type (A) from the drop­down
+menu. See MAXIMUM NUMBER OF IMPLEMENT
+SECTIONS table and valve type descriptions.
+2. Select the Constant Flow enable/disable box to
+configure the GreenStar Rate Controller to operate
+with section valves that have a continuous flow
+bypass. Steps for calibrating section bypass valves
+are described in the SECTION TEST section of this
+manual.
+NOTE: The Constant Flow Box (B) is only available
+when the Section Valve Type is 2­Wire.
+PC12542 —UN—08APR10
+PC12543 —UN—08APR10
+A—Section Valve Type
+Drop­Down Menu
+B—Constant Flow
+Enable/Disable Box
+C—3­Wire
+D—2­Wire
+CAUTION: Selecting the wrong valve type
+can result in valves opening unexpectedly.
+To avoid injury from exposure to chemicals,
+verify the correct valve is selected.
+IMPORTANT: For PWM and PWM Close Control
+Valve systems, it is recommended that an
+external solution pump on/off switch is wired
+into the cab if not already present, allowing
+the operator to shut off the solution pump.
+Solution pump damage may occur if pump
+is run without solution in it.
+PWM Control Valve System: When the master
+switch is shut off on a PWM Control Valve
+System, it will close the section on/off valve
+stopping product flow. The PWM Valve will
+remain at its current position allowing hydraulic
+flow to continue to the solution pump which will
+allow the solution pump to continue running. An
+external solution pump on/off switch will allow
+the operator to shut off the solution pump.
+PWM Close Control Valve System: When the
+master switch is shut off on a PWM Close
+Control Valve System, it will shut off the solution
+pump. An external solution pump on/off switch
+can be more user­friendly and familiar for a
+sprayer operator to shut off the solution pump
+if the solution tank runs empty.
+Refer to the solution pump manufacturer’s
+Operators Manual for more information.
+3. Select Control Valve type from the drop­down menu.
+PC12236 —UN—10SEP09
+PC12544 —UN—08APR10
+A—Control Valve Type
+Drop­Down Menu
+B—Standard
+C—Fast Close
+D—Fast
+E—PWM
+F—PWM Close
+G—None
+Select Control Valve Type "None" for systems that
+do not have a Control Valve. An example would be
+Dragline manure applications that do not have a
+Control Valve.
+NOTE: Valve type must be selected for the system to
+work. Select Standard, Fast, or PWM for valve
+configurations with a control valve and separate
+downstream on/off valve(s). Select Fast Close
+or PWM Close for valve configurations with one
+valve that combines control and on/off. Selecting
+the wrong valve type may result in unexpected
+behavior and degraded performance.
+25­5
+111110
+PN=26
+
+======== PAGE 27 ========
+Sprayers and Liquid Fertilizer Tool Setup
+Continued on next page
+CZ76372,00001EF ­19­09NOV10­3/6
+4. Enter maximum volume of tank in input box labeled
+tank capacity. Tank capacity range is 0 to 17,000 and
+it will default to 1000 gal or 3785 liters.
+5. Standard, Fast, and Fast Close Control Valves
+Enter the Control Valve Calibration number in the input
+box (B). Continue to Step 8.
+PWM and PWM Close Control Valves
+Press the PWM Setup Button (D) and enter the
+Control Valve Calibration number in the input box (E).
+Continue to Step 6.
+NOTE: For PWM and PWM Close control valves,
+the Raven calibration number of 0043 is NOT
+optimal for GreenStar Rate Controller System.
+If the PWM or PWM Close control valve is not
+referenced in the chart below start with 1533 and
+use the process below to fine tune the calibration
+value for optimal performance.
+Fine tuning the Control Valve Calibration Number
+for Optimal Performance.
+Use recommended values in Control Valve Calibration
+table to initially set control valve number. Evaluate
+machine behavior during operation, and if necessary,
+adjust value to attain optimum system performance.
+The Control Valve Calibration number is a 4 digit
+number used to fine tune control characteristics. The
+number is in the form XXYZ, and is defined as follows:
+• XX ­ Valve Speed.
+­ The higher this value, the quicker the valve
+responds. If it is set too high, actual flow rate will
+oscillate continuously around target rate. If it is set
+too low, target rate will never be reached.
+• Y ­ Output Deadband.
+­ Sets the minimum speed that the valve will ramp
+down toward before stopping. The higher this
+value, the sooner the valve will become stationary.
+• Z ­ Control Deadband:
+­ Sets how close actual flow rate must be to target
+rate to be considered acceptable. When actual
+and target rates are within this range, the valve
+will remain stationary. A higher value allows for a
+larger disparity between actual and target rate.
+NOTE: Look for low variance in the lpm (gpm) operating
+range that the system applies in the field when
+completing the Configuration Test.
+PC12237 —UN—10SEP09
+PC12238 —UN—10SEP09
+PC12315 —UN—06OCT09
+A—Tank Capacity Input Box
+B—Control Valve Calibration
+C—Tank Capacity Input Box
+D—PWM Setup Button
+E—Control Valve Calibration
+Input Box
+F—Coil Frequency Input Box
+G—High Speed Limit Input Box
+H—Low Speed Limit Input Box
+I— Calibrate Limits Button
+Example of tuning the control valve for optimal
+response:After entering the initial starting value for
+the control valve (e.g. 2513) and run a configuration
+test, the variance runs high (at or near 100%) and
+the valve response seems sluggish. The next step in
+tuning may be to increase the valve speed number
+(first 2 digits) from 25 to 35 and also increase the
+output deadband number (third digit) from 1 to 2 and
+retry the configuration test. Running a nozzle flow
+check is also a good way to obtain a better feel for
+valve speed and response time of the system.
+Standard Valve Type
+Valve Calibration Number (XXYZ)
+RAVEN 165
+2513
+RAVEN 894
+2513
+RAVEN 125
+2513
+TEEJET 344B
+1003
+HARDI
+7051
+25­6
+111110
+PN=27
+
+======== PAGE 28 ========
+Sprayers and Liquid Fertilizer Tool Setup
+Continued on next page
+CZ76372,00001EF ­19­09NOV10­4/6
+Fast Valve Type
+Valve Calibration Number (XXYZ)
+RAVEN 177
+0753
+HINIKER Servo Valve (8160 Monitor Compatible)
+0433
+KZCO Servo Valve (JD 2510 Liquid Fertilizer system)
+1031
+Fast­Close Valve Type
+Valve Calibration Number (XXYZ)
+RAVEN 177
+0753
+HINIKER Servo Valve (8160 Monitor Compatible)
+0433
+KZCO Servo Valve (JD 2510 Liquid Fertilizer system)
+1031
+PWM Valve Type
+Valve Calibration Number (XXYZ)
+Sauer Danfoss Hagie MFG T540
+1533
+Command Controls Corporation FV1501
+1411
+PWM­Close Valve Type
+Valve Calibration Number (XXYZ)
+Sauer Danfoss Hagie MFG T540
+1533
+Command Controls Corporation FV1501
+1411
+NOTE: On a RAVEN valve, the last three numbers of
+the model number are used to identify the valve
+type (Example: RAVEN XXX894).
+6. Enter the Coil Frequency for the PWM/PWM
+Close valve in input box (F). Refer to control valve
+manufacturer’s Operator’s Manual to attain the proper
+Coil Frequency value. The Coil Frequency will default
+to 122.
+7. Define PWM Limits to control the minimum/maximum
+desired flow or pressure to prevent machine damage
+and ensure quick system response. Defining limits
+can be done by manually entering the high and low
+limits into the input boxes (G & H) or by using the
+Calibrate PWM Limits Test (I). The high and low limits
+range is 0­255. See Calibrate PWM Limits Test in the
+Tests Section for details on how to perform the test.
+25­7
+111110
+PN=28
+
+======== PAGE 29 ========
+Sprayers and Liquid Fertilizer Tool Setup
+Continued on next page
+CZ76372,00001EF ­19­09NOV10­5/6
+8. Enter Flowmeter Calibration number as stamped on
+valve.
+Most flowmeters have an attached tag indicating
+the recommended calibration number. Enter this
+number as the initial Flowmeter Calibration value. The
+Calibrate Flowmeter test must be run to attain a more
+accurate flowmeter calibration number (see Calibrate
+Flowmeter test).
+NOTE: If the tag is no longer attached, start with a
+low calibration number such as 60. Conduct
+a Calibrate Flowmeter test, and the system
+will adjust the value accordingly.
+9. Choose unit of measurement from flowmeter units
+drop­down.
+NOTE: The number on the RAVEN tag is pulses per 10
+units of fluid. Ensure the 10 gal / 10 L unit is used
+when using the number straight off the RAVEN tag.
+NOTE: For manure applications using a Krohne
+Flowmeter, ensure the pulses/gallon are set to
+2 or higher. Please see the Krohne Operators
+Manual for further detail.
+10. To calibrate Flowmeter, select button and follow on
+screen instructions. See Test section for details.
+11. Flow Return— A Flow Return option is available for
+liquid systems equipped with a positive displacement
+pump. With this feature selected, the GreenStar Rate
+Controller will open a flow return valve whenever all
+section valves are closed in order to reduce system
+pressure. The flow return valve will remain closed if
+one or more section valves are open. Refer to the
+TROUBLESHOOTING section to determine which
+driver numbers and connector pins are associated
+with the flow return valve.
+12. Check the pressure sensor box if sensor is installed.
+If using more than one pressure sensor, check
+the second box as well. Pressure indicator will be
+displayed on main menu instead of flow rate when
+pressure sensor is checked.
+PC12545 —UN—08APR10
+PC12546 —UN—08APR10
+Flowmeter Units Drop­Down Menu
+A—Flowmeter Calibration Input
+Box
+B—Flowmeter Units
+Drop­Down Menu
+C—Calibrate Flowmeter Button
+D—Flow Return Enable /
+Disable Box
+E—L (Liter)
+F—10 L (10 Liter)
+G—gal (gallon)
+H—10 gal (10 gallon)
+I— I Gal (Imperial Gallon)
+J— mL (milliliter)
+K—fl oz
+L—I fl oz (Imperial fluid once)
+13. To calibrate pressure sensor(s), select button and
+follow on screen instructions. See Test section for
+details.
+25­8
+111110
+PN=29
+
+======== PAGE 30 ========
+Sprayers and Liquid Fertilizer Tool Setup
+CZ76372,00001EF ­19­09NOV10­6/6
+CZ76372,00001F0 ­19­28OCT10­1/1
+14. Check the agitator valve box to enable agitator.
+NOTE: Agitator valve selection may reduce the number
+of implement sections the GS2 can control. See
+maximum number of implement sections table.
+15. Set agitator duty cycle percent from drop­down menu.
+Agitation Rate is based on runtime in ten minute
+intervals. Example: at 20% agitator runs for 2 minutes
+and is off for 8 minutes.
+If the tank volume is at or below 20% of the total
+volume of the tank the agitation will reduce to half the
+set run time. Example: at the 20% setting from the
+example above, the agitation will now run for 1 minute
+and is off for 9 minutes.
+A—Pressure Sensor 1
+Enable/Disable Box
+B—Pressure Sensor 2
+Enable/Disable Box
+C—Calibrate Pressure Sensor
+Button
+D—Agitator Valve
+Enable/Disable Box
+E—Agitator Duty Cycle
+Drop­Down Menu
+PC12975 —UN—27OCT10
+Initial System Settings
+Alarm Setup
+Select Alarms tab (C) to enter alarm setup.
+Minimum pressure, maximum pressure, and low tank level
+alarms can be toggled on or off via the enable/disable
+boxes.
+Values for the seven alarms may be defined by entering
+values in the boxes.
+NOTE: Minimum and Maximum Pressure alarms are
+disabled if not configured with a pressure sensor.
+A—Implement Tab
+B—System Tab
+C—Alarms Tab
+D—Rates Tab
+E—Low Tank Level Input Box
+F—Low Tank Level Alarm
+Enable/Disable
+G—High Alarm Input Box (%
+Above Target Rate)
+H—Low Alarm Input Box (%
+Below Target Rate)
+I— Pressure Sensor 1
+Minimum Pressure Input
+Box
+J— Pressure Sensor 2
+Minimum Pressure Input
+Box
+K—Pressure Sensor 1
+Maximum Pressure Input
+Box
+L—Pressure Sensor 2
+Maximum Pressure Input
+Box
+PC12976 —UN—27OCT10
+Alarm Setup
+25­9
+111110
+PN=30
+
+======== PAGE 31 ========
+Sprayers and Liquid Fertilizer Tool Setup
+JS56696,00006FF ­19­12MAY10­1/1
+Rates Setup
+Select Rates tab (D) to enter rates setup.
+Up to three target rates may be defined entering the
+values into the input boxes. Values entered on this page
+will be available on the home page.
+Minimum Flow Rate input box may be used to enter the
+minimum amount of flow to maintain while applying. If
+the current vehicle speed and desired application rate
+demand a flow rate that is less than this value, the entered
+value will be applied. Minimum Flow Rate is useful for
+maintaining constant pressure when making headland
+turns where speed is lower than normal and changes
+drastically over a short period of time.
+The specified Minimum Flow Rate applies to entire width
+of the boom. If one or more sections of the boom are
+turned off, the actual minimum flow rate will be adjusted to
+account for the reduced working width.
+NOTE: The Minimum Flow Rate feature will cause
+over­application in areas where vehicle speed is
+low enough to activate the specified Minimum Flow
+Rate. The degree of over­application depends
+on the specified minimum rate and the speed of
+the vehicle. Specifying a minimum flow rate of
+0 will effectively disable this feature.
+NOTE: Speeds below 0.5 km/h (.3106 mph) will result
+in all flow being shut off regardless of the value
+specified for Minimum Flow Rate.
+Rate Smoothing shows the actual rate as the target rate
+when the actual rate is within the user defined percentage.
+Rate Smoothing percentage range is 3­15% and system
+defaults to 3%.
+PC12548 —UN—08APR10
+A—Implement Tab
+B—System Tab
+C—Alarms Tab
+D—Rates Tab
+E—User Rate 1 Input Box
+F—User Rate 2 Input Box
+G—User Rate 3 Input Box
+H—Minimum Flow Rate Input
+Box
+I— Enter minimum flow rate
+required to maintain spray
+pattern. This is also the
+flowrate used when manual
+button is pressed.
+J— Rate Smoothing
+Enable/Disable Box
+K—Rate Smoothing Input Box
+25­10
+111110
+PN=31
+
+======== PAGE 32 ========
+Sprayers and Liquid Fertilizer Tool Operation
+CZ76372,0000200 ­19­03NOV10­1/1
+CZ76372,00001F1 ­19­03NOV10­1/1
+GreenStar Rate Controller Main Page
+NOTE: Pressure (F): Pressure from pressure sensor
+1 will be displayed instead of flow if system is
+configured for a pressure sensor.
+A—Actual Rate
+B—Target Rate
+C—Manual Spray Button
+D—Master Switch
+Indicator/Implement Height
+Switch Indicator
+E—Travel Speed
+F—Flow (Volume per Time)
+G—Left Fence Row Nozzle
+On/Off Button
+H—Right Fence Row Nozzle
+On/Off Button
+I— Estimated Volume
+Remaining/Tank Refill
+Button
+J— Left Side Section On/Off
+Buttons
+K—Right Side Section On/Off
+Buttons
+L—Implement Sections
+M—Section Status Indicators
+N—Rate Selection Drop­Down
+Menu
+O—Predefined Rate 1
+P—Predefined Rate 2
+Q—Predefined Rate 3
+R—Information Drop­Down
+Menu
+S—Agitator Enable/Disable
+T—Agitator Status Icon
+PC12549 —UN—08APR10
+GreenStar Rate Controller Main Page
+Main Screen Indications
+NOTE: Pressure (F): Pressure from pressure sensor
+1 will be displayed instead of flow if system is
+configured for a pressure sensor.
+The Manual Spray button (C) will force the controller
+to apply product at the present application rate, or the
+minimum flow rate (whichever is greater). It will override
+Swath Control Pro and vehicle speed threshold for a
+duration of five seconds when pressed. A countdown
+indicator will appear when this function is enabled. It may
+be pressed any time during the countdown period to reset
+the counter back to five seconds. Minimum flow rate will
+be controlled until speed and target rate warrant a higher
+flow rate. The Manual Spray button will be disabled if the
+minimum flow rate is zero.
+The height switch indicator may be either in an up or
+down position to give a visual indication relative to the
+implement.
+PC12332 —UN—14OCT09
+Main Screen Indications
+A—Actual Rate
+B—Target Rate
+C—Manual Spray Button
+D—Master Switch
+Indicator/Implement Height
+Switch Indicator
+E—Travel Speed
+F—Flow (Volume per Time)
+NOTE: To verify the height switch operates correctly,
+raise and lower the implement while observing
+the height switch indicator.
+30­1
+111110
+PN=32
+
+======== PAGE 33 ========
+Sprayers and Liquid Fertilizer Tool Operation
+CZ76372,00001D5 ­19­06OCT10­1/1
+JS56696,0000703 ­19­14OCT09­1/5
+JS56696,0000703 ­19­14OCT09­2/5
+Continued on next page
+JS56696,0000703 ­19­14OCT09­3/5
+Malfunction of Implement Height Switch
+Detected
+CAUTION: Malfunction of Implement Height
+Switch Detected.
+To avoid serious injury or death from exposure
+to chemicals or anhydrous ammonia, verify
+height switch is operating properly.
+Raise and lower implement. If the indicator
+below does not match machine operation,
+service height switch.
+This message will be displayed on a NH3 system when
+the system detects the implement is down for an extensive
+period of time, which can indicate a failure in the height
+switch. To verify correct operation, follow the instructions.
+If the height switch indicator does not match machine
+operation, service height switch.
+PC11329 —UN—01OCT08
+Implement Rate Control
+Choose one of three available rate types.
+A—Predefined
+B—gal/ac (US Units)
+C—Map­Based
+D—gal/min (US Units)
+PC12550 —UN—09APR10
+Rate Selection Drop­Down Menu (US Units)
+Predefined rates are limited to a maximum of three. These
+rates can be set up on the setup page under rates tab.
+The letters located on the top left corner of each Rate
+button (B, C, D) represent the short­cut buttons that are
+available when using a Display Control. For additional
+information on a Display Control, refer to the GS2 Basics
+Operator’s Manual >> Getting Started Section.
+PC12551 —UN—09APR10
+Predeﬁned Rates
+A—Rate Selection Drop­Down
+Menu
+B—Predefined Rate 1
+C—Predefined Rate 2
+D—Predefined Rate 3
+A Rate based on volume per unit of area can be set by
+choosing one of the below items from the rate selection
+drop­down menu. This rate mode will ensure a consistent
+application rate per acre as working width and vehicle
+speed are adjusted.
+• gal/ac (US Units)
+• L/ha (Metric Units)
+• I Gal/ac (Imperial Units)
+PC12552 —UN—09APR10
+Rate Based on Volume
+A—Rate Selection Drop­down
+Menu
+B—Decrease Rate Button
+C—Rate Input Box
+D—Increase Rate Button
+30­2
+111110
+PN=33
+
+======== PAGE 34 ========
+Sprayers and Liquid Fertilizer Tool Operation
+JS56696,0000703 ­19­14OCT09­4/5
+JS56696,0000703 ­19­14OCT09­5/5
+CZ76372,00001F2 ­19­27OCT10­1/2
+CZ76372,00001F2 ­19­27OCT10­2/2
+In order to run map­based rates, a prescription must be
+selected in GS2 Documentation. Map­based only appears
+in the drop­down if a prescription selected.
+A—Rate Selection Drop­Down
+Menu
+PC11380 —UN—10SEP09
+A Rate based on flow can be set by choosing one of the
+below items from the rate selection drop­down menu.
+This rate mode will ensure a constant flow rate regardless
+of changes in vehicle speed. A decrease in rate maybe
+visible when sections are disabled.
+• gal/min (US Units)
+• L/min (Metric Units)
+• I Gal/min (Imperial Units)
+PC12553 —UN—09APR10
+Rate Based on Flow
+A—Rate Selection Drop­down
+Menu
+B—Decrease Rate Button
+C—Rate Input Box
+D—Increase Rate Button
+Implement Section States
+Implement sections can be in one of three states:
+• Off—Section is off.
+• Enabled—Section is enabled.
+• Active—Section is spraying.
+Section on/off buttons (E) enable or disable one section
+at a time from left to right or right to left. The operator
+can also enable/disable sections with the switch box in
+the cab.
+The fence row nozzle buttons (F) enable or disable the
+fence row nozzles. The operator can also enable/disable
+fence row nozzles with the switch box in the cab.
+Active sections have blue fill color triangle indication
+under the section.
+Enabled fence row nozzles have purple fill colored
+indication.
+Section and fence row nozzles have colored triangle
+indications under implement sections to show active
+status.
+Enabled sections have black fill color indication. Sections
+that are in the off state will be clear.
+PC11338 —UN—10SEP09
+Implement Sections Spraying
+A—Left Fence Row Nozzle
+Active
+B—Left Sections Active
+C—Right Sections Active
+D—Right Fence Row Nozzle
+Active
+E—Section ON/OFF Buttons
+F—Fence Row Nozzles ON/OFF
+Buttons
+G—Tank Level/Tank Refill
+Active fence row nozzles will have purple fill color triangle
+indication under the implement section.
+Dual Boom
+Open triangles indicate dual boom is configured, but
+not spraying. Light blue triangles indicate dual boom is
+spraying.
+PC11273 —UN—17SEP08
+Implement Section States
+30­3
+111110
+PN=34
+
+======== PAGE 37 ========
+Sprayers and Liquid Fertilizer Tool Operation
+JS56696,0000708 ­19­05APR10­1/1
+Limp Home Mode
+PC10205 —UN—06JUN07
+Limp Home 10 Amp Fuse
+A—Limp Home 10 Amp Fuse on
+Main Sprayer Harness
+If communications between the GS2 Display and the
+GreenStar Rate Controller fail for any reason, the user
+can elect to operate the system in a limited functionality
+mode in order to finish a field.
+By removing the in­line fuse located in the main harness,
+the GreenStar Rate Controller will enter limp­home
+mode. While in limp­home mode, the system will do
+the following:
+• Enable all implement sections.
+• Disable fence row nozzles.
+• Calculate flow rate based upon the standard limp
+home speed of 8 km/h (5 mph), predefined Rate 1,
+and the full implement width.
+Limp Home mode assumes all CAN/Bus communications
+have been lost, thus it defaults to Rate 1, the original
+operating width, and a fixed speed number of 8 km/h (5
+mph).
+NOTE: It is the operator’s responsibility to keep
+the tractor at 8 km/h (5 mph) to ensure the
+proper rate is being dispensed.
+If the operator is using the Switch box Controls, only the
+master switch on the switch box will work.
+If the Limp Home fuse is lost or destroyed, it can be
+replaced by a common automotive type 10­Amp fuse.
+NOTE: Limp Home mode does not function when NH3
+Tool or planter is the selected implement type.
+30­6
+111110
+PN=37
+
+======== PAGE 38 ========
+Sprayers and Liquid Fertilizer Tool Reports and Totals
+CZ76372,00001F4 ­19­27OCT10­1/4
+Continued on next page
+CZ76372,00001F4 ­19­27OCT10­2/4
+Reports and Totals
+Select the Reports and Totals button to show the following
+page.
+The current page will display instant values.
+PC9669 —UN—26OCT06
+Reports and Totals Softkey
+A—Current Tab
+B—Job Summaries Tab
+C—Lifetime Tab
+D—Actual Rate Per Area
+E—Target Rate Per Area
+F—Area Per Hour
+G—Area Remaining on Current
+Tank Level
+H—Traveling Speed
+I— Pressure Sensor 1
+J— Volume Remaining
+K—Volume Per Time (Flow
+rate)
+L—Area
+M—Volume Applied
+N—Reset Counter Button
+PC12977 —UN—27OCT10
+Current Tab
+35­1
+111110
+PN=38
+
+======== PAGE 40 ========
+Sprayers, and Liquid Fertilizer Tool Diagnostics
+JS56696,000070A ­19­05APR10­1/1
+JS56696,000070B ­19­05APR10­1/1
+JS56696,000070C ­19­05APR10­1/1
+Diagnostic Page
+Select the Diagnostics button on the right­hand side to
+enter the diagnostics page.
+PC9431 —UN—14SEP06
+Diagnostics Softkey
+Readings
+Select the Readings tab to display GreenStar Rate
+Controller readings.
+A—Readings Tab
+B—Tests Tab
+C—Reading Type Drop­Down
+Menu
+PC12249 —UN—14SEP09
+Readings Tab
+Hardware/Software Readings
+A—Readings Selection
+Drop­Down Menu
+B—Hardware Part Number
+C—Hardware Serial Number
+D—Software Part Number
+E—Software Version Number
+PC12606 —UN—12MAY10
+40­1
+111110
+PN=40
+
+======== PAGE 54 ========
+Sprayers, and Liquid Fertilizer Tool Diagnostics
+CZ76372,0000211 ­19­09NOV10­1/4
+Continued on next page
+CZ76372,0000211 ­19­09NOV10­2/4
+Calibrate Pressure Sensor
+The Calibrate Pressure Sensor option is only available in
+the Tests drop­down menu when at least one Pressure
+Sensor Enable/Disable box is checked on the Setup >>
+Systems Tab.
+There are two options for calibrating a pressure sensor.
+The Operation Based Calibration requires that two
+calibration points be entered and is used when the slope
+of the pressure sensor is not known. The Voltage Based
+Calibration can be used when the slope of the pressure
+sensor is known and only requires a zero point.
+1. Ensure there is zero pressure at the sensor to be
+calibrated.
+2. Enable the sections to spray.
+3. Press the Calibration button for the desired type of
+calibration to begin test and set zero point.
+A—Tests Drop­Down Menu
+B—Enabled Sections
+C—Left Sections Off
+D—Left Sections ON
+E—Right Sections ON
+F—Right Sections OFF
+G—Sensor 1 Voltage­based
+Calibration
+H—Sensor 1 Operation­based
+Calibration
+I— Sensor 2 Voltage­based
+Calibration
+J— Sensor 2 Operation­based
+Calibration
+PC13002 —UN—04NOV10
+Calibrate Pressure Sensor
+Voltage­based Calibration
+1. Ensure the sensor has 12V power supply.
+NOTE: Check with sensor manufacturer to ensure
+that sensor can accept 12V power.
+2. Enter the slope as reported by the implement pressure
+gauge manufacturer in the box below.
+3. Select Accept.
+NOTE: Sensor power can be connected to the ECU Power
+pin (pin 26 of 37­pin connector) to provide 12V.
+NOTE: For Raven pressure sensors with a 12V power
+supply the slope will be 16 mV/psi.
+A—Sensor Slope Input Box
+PC12999 —UN—04NOV10
+40­15
+111110
+PN=54
+
+======== PAGE 61 ========
+NH3 Tool Setup
+Continued on next page
+CZ76372,00001FC ­19­02NOV10­2/3
+2. Enter Control Valve Calibration number into control
+valve calibration input box.
+PC12985 —UN—28OCT10
+Control Valve Calibration
+A—Control Valve Calibration
+B—Tank Capacity
+C—Tank Capacity Displayed
+D—Tank Capacity Units
+Standard Valve Type
+Valve Calibration Number (XXYZ)
+RAVEN 165
+2513
+RAVEN 894
+2513
+RAVEN 125
+2513
+TEEJET 344B
+1003
+HARDI
+7051
+Fast Valve Type
+Valve Calibration Number (XXYZ)
+RAVEN 177
+0753
+HINIKER Servo Valve (8160 Monitor Compatible)
+0433
+Fast­Close Valve Type
+Valve Calibration Number (XXYZ)
+RAVEN 177
+0753
+HINIKER Servo Valve (8160 Monitor Compatible)
+0433
+NOTE: On a RAVEN valve, the last three numbers
+of the model number are used to identify the
+valve type (e.g. RAVEN XXX894).
+Use the recommended values in the Control Valve
+Calibration table to initially set the control valve
+number. Evaluate machine behavior during operation,
+and if necessary, adjust the value to attain optimum
+system performance.
+The Control Valve Calibration number is a 4 digit
+number used to fine tune control characteristics. The
+number is in the form XXYZ, and is defined as follows:
+• XX ­ Valve Speed.
+­ The higher this value, the quicker the valve
+responds. If it is set too high, the actual flow rate
+will oscillate continuously around the target rate.
+If it is set too low, the target rate will never be
+reached.
+• Y ­ Output Deadband.
+­ Sets the minimum speed that the valve will ramp
+down toward before stopping. The higher this
+value, the sooner the valve will become stationary.
+• Z ­ Control Deadband:
+­ Sets how close the actual flow rate must be to the
+target rate to be considered acceptable. When
+the actual and target rates are within this range,
+the valve will remain stationary. A higher value
+allows for a larger disparity between actual and
+target rate.
+Example of tuning the control valve for optimal
+response:After entering the initial starting value for
+the control valve (e.g. 2513) and run a configuration
+test, the variance runs high (at or near 100%) and
+the valve response seems sluggish. The next step in
+tuning may be to increase the valve speed number
+(first 2 digits) from 25 to 35 and also increase the
+output deadband number (third digit) from 1 to 2 and
+retry the configuration test.
+3. Enter maximum volume of tank in input box labeled
+tank capacity.
+4. Select tank capacity displayed units from drop­down
+menu
+5. Select tank capacity units from drop down menu.
+45­5
+111110
+PN=61
+
+======== PAGE 62 ========
+NH3 Tool Setup
+CZ76372,00001FC ­19­02NOV10­3/3
+CZ76372,00001FD ­19­28OCT10­1/1
+6. Enter Flowmeter Calibration number as stamped on
+valve.
+• Most flowmeters have an attached tag indicating
+the recommended calibration number. Enter this
+number as the initial flowmeter calibration value.
+It is not necessary to enter an additional product
+mass conversion value as the controller does it
+automatically.
+NOTE: If the tag is no longer attached, start with a
+low calibration number such as 60, and change
+the value accordingly from that point.
+NOTE: The number on the RAVEN tag is pulses per 10
+units of fluid. Ensure the 10 gal / 10 L unit is used.
+7. Choose unit of measurement from flowmeter units
+drop­down.
+8. Check the pressure sensor box if sensor is installed.
+If using more than one pressure sensor, check
+the second box as well. Pressure indicator will be
+displayed on main menu instead of flow rate when
+pressure sensor is checked.
+PC12986 —UN—28OCT10
+Initial System Settings
+A—Flowmeter Calibration Input
+Box
+B—Flowmeter Units
+Drop­Down Menu
+C—Calibrate Flowmeter Button
+D—Pressure Sensor 1
+Enable/Disable
+E—Pressure Sensor 2
+Enable/Disable
+F—Calibrate Pressure Sensor
+Button
+9. To calibrate pressure sensor, select button and follow
+on screen instructions. See TEST section for details.
+Alarms Setup
+Select the Alarms tab to enter Alarms setup.
+Minimum pressure, maximum pressure, and low tank
+level alarms can be toggled on or off via the check boxes
+under alarm.
+Values for the seven alarms may be defined by entering
+the figure in the numeric entry boxes.
+NOTE: Minimum and Maximum Pressure alarms are
+disabled if not configured with a pressure sensor.
+A—Implement Tab
+B—System Tab
+C—Alarms Tab
+D—Rates Tab
+E—Low Tank Level Input Box
+F—Low Tank Level Alarm
+Enable/Disable
+G—High Alarm Input Box (%
+Above Target Rate)
+H—Low Alarm Input Box (%
+Below Target Rate)
+I— Minimum Pressure 1 Input
+Box
+J— Minimum Pressure 2 Input
+Box
+K—Maximum Pressure 1 Input
+Box
+L—Maximum Pressure 2 Input
+Box
+PC12987 —UN—02NOV10
+Alarm Setup
+45­6
+111110
+PN=62
+
+======== PAGE 63 ========
+NH3 Tool Setup
+JS56696,0000723 ­19­14OCT09­1/1
+Rates Setup
+Select Rates tab to enter Rates setup.
+Up to three target rates may be defined on this page by
+entering a value into the input box. Values entered on this
+page will be available on the home page.
+Rate Smoothing shows the actual rate as the target rate
+when the actual rate is within the user defined percentage.
+Rate Smoothing percentage range is 3—15%.
+When Actual Nitrogen is enabled, the Percent Nitrogen
+input box will appear. Entering a percent Nitrogen value
+converts application rates to mass of Nitrogen rather than
+mass of total product applied.
+A—Implement Tab
+B—System Tab
+C—Alarms Tab
+D—Rates Tab
+E—User Rate 1 Input Box
+F—User Rate 2 Input Box
+G—User Rate 3 Input Box
+H—Rate Smoothing Check Box
+I— Percent Smoothing Input
+Box
+J— Actual Nitrogen Check Box
+K—Percent Nitrogen Input Box
+PC12614 —UN—12MAY10
+Rates Setup
+45­7
+111110
+PN=63
+
+======== PAGE 64 ========
+NH3 Tool Operation
+CZ76372,00001FE ­19­03NOV10­1/1
+CZ76372,00001FF ­19­03NOV10­1/1
+GreenStar Rate Controller Main Page
+NOTE: Pressure (E): Pressure from pressure sensor
+1 will be displayed instead of flow if system is
+configured for a pressure sensor.
+A—Actual Rate
+B—Target Rate
+C—Master Switch
+Indicator/Implement Height
+Switch Indicator
+D—Travel Speed
+E—Flow (Volume per Time)
+F—Left Section On/Off Buttons
+G—Estimated Volume
+Remaining/Tank Refill
+Button
+H—Right Section On/Off
+Buttons
+I— Implement Sections
+J— Rate Selection Drop­Down
+Menu
+K—Predefined Rate 1
+L—Predefined Rate 2
+M—Predefined Rate 3
+N—Information Drop­Down
+Menu
+O—Information Drop­Down
+Menu
+PC12560 —UN—12APR10
+GreenStar Rate Controller Main Page
+Main Screen Indications
+NOTE: Pressure (E): Pressure from pressure sensor
+1 will be displayed instead of flow if system is
+configured for a pressure sensor.
+The height switch indicator may be either in an up or
+down position to give a visual indication relative to the
+implement.
+NOTE: To verify the height switch operates correctly,
+raise and lower the implement while observing
+the height switch indicator.
+PC12998 —UN—02NOV10
+Main Screen Indications
+A—Actual Rate
+B—Target Rate
+C—Master Switch
+Indicator/Implement Height
+Switch Indicator
+D—Travel Speed
+E—Flow (Volume per Time)
+50­1
+111110
+PN=64
+
+======== PAGE 66 ========
+NH3 Tool Operation
+CZ76372,000021B ­19­09NOV10­1/1
+JS56696,00008A1 ­19­12MAY10­1/1
+JS56696,00008A0 ­19­12MAY10­1/1
+JS56696,0000728 ­19­12MAY10­1/1
+Rates Based On Mass Per Unit Of Area
+A Rate based on mass per unit of area can be set by
+choosing one of the below items from the rate selection
+drop­down menu. This rate mode will ensure a consistent
+application rate per acre as working width and vehicle
+speed are adjusted.
+• lb N/ac or lb NH3/ac (US Units)
+• kg N/ha or kg NH3/ha (Metric Units)
+• lb N/ac or lb NH3/ac (Imperial Units)
+For lb N/ac or kg N/ha, ensure that you have the Actual
+Nitrogen box checked under Setup >> Rates Tab.
+PC12563 —UN—12APR10
+A—Rate Selection Drop­down
+Menu
+B—Decrease Rate Button
+C—Rate Input Box
+D—Increase Rate Button
+Map­Based Rates
+In order to run map­based rates, a prescription must be
+selected in GS2 Documentation. Map­based only appears
+in the drop­down menu if a prescription is selected.
+A—Rate Selection Drop­Down
+Menu
+B—Map­Based Rate Input Box
+PC11389 —UN—16SEP09
+Map­Based
+Rates Based on Flow
+A Rate based on flow can be set by choosing one of the
+below items from the rate selection drop­down menu.
+This rate mode will ensure a constant flow rate regardless
+of changes in vehicle speed. A decrease in rate maybe
+visible when sections are disabled.
+• gal/min (US Units)
+• L/min (Metric Units)
+• I Gal/min (Imperial Untis)
+PC12564 —UN—12APR10
+A—Rate Selection Drop­down
+Menu
+B—Decrease Rate Button
+C—Rate Input Box
+D—Increase Rate Button
+Implement Section States
+Implement sections can be in one of three states:
+• Off—Section is off.
+• Enabled—Section is enabled.
+• Active—Section is applying.
+Section on/off buttons (A) enable or disable one section
+at a time from left to right or right to left. The operator
+can also enable/disable sections with the switch box in
+the cab.
+Section nozzles have colored triangle indications under
+implement sections to show active status.
+Enabled sections have black fill color indication. Sections
+that are in the off state have white fill color indication.
+Active sections have blue fill color triangle indication
+under the section.
+PC12282 —UN—16SEP09
+Implement Sections Spraying
+A—Section ON/OFF Buttons
+B—Tank Level/Tank Refill
+C—Left Section Active
+D—Center Section Active
+E—Right Section Active
+50­3
+111110
+PN=66
+
+======== PAGE 69 ========
+NH3 Tool Reports and Totals
+CZ76372,0000203 ­19­28OCT10­1/4
+Continued on next page
+CZ76372,0000203 ­19­28OCT10­2/4
+Reports and Totals
+Select the Reports and Totals button to show the following
+page.
+The current page will display instant values.
+PC9669 —UN—26OCT06
+Reports and Totals Softkey
+A—Current Tab
+B—Job Summaries Tab
+C—Lifetime Tab
+D—Actual Rate Per Area
+E—Target Rate Per Area
+F—Area Per Hour
+G—Area Remaining on Current
+Tank Level
+H—Traveling Speed
+I— Pressure Sensor 1
+J— Volume Remaining
+K—Flow Per Minute
+L—Area
+M—Amount of Product Applied
+N—Area/Reset Button
+PC12988 —UN—28OCT10
+Current Tab
+55­1
+111110
+PN=69
+
+======== PAGE 71 ========
+NH3 Tool Diagnostics
+JS56696,000072E ­19­05APR10­1/1
+JS56696,000072F ­19­05APR10­1/1
+JS56696,0000730 ­19­14OCT09­1/1
+Diagnostic Page
+Select the Diagnostics button on the right­hand side to
+enter the diagnostics page.
+PC9431 —UN—14SEP06
+Diagnostics Softkey
+Readings
+Select Readings tab to display GreenStar Rate Controller
+readings.
+A—Readings Tab
+B—Tests Tab
+C—Reading Type Drop­Down
+Menu
+PC12286 —UN—16SEP09
+Hardware/Software Readings
+A—Readings Selection
+Drop­Down Menu
+B—Hardware Part Number
+C—Hardware Serial Number
+D—Software Part Number
+E—Software Version Number
+PC12616 —UN—13MAY10
+60­1
+111110
+PN=71
+
+======== PAGE 81 ========
+NH3 Tool Diagnostics
+CZ76372,0000212 ­19­09NOV10­2/4
+Continued on next page
+CZ76372,0000212 ­19­09NOV10­3/4
+Voltage­based Calibration
+1. Ensure the sensor has 12V power supply.
+NOTE: Check with sensor manufacturer to ensure
+that sensor can accept 12V power.
+2. Enter the slope as reported by the implement pressure
+gauge manufacturer in the box below.
+3. Select Accept.
+NOTE: Sensor power can be connected to the ECU Power
+pin (pin 26 of 37­pin connector) to provide 12V.
+NOTE: For Raven pressure sensors with a 12V power
+supply the slope will be 16 mV/psi.
+A—Sensor Slope Input Box
+PC12999 —UN—04NOV10
+Calibrate Pressure Sensor
+Operation­based Calibration
+1. Connect the NH3 tank to the control valves.
+2. Energize the system.
+3. Permit the sensor to come to tank pressure.
+PC13004 —UN—04NOV10
+Calibrate Pressure Sensor
+60­11
+111110
+PN=81
+
+======== PAGE 86 ========
+Planter Setup
+JS56696,00008A7 ­19­19MAY10­1/1
+Continued on next page
+CZ76372,0000209 ­19­28OCT10­1/3
+Setup Height Switch CAN Message
+• Select Send Status, Receive Status, or Do Not Share.
+• If using GreenStar Rate Controllers in a Multi­Product
+configuration, a single height switch can be shared
+among multiple GreenStar Rate Controllers.
+• The height switch must be connected to one GreenStar
+Rate Controller and that GreenStar Rate Controller
+must be configured to SEND the height switch status to
+the other GreenStar Rate Controllers.
+• Each additional GreenStar Rate Controller must be
+configured to RECEIVE the height switch status.
+• There is an additional option of DO NOT SHARE that
+can be used if multiple height switches are desired in
+the application or operating with a single GreenStar
+Rate Controller.
+PC12603 —UN—12MAY10
+PC12605 —UN—12MAY10
+Height Switch Message drop down menu
+A—Height Switch Check Box
+B—Height Switch Message
+Drop­down Menu
+C—Do Not Share
+D—Send Status
+E—Receive Status
+SeedStar ™Generation 2 Planters
+Some planters may be equipped with SeedStar Gen
+2. The GreenStar Rate Controller will automatically
+recognize SeedStar Gen 2 is present.
+The Implement Setup page for SeedStar Gen 2 planters
+will include an extra check box on the bottom of the page
+labeled “USE SEEDSTAR” The box has a check in it
+by default. With this box checked, the GreenStar Rate
+Controller will use setup information from the SeedStar
+Gen 2 Controller.
+NOTE: In order for the GreenStar Rate Controller
+to recognize the SeedStar Gen 2 and use its
+configuration information, it must be connected to
+the CAN bus and running when the GreenStar Rate
+Controller planter configuration is created.
+A—Implement Tab
+B—System Tab
+C—Alarms Tab
+D—Rates Tab
+E—Implement Type Drop­Down
+Menu
+F—Implement Name
+Drop­Down Menu
+G—New Implement Button
+H—Rename Implement Button
+I— Remove Implement Button
+J— Disable Rate Controller
+Check Box
+K—Implement Width Input Box
+L—Setup Sections Button
+M—Implement Sections
+N—SeedStar ON/Off Check
+Box
+O—Height Switch Check Box
+P—Height Switch Message
+Drop­Down Menu
+PC12992 —UN—28OCT10
+Default SeedStar Configuration
+SeedStar is a trademark of Deere & Company
+65­4
+111110
+PN=86
+
+======== PAGE 90 ========
+Planter Diagnostics
+JS56696,0000747 ­19­05APR10­1/1
+JS56696,0000748 ­19­05APR10­1/1
+JS56696,0000749 ­19­05APR10­1/1
+Diagnostic Page
+Select the Diagnostics button on the right­hand side to
+enter the diagnostics page.
+PC9431 —UN—14SEP06
+Diagnostics Softkey
+Readings
+Select the Readings tab to display planter readings.
+A—Readings Tab
+B—Tests Tab
+C—Reading Type Drop­Down
+Menu
+PC12300 —UN—22SEP09
+Readings Tab
+Hardware/Software Readings
+A—Reading Type Drop­Down
+Menu
+B—Hardware Part Number
+C—Hardware Serial Number
+D—Software Part Number
+E—Software Version Number
+PC12619 —UN—17MAY10
+Hardware/Software
+80­1
+111110
+PN=90
+
+======== PAGE 102 ========
+Index
+Page
+N
+NH3 Tool
+Alarms
+Settings ............................................................... 45­6
+Implement
+Selection.............................................................. 45­2
+Setup................................................................... 45­1
+Rates....................................................................... 45­7
+Readings
+Delivery System .................................................. 60­2
+Hardware/Software.............................................. 60­1
+Section Status ..................................................... 60­3
+Sensors/Status.................................................... 60­5
+Switchbox............................................................ 60­2
+Switches/Status................................................... 60­4
+System Voltages.................................................. 60­3
+Working Parameters............................................ 60­4
+Settings................................................................... 45­4
+Pressure Sensor.................................................. 45­6
+System
+Setup................................................................... 45­4
+Test
+Bleed Section ...................................................... 60­9
+Calibrate Pressure Sensor ................................ 60­10
+Control Valve....................................................... 60­9
+Energize System ................................................. 60­8
+Tests........................................................................ 60­5
+Nozzle
+Fence Row............................................30­1, 50­1, 95­2
+O
+Offsets ........................................................................ 20­5
+P
+Planter
+Implement Setup..................................................... 70­1
+Readings................................................................. 80­1
+Hardware/Software.............................................. 80­1
+Section Status ..................................................... 80­2
+Switchbox............................................................ 80­2
+Switches/Status................................................... 80­4
+System Voltages.................................................. 80­3
+Working Parameters............................................ 80­3
+Test
+Section ................................................................ 80­4
+Tests........................................................................ 80­4
+Planters
+SeedStar................................................................. 65­4
+Predefined Rates............................................... 30­2, 50­2
+Pressure Sensor................................................ 25­9, 45­6
+Page
+R
+Rate Control
+Fence Row Nozzles....................................... 30­2, 50­2
+Sprayer Monitor ............................................. 30­2, 50­2
+Rate Controller
+Compatibility
+Flow Control Valve Types.................................... 20­4
+Flowmeters.......................................................... 20­4
+Implement Switch................................................ 20­5
+JD Planters with Hydraulic Variable
+Rate Motors....................................................... 20­4
+Pressure Sensors................................................ 20­4
+Rates
+Map­Based.............................................................. 50­3
+NH3 Tool
+Minimum Flow Rate............................................. 45­7
+Smoothing ........................................................... 45­7
+Predefined Rates .................................................... 50­2
+Rates Based on Flow.............................................. 50­3
+Rates Based On Mass Per Unit Of Area................. 50­3
+Setup
+Sprayer.............................................................. 25­10
+Sprayer
+Minimum Flow Rate........................................... 25­10
+Smoothing ......................................................... 25­10
+RAVEN .............................................................. 20­3, 25­8
+Calibration Number
+Sprayer....................................................... 25­6, 45­5
+Readings
+GreenStar Rate Controller ............................. 40­1, 60­1
+NH3 Tool
+Delivery System .................................................. 60­2
+Hardware/Software.............................................. 60­1
+Section Status ..................................................... 60­3
+Sensors/Status.................................................... 60­5
+Switchbox............................................................ 60­2
+Switches/Status................................................... 60­4
+System Voltages.................................................. 60­3
+Working Parameters............................................ 60­4
+Planter..................................................................... 80­1
+Hardware/Software.............................................. 80­1
+Section Status ..................................................... 80­2
+Switchbox............................................................ 80­2
+Switches/Status................................................... 80­4
+System Voltages.................................................. 80­3
+Working Parameters............................................ 80­3
+Sprayer/Liquid Fertilizer Tool
+Delivery System .................................................. 40­2
+Hardware/Software.............................................. 40­1
+Section Status ..................................................... 40­3
+Sensors/Status.................................................... 40­5
+Switchbox............................................................ 40­2
+Switches/Status................................................... 40­4
+System Voltages.................................................. 40­3
+Working Parameters............................................ 40­4
+Receiver Offset........................................................... 20­5
+Recommended Wire Sizes......................................... 95­2
+Continued on next page
+Index­2
+111110
+PN=2
+
+======== PAGE 104 ========
+Index
+Page
+Planters................................................................... 95­2
+Rate Controller Trouble Codes ............................. 100­1
+RAVEN.................................................................... 95­2
+Sprayer ................................................................... 95­2
+Switch Box
+Trouble Codes................................................... 100­2
+TEEJET................................................................... 95­2
+V
+Valve
+2­Wire
+HARDI ...................................................... 20­3, 40­14
+Troubleshooting................................................... 95­2
+3­Wire
+BANJO ................................................................ 20­3
+RAVEN ....................................................... 20­3, 25­8
+TEEJET............................................................... 20­3
+Troubleshooting................................................... 95­2
+Agitator.................................................................... 25­9
+Section Bypass
+HARDI ............................................................... 40­14
+Status...................................................................... 60­1
+Vehicle speed ............................................................. 20­1
+W
+Warnings
+Height Switch................................................. 30­2, 50­2
+Unexpected Chemical Flow ..................10­1, 10­2, 50­5
+Index­4
+111110
+PN=4
+
+======== PAGE 105 ========
+John Deere Service Literature Available
+DX,SERVLIT ­19­31JUL03­1/1
+Technical Information
+Technical information can be purchased from John Deere.
+Some of this information is available in electronic media,
+such as CD­ROM disks, and in printed form. There are
+many ways to order. Contact your John Deere dealer.
+Call 1­800­522­7448 to order using a credit card. Search
+online from http://www.JohnDeere.com. Please have
+available the model number, serial number, and name of
+the product.
+Available information includes:
+• PARTS CATALOGS list service parts available for your
+machine with exploded view illustrations to help you
+identify the correct parts. It is also useful in assembling
+and disassembling.
+• OPERATOR’S MANUALS providing safety, operating,
+maintenance, and service information. These manuals
+and safety signs on your machine may also be available
+in other languages.
+• OPERATOR’S VIDEO TAPES showing highlights of
+safety, operating, maintenance, and service information.
+These tapes may be available in multiple languages
+and formats.
+• TECHNICAL MANUALS outlining service information
+for your machine. Included are specifications, illustrated
+assembly and disassembly procedures, hydraulic oil
+flow diagrams, and wiring diagrams. Some products
+have separate manuals for repair and diagnostic
+information. Some components, such as engines, are
+available in separate component technical manuals
+• FUNDAMENTAL MANUALS detailing basic information
+regardless of manufacturer:
+­ Agricultural Primer series covers technology in
+farming and ranching, featuring subjects like
+computers, the Internet, and precision farming.
+­ Farm Business Management series examines
+“real­world” problems and offers practical solutions
+in the areas of marketing, financing, equipment
+selection, and compliance.
+­ Fundamentals of Services manuals show you how to
+repair and maintain off­road equipment.
+­ Fundamentals of Machine Operation manuals
+explain machine capacities and adjustments, how to
+improve machine performance, and how to eliminate
+unnecessary field operations.
+TS189 —UN—17JAN89
+TS191 —UN—02DEC88
+TS224 —UN—17JAN89
+TS1663 —UN—10OCT97
+SERVLIT­1
+111110
+PN=105

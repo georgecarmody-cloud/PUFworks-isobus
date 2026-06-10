@@ -1,0 +1,555 @@
+﻿
+=== PSSC page 60 ===
+60
+PSSC ΓÇö Electrical Theory of Operation
+5692
+Premium Server ΓÇö Electrical Theory of Operation
+5693
+SSSC ΓÇö Electrical Theory of Operation
+5694
+VPU ΓÇö Electrical Theory of Operation
+5695
+Wakeup Power ΓÇö Electrical Theory of Operation
+5696
+Schematic
+┬á
+ARMC ΓÇö Electrical Schematic
+5699
+ATC ΓÇö Electrical Schematic
+5703
+ATX ΓÇö Electrical Schematic
+5705
+BCHU ΓÇö Electrical Schematic
+5707
+DE7 ΓÇö Electrical Schematic
+5711
+DCU ΓÇö Electrical Schematic
+5713
+DP1 ΓÇö Electrical Schematic
+5715
+DP2 ΓÇö Electrical Schematic
+5718
+DP3 ΓÇö Electrical Schematic
+5720
+ECU ΓÇö Electrical Schematic
+5724
+ESU ΓÇö Electrical Schematic
+5729
+GWC ΓÇö Electrical Schematic
+5733
+KP3 ΓÇö Electrical Schematic
+5737
+MHC ΓÇö Electrical Schematic
+5739
+MNC ΓÇö Electrical Schematic
+5745
+MTG ΓÇö Electrical Schematic
+5747
+NZC ΓÇö Electrical Schematic
+5751
+OSDC ΓÇö Electrical Schematic
+5757
+PDU ΓÇö Electrical Schematic
+5759
+PODC ΓÇö Electrical Schematic
+5761
+PSSC ΓÇö Electrical Schematic
+5765
+Premium Server ΓÇö Electrical Schematic
+5768
+SSSC ΓÇö Electrical Schematic
+5770
+VPU ΓÇö Electrical Schematic
+5772
+Wakeup Power ΓÇö Electrical Schematic
+5777
+Diagnostic Tests and Adjustments
+┬á
+ARMC ΓÇö Electrical Diagnostic
+5782
+ATC ΓÇö Electrical Diagnostic
+5787
+ATX ΓÇö Electrical Diagnostic
+5792
+BCHU ΓÇö Electrical Diagnostic
+5797
+DCU ΓÇö Electrical Diagnostic
+5803
+DE7 ΓÇö Electrical Diagnostic
+5809
+DP1 ΓÇö Electrical Diagnostic
+5814
+DP2 ΓÇö Electrical Diagnostic
+5819
+
+
+=== SSSC page 60 ===
+60
+PSSC ΓÇö Electrical Theory of Operation
+5692
+Premium Server ΓÇö Electrical Theory of Operation
+5693
+SSSC ΓÇö Electrical Theory of Operation
+5694
+VPU ΓÇö Electrical Theory of Operation
+5695
+Wakeup Power ΓÇö Electrical Theory of Operation
+5696
+Schematic
+┬á
+ARMC ΓÇö Electrical Schematic
+5699
+ATC ΓÇö Electrical Schematic
+5703
+ATX ΓÇö Electrical Schematic
+5705
+BCHU ΓÇö Electrical Schematic
+5707
+DE7 ΓÇö Electrical Schematic
+5711
+DCU ΓÇö Electrical Schematic
+5713
+DP1 ΓÇö Electrical Schematic
+5715
+DP2 ΓÇö Electrical Schematic
+5718
+DP3 ΓÇö Electrical Schematic
+5720
+ECU ΓÇö Electrical Schematic
+5724
+ESU ΓÇö Electrical Schematic
+5729
+GWC ΓÇö Electrical Schematic
+5733
+KP3 ΓÇö Electrical Schematic
+5737
+MHC ΓÇö Electrical Schematic
+5739
+MNC ΓÇö Electrical Schematic
+5745
+MTG ΓÇö Electrical Schematic
+5747
+NZC ΓÇö Electrical Schematic
+5751
+OSDC ΓÇö Electrical Schematic
+5757
+PDU ΓÇö Electrical Schematic
+5759
+PODC ΓÇö Electrical Schematic
+5761
+PSSC ΓÇö Electrical Schematic
+5765
+Premium Server ΓÇö Electrical Schematic
+5768
+SSSC ΓÇö Electrical Schematic
+5770
+VPU ΓÇö Electrical Schematic
+5772
+Wakeup Power ΓÇö Electrical Schematic
+5777
+Diagnostic Tests and Adjustments
+┬á
+ARMC ΓÇö Electrical Diagnostic
+5782
+ATC ΓÇö Electrical Diagnostic
+5787
+ATX ΓÇö Electrical Diagnostic
+5792
+BCHU ΓÇö Electrical Diagnostic
+5797
+DCU ΓÇö Electrical Diagnostic
+5803
+DE7 ΓÇö Electrical Diagnostic
+5809
+DP1 ΓÇö Electrical Diagnostic
+5814
+DP2 ΓÇö Electrical Diagnostic
+5819
+
+
+=== SRC page 3974 ===
+3974
+[TOC-ANCHOR:sec-09001faa86004ab0]
+SC3 520870.02 ΓÇö SRC EEPROM Fault/Data Invalid
+Non-volatile memory zone 1 checksum error.
+Secondary solution system control (SSSC) electronically erasable programmable read-only memory
+(EEPROM) faulty or data is invalid. Configuration data has reset to default. System has restricted function.
+Replace the control unit. Refer to the appropriate Repair Technical Manual (RTM).
+Component Location:
+A307 ΓÇö Secondary Solution System Control Unit (SSSC)
+W0075 ΓÇö Solution Skid Dual Product Harness
+Schematic:
+SSSC ΓÇö Electrical Schematic (245-30)
+Related Information:
+Charging System Voltage Test (240-10)
+ 
+Recall, Record, and Clear Codes (211-05)
+ 
+Intermittent Diagnostic Trouble Code Diagnostics (211-05)
+ (245-10B)
+Calibration Procedure Information
+ 
+Open Circuit Load Test (240-10)
+ 
+Circuit Checks (240-10)
+ (245-10C)
+Control Unit Reprogramming
+ 
+Programming Control Units with Software Bundles (245-10C)
+SSSC ΓÇö Electrical Diagnostic (245-50)
+SSSC ΓÇö Electrical Schematic (245-30)
+SSSC ΓÇö Electrical Theory of Operation (245-20)
+┬á
+1┬á Procedure
+Action:
+Place the key switch in the OFF position and cycle the master disconnect switch.
+Place the key switch in the RUN position.
+Does the issue persist?
+Result:
+YES:
+Perform 
+ (245-50).
+SSSC ΓÇö Electrical Diagnostic
+NO:
+Tests complete.
+
+
+=== Spray Rate page 49 ===
+49
+Circuit Checks
+4127
+Connector Terminal Test
+4129
+Diode Check
+4131
+Intermittent Fault Diagnostics
+4132
+Machine Modes
+4133
+Open Circuit Load Test
+4134
+Solenoid Valve Circuit Test
+4141
+Three-Wire Sensor Circuit Test
+4143
+Troubleshooting Unresolved Electrical/Electronic Problems
+4148
+Two-Wire Sensor Circuit Test
+4150
+Wire Harness Test
+4153
+Theory of Operation ΓÇö Application
+┬á
+Agitation ΓÇö Electrical Theory of Operation
+4154
+Application ExactApply ΓÇö Electrical Theory of Operation
+4156
+Application Quick Stop ΓÇö Electrical Theory of Operation
+4157
+Eductor System 1 ΓÇö Electrical Theory of Operation
+4158
+Eductor System 2 ΓÇö Electrical Theory of Operation
+4160
+Fence Row Nozzles ΓÇö Electrical Theory of Operation
+4162
+Pressure Recirculation and Reclaim System 1 ΓÇö Electrical Theory of Operation
+4164
+Pressure Recirculation and Reclaim System 2 ΓÇö Electrical Theory of Operation
+4166
+Rinse System 1 ΓÇö Electrical Theory of Operation
+4168
+Rinse System 2 ΓÇö Electrical Theory of Operation
+4171
+Solution Front Fill: Nurse Pump ΓÇö Electrical Theory of Operation
+4174
+Solution Front Fill: PowrSpray Pump ΓÇö Electrical Theory of Operation
+4176
+Solution PowrSpray Pump Engage ΓÇö Electrical Theory of Operation
+4178
+Solution Side Fill: Nurse Pump ΓÇö Electrical Theory of Operation
+4182
+Solution Side Fill: PowrSpray ΓÇö Electrical Theory of Operation
+4184
+Solution Target Fill Tank Level ΓÇö Electrical Theory of Operation
+4186
+Spray Nozzle Encoder ΓÇö Electrical Theory of Operation
+4188
+Spray Rate and Pressure System 1 ΓÇö Electrical Theory of Operation
+4189
+Spray Rate and Pressure System 2 ΓÇö Electrical Theory of Operation
+4192
+Theory of Operation ΓÇö Boom
+┬á
+Advanced Boom Tilt Control ΓÇö Electrical Theory of Operation
+4195
+Boom Fold and Unfold ΓÇö Electrical Theory of Operation
+4198
+Boom Leveling ΓÇö Electrical Theory of Operation
+4201
+Boom Raise and Lower ΓÇö Electrical Theory of Operation
+4203
+BoomTrac Leveling ΓÇö Electrical Theory of Operation
+4205
+Theory of Operation ΓÇö Cab
+┬á
+ARMC Backlighting ΓÇö Electrical Theory of Operation
+4207
+Auxiliary Power ΓÇö Electrical Theory of Operation
+4208
+
+
+=== Primary Solution page 3326 ===
+3326
+[TOC-ANCHOR:sec-09001faa85baae6b]
+SC1 003130.16 ΓÇö Rinse Tank Fill Volume Sensor Data Signal 
+Out of Range High
+Data valid but above normal operating range.
+Rinse tank level sensor input reads above 4.95 V for at least 2 seconds. Rinse tank pull-on filling function is
+limited. Troubleshooting is required.
+Component Location:
+A306 ΓÇö Primary Solution System Control Unit (PSSC)
+XA306-1 ΓÇö Primary Solution System Control (PSSC) 1 Connector
+XA306-3 ΓÇö Primary Solution System Control (PSSC) 3 Connector
+XB315 ΓÇö Rinse Tank Level Sensor
+W0075 ΓÇö Solution Skid Dual Product Harness
+Schematic:
+Rinse System 1 ΓÇö Electrical Schematic(240-30A)
+Rinse System 2 ΓÇö Electrical Schematic(240-30A)
+Related Information:
+Basic Controller Area Network (CAN) Diagnostic Theory (240-10)
+Charging System Voltage Test (240-10)
+ 
+Recall, Record, and Clear Codes (211-05)
+ 
+Intermittent Diagnostic Trouble Code Diagnostics (211-05)
+ (245-10B)
+Calibration Procedure Information
+ 
+Open Circuit Load Test (240-10)
+ 
+Circuit Checks (240-10)
+ (245-10C)
+Control Unit Reprogramming
+ 
+Programming Control Units with Software Bundles (245-10C)
+PSSC ΓÇö Electrical Diagnostic (245-50)
+PSSC ΓÇö Electrical Schematic (245-30)
+PSSC ΓÇö Electrical Theory of Operation (245-20)
+Rinse System 1 ΓÇö Electrical Diagnostic (240-50A)
+Rinse System 1 ΓÇö Electrical Schematic(240-30A)
+Rinse System 1 ΓÇö Electrical Theory of Operation (240-20A)
+Rinse System 2 ΓÇö Electrical Diagnostic (240-50A)
+Rinse System 2 ΓÇö Electrical Schematic(240-30A)
+
+
+=== SC1 page 3326 ===
+3326
+[TOC-ANCHOR:sec-09001faa85baae6b]
+SC1 003130.16 ΓÇö Rinse Tank Fill Volume Sensor Data Signal 
+Out of Range High
+Data valid but above normal operating range.
+Rinse tank level sensor input reads above 4.95 V for at least 2 seconds. Rinse tank pull-on filling function is
+limited. Troubleshooting is required.
+Component Location:
+A306 ΓÇö Primary Solution System Control Unit (PSSC)
+XA306-1 ΓÇö Primary Solution System Control (PSSC) 1 Connector
+XA306-3 ΓÇö Primary Solution System Control (PSSC) 3 Connector
+XB315 ΓÇö Rinse Tank Level Sensor
+W0075 ΓÇö Solution Skid Dual Product Harness
+Schematic:
+Rinse System 1 ΓÇö Electrical Schematic(240-30A)
+Rinse System 2 ΓÇö Electrical Schematic(240-30A)
+Related Information:
+Basic Controller Area Network (CAN) Diagnostic Theory (240-10)
+Charging System Voltage Test (240-10)
+ 
+Recall, Record, and Clear Codes (211-05)
+ 
+Intermittent Diagnostic Trouble Code Diagnostics (211-05)
+ (245-10B)
+Calibration Procedure Information
+ 
+Open Circuit Load Test (240-10)
+ 
+Circuit Checks (240-10)
+ (245-10C)
+Control Unit Reprogramming
+ 
+Programming Control Units with Software Bundles (245-10C)
+PSSC ΓÇö Electrical Diagnostic (245-50)
+PSSC ΓÇö Electrical Schematic (245-30)
+PSSC ΓÇö Electrical Theory of Operation (245-20)
+Rinse System 1 ΓÇö Electrical Diagnostic (240-50A)
+Rinse System 1 ΓÇö Electrical Schematic(240-30A)
+Rinse System 1 ΓÇö Electrical Theory of Operation (240-20A)
+Rinse System 2 ΓÇö Electrical Diagnostic (240-50A)
+Rinse System 2 ΓÇö Electrical Schematic(240-30A)
+
+
+=== PDU ΓÇö Electrical Theory page 59 ===
+59
+AutoTrac Valve Calibration
+5588
+Wheel Speed Sensor Calibration
+5594
+See & Spray Camera Calibration
+5595
+CAN and Connectivity Health Wizard
+5604
+Service ADVISOR Connection Utilizing EDL
+5606
+Service ADVISOR Diagnostics CAN Trace
+5608
+Service ADVISOR GenInfoTest Procedure
+5613
+Service ADVISOR GVI Installation Procedure
+5618
+Service ADVISOR GVI Run Procedure
+5622
+Service ADVISOR Starting a New Job
+5626
+Programming Electronic Control Units
+┬á
+Boot Mode Fault Diagnosis
+5629
+Control Unit Reprogramming
+5632
+Display Reprogramming
+5643
+VPU Reprogramming
+5650
+Programming Control Units with Software Bundles
+5660
+Replacement Control Unit Reprogramming
+5662
+USB Drive
+5665
+VIN Security Fault Diagnosis
+5666
+Theory of Operation
+┬á
+ARMC ΓÇö Electrical Theory of Operation
+5669
+ATC ΓÇö Electrical Theory of Operation
+5670
+ATX ΓÇö Electrical Theory of Operation
+5671
+BCHU ΓÇö Electrical Theory of Operation
+5672
+DCU ΓÇö Electrical Theory of Operation
+5674
+DE7 ΓÇö Electrical Theory of Operation
+5675
+DP1 ΓÇö Electrical Theory of Operation
+5676
+DP2 ΓÇö Electrical Theory of Operation
+5677
+DP3 ΓÇö Electrical Theory of Operation
+5678
+ECU ΓÇö Electrical Theory of Operation
+5679
+ESU ΓÇö Electrical Theory of Operation
+5680
+GWC ΓÇö Electrical Theory of Operation
+5681
+KP3 ΓÇö Electrical Theory of Operation
+5683
+MHC ΓÇö Electrical Theory of Operation
+5684
+MNC ΓÇö Electrical Theory of Operation
+5685
+MTG ΓÇö Electrical Theory of Operation
+5686
+NZC ΓÇö Electrical Theory of Operation
+5687
+OSDC ΓÇö Electrical Theory of Operation
+5689
+PDU ΓÇö Electrical Theory of Operation
+5690
+PODC ΓÇö Electrical Theory of Operation
+5691
+
+
+=== VPU ΓÇö Electrical Theory page 60 ===
+60
+PSSC ΓÇö Electrical Theory of Operation
+5692
+Premium Server ΓÇö Electrical Theory of Operation
+5693
+SSSC ΓÇö Electrical Theory of Operation
+5694
+VPU ΓÇö Electrical Theory of Operation
+5695
+Wakeup Power ΓÇö Electrical Theory of Operation
+5696
+Schematic
+┬á
+ARMC ΓÇö Electrical Schematic
+5699
+ATC ΓÇö Electrical Schematic
+5703
+ATX ΓÇö Electrical Schematic
+5705
+BCHU ΓÇö Electrical Schematic
+5707
+DE7 ΓÇö Electrical Schematic
+5711
+DCU ΓÇö Electrical Schematic
+5713
+DP1 ΓÇö Electrical Schematic
+5715
+DP2 ΓÇö Electrical Schematic
+5718
+DP3 ΓÇö Electrical Schematic
+5720
+ECU ΓÇö Electrical Schematic
+5724
+ESU ΓÇö Electrical Schematic
+5729
+GWC ΓÇö Electrical Schematic
+5733
+KP3 ΓÇö Electrical Schematic
+5737
+MHC ΓÇö Electrical Schematic
+5739
+MNC ΓÇö Electrical Schematic
+5745
+MTG ΓÇö Electrical Schematic
+5747
+NZC ΓÇö Electrical Schematic
+5751
+OSDC ΓÇö Electrical Schematic
+5757
+PDU ΓÇö Electrical Schematic
+5759
+PODC ΓÇö Electrical Schematic
+5761
+PSSC ΓÇö Electrical Schematic
+5765
+Premium Server ΓÇö Electrical Schematic
+5768
+SSSC ΓÇö Electrical Schematic
+5770
+VPU ΓÇö Electrical Schematic
+5772
+Wakeup Power ΓÇö Electrical Schematic
+5777
+Diagnostic Tests and Adjustments
+┬á
+ARMC ΓÇö Electrical Diagnostic
+5782
+ATC ΓÇö Electrical Diagnostic
+5787
+ATX ΓÇö Electrical Diagnostic
+5792
+BCHU ΓÇö Electrical Diagnostic
+5797
+DCU ΓÇö Electrical Diagnostic
+5803
+DE7 ΓÇö Electrical Diagnostic
+5809
+DP1 ΓÇö Electrical Diagnostic
+5814
+DP2 ΓÇö Electrical Diagnostic
+5819
+

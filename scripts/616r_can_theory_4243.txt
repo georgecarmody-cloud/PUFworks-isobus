@@ -1,0 +1,749 @@
+﻿
+######################################################################
+PDF PAGE 4238 (len=2185)
+######################################################################
+4238
+PODC control unit. The PODC then energizes the front washer pump and washer fluid is sprayed onto the
+windshield until the operator releases the button.
+Right Side Wiper and Washer (When Equipped)
+To operate the right side wiper and washer system the key switch must be in the RUN position.
+The right side wiper/washer control is on the right side of the steering column. The operator activates the
+right side wiper by moving the right side wiper switch on the control lever to the desired speed. Each
+speed position creates a different path to ground. The minipod senses the different ground paths. The
+position of the wiper switch is sent over the OSD CAN bus to the OSDC. The OSDC interprets the message
+and then powers the necessary circuits to energize the right side wiper motor.
+The right side wiper moves back and forth across the window at the selected speed. The wiper will only
+swipe back and forth for approximately 8 seconds. The wiper completes its path across the window and
+returns to the wiper park position.
+When the right side washer switch is selected, a different path to ground is created. The minipod senses
+the ground path and sends an OS domain CAN bus message to the OSDC. The OSDC interprets the
+message and broadcasts a vehicle CAN bus message to the PODC. The PODC receives the message and
+then powers the circuits to energize the right side washer motor. Washer fluid is sprayed onto the window
+for several seconds. At the same time as the fluid is sprayed on the window the wiper is activated. When
+the operator releases the washer button, the wiper makes about two additional swipes on the window and
+returns to the parked position.
+Related Information:
+Windshield Washer and Wiper ΓÇö Electrical Schematic(Section 240, Group 30C)
+MiniPod ΓÇö Electrical Theory of Operation (Section 240, Group 20C)
+OSD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+Grounds: Roof ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+OSDC ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+PODC ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+
+
+######################################################################
+PDF PAGE 4239 (len=95)
+######################################################################
+4239
+[TOC-ANCHOR:sec-09001faa855e85c5]
+Basic Controller Area Network (CAN) Theory of Operation
+
+
+######################################################################
+PDF PAGE 4244 (len=874)
+######################################################################
+4244
+Software Bundles
+Each physical control unit contains various software bundles.
+Related Information:
+Overview: CAN and LIN Bus ΓÇö Electrical Schematic (Section 240, Group 30D)
+Boom CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+OSD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+POD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+ARMC LIN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+HVAC LIN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+OSD LIN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Implement CAN bus
+3.
+Operator station domain (OSD) CAN bus
+4.
+Operator station domain (OSD) LIN bus
+5.
+Vehicle CAN bus
+6.
+
+
+######################################################################
+PDF PAGE 4245 (len=1413)
+######################################################################
+4245
+[TOC-ANCHOR:sec-09001faa85a15242]
+ARMC LIN Bus ΓÇö Electrical Theory of Operation
+The CommandARM control unit (ARMC) local interconnect network (LIN) binary unit system (bus) facilitates
+information transfer between the armrest-located module on the armrest.
+Component Information:
+Information is transferred to the ARMC from the house control module and the navigation bar on the
+ARMC LIN bus 1 circuit. The ARMC LIN bus 2 circuit transfers information from the settings control module
+to the ARMC. Information is transferred from the drive control unit to the ARMC on the ARMC LIN bus 3
+circuit.
+The ARMC monitors and detects switch activation on the modules via the appropriate ARMC LIN bus. Once
+the ARM receives switch activation information, that information is transferred on the operator station
+domain (OSD) CAN bus system to the appropriate control units.
+Related Information:
+ARMC LIN Bus ΓÇö Electrical Schematic (Section 240, Group 30D)
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+OSD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+A102 ΓÇö CommandARM control unit (ARMC)
+ΓÇó
+A104 ΓÇö Settings control module (SCM)
+ΓÇó
+A105 ΓÇö House control module (HCM)
+ΓÇó
+A106 ΓÇö Driving control module (DCM)
+ΓÇó
+A107 ΓÇö Navigation bar module control
+ΓÇó
+W0049 ΓÇö CommandARM Harness (Section 249, Group 40W)
+ΓÇó
+W0062 ΓÇö Navigation Bar Harness (Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4246 (len=2132)
+######################################################################
+4246
+[TOC-ANCHOR:sec-09001faa860ecb04]
+Boom CAN Bus ΓÇö Electrical Theory of Operation
+The boom control hydraulic unit (BCHU) broadcasts signals received along the BoomTrac controller area
+network (CAN) binary unit system (bus) to the controllers on the implement CAN bus using a two-wire
+system with two terminators. The two-wire system provides the BoomTrac CAN bus high and BoomTrac
+CAN bus low signals.
+Component information:
+A601 ΓÇö Ultrasonic height sensor (UHS) left-hand 2 (LH2)
+ΓÇó
+A602 ΓÇö Ultrasonic height sensor (UHS) left-hand 1 (LH1)
+ΓÇó
+A603 ΓÇö Ultrasonic height sensor (UHS) center frame
+ΓÇó
+A604 ΓÇö Ultrasonic height sensor (UHS) right-hand 1 (RH1)
+ΓÇó
+A605 ΓÇö Ultrasonic height sensor (UHS) right-hand 2 (RH2)
+ΓÇó
+A609 ΓÇö Boom control hydraulic unit (BCHU)
+ΓÇó
+A696 ΓÇö Ultrasonic height sensor (UHS) left-hand 3 (LH3)
+ΓÇó
+A697 ΓÇö Ultrasonic height sensor (UHS) right-hand 3 (RH3)
+ΓÇó
+A711 ΓÇö Vision processing unit (VPU) 1
+ΓÇó
+A712 ΓÇö Vision processing unit (VPU) 2
+ΓÇó
+A713 ΓÇö Vision processing unit (VPU) 3
+ΓÇó
+A714 ΓÇö Vision processing unit (VPU) 4
+ΓÇó
+A715 ΓÇö Vision processing unit (VPU) 5
+ΓÇó
+A716 ΓÇö Vision processing unit (VPU) 6
+ΓÇó
+A717 ΓÇö Vision processing unit (VPU) 7
+ΓÇó
+A718 ΓÇö Vision processing unit (VPU) 8
+ΓÇó
+A719 ΓÇö Vision processing unit (VPU) 9
+ΓÇó
+A720 ΓÇö Vision processing unit (VPU) 10
+ΓÇó
+A725 ΓÇö Gateway control unit (GWC)
+ΓÇó
+A791 ΓÇö Inertial measurement unit (IMU) left-hand 2 (LH2)
+ΓÇó
+A792 ΓÇö Inertial measurement unit (IMU) left-hand 1 (LH1)
+ΓÇó
+A793 ΓÇö Inertial measurement unit (IMU) center
+ΓÇó
+A794 ΓÇö Inertial measurement unit (IMU) right-hand 1 (RH1)
+ΓÇó
+A795 ΓÇö Inertial measurement unit (IMU) right-hand 2 (RH2)
+ΓÇó
+R601 ΓÇö BoomTrac controller area network (CAN) bus terminator
+ΓÇó
+R602 ΓÇö BoomTrac controller area network (CAN) bus Terminator
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+W0087 ΓÇö Center Frame Sensing Harness (249-40W)
+ΓÇó
+W0093 ΓÇö Left-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0094 ΓÇö Right-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0095 ΓÇö Left-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0096 ΓÇö Right-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0097 ΓÇö Left-Hand Outer Wing Harness (249-40W)
+ΓÇó
+W0098 ΓÇö Right-Hand Outer Wing Harness (249-40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4247 (len=1525)
+######################################################################
+4247
+The boom control hydraulic unit (BCHU) functions as a gateway, connecting BoomTrac CAN bus with
+implement CAN bus.
+Each boom contains multiple cameras, ultrasonic height sensors (UHS), inertial measurement units (IMU),
+and vision processing units (VPU). Information is processed by the VPU to command the spray action of the
+nozzles. This includes images gathered by the cameras, boom pose information measured by the IMU,
+boom distance away from the ground, and the crop canopy measured by the UHS. Each sensor is a
+miniature electronic control unit that sends the gathered information as a binary (digital) CAN message to
+the BCHU.
+Accuracy increases as the boom gets lower. When the boom is at a greater height, singular weeds are
+caught by more cameras. The VPU receives this information and commands multiple nozzles to spray,
+which causes overlapping. When the boom is at a lower height, singular weeds are caught by fewer
+cameras. The VPU receives this information and commands fewer nozzles to spray, which causes a more
+precise application.
+Related Information:
+Boom CAN Bus ΓÇö Electrical Schematic(240-30D)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+VPU ΓÇö Electrical Theory of Operation (245-20)
+BCHU ΓÇö Electrical Theory of Operation (245-20)
+W0101 ΓÇö Left-Hand Breakaway Harness (249-40W)
+ΓÇó
+W0102 ΓÇö Right-Hand Breakaway Harness (249-40W)
+ΓÇó
+W0105 ΓÇö Left-Hand Inner Wing Sensing Harness(249-40W)
+ΓÇó
+W0106 ΓÇö Right-Hand Inner Wing Sensing Harness (249-40W)
+ΓÇó
+X601 ΓÇö BoomTrac Service ADVISOR (SA)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4248 (len=1985)
+######################################################################
+4248
+[TOC-ANCHOR:sec-09001faa860ecb05]
+ExactApply CAN Bus ΓÇö Electrical Theory of Operation
+Machines equipped with ExactApply (the solution spray nozzle system) are equipped with an ExactApply
+controller area network binary unit system (CAN bus).
+Component Information
+CAN bus systems transfer messages between every control unit on the machine. These messages include
+commands, requests, broadcast information, responses, acknowledgments, and various group functions.
+The CAN bus is a linear network, and the control units are connected along its length in series.
+The operator has no direct control of the CAN bus systems. CAN bus operates automatically whenever the
+key switch is in the ACC, RUN, or START positions.
+For information on the ExactApply CAN bus system, refer to the appropriate ExactApply Diagnostic
+Technical Manual (DTM).
+Vision processing unit (VPU) assemblies
+ΓÇó
+A725 ΓÇö Gateway control unit (GWC)
+ΓÇó
+A4000 ΓÇö Master nozzle control unit (MNC)
+ΓÇó
+R4001 ΓÇö ExactApply Controller Area Network (CAN) binary unit system (bus) subnet 1 terminator 1
+ΓÇó
+R4002 ΓÇö ExactApply CAN bus subnet 1 terminator 2
+ΓÇó
+R4003 ΓÇö ExactApply CAN bus subnet 2 terminator 1
+ΓÇó
+R4004 ΓÇö ExactApply CAN bus subnet 2 terminator 2
+ΓÇó
+R4005 ΓÇö ExactApply CAN bus subnet 3 terminator 1
+ΓÇó
+R4006 ΓÇö ExactApply CAN bus subnet 3 terminator 2
+ΓÇó
+R4007 ΓÇö ExactApply CAN bus subnet 4 terminator 1
+ΓÇó
+R4008 ΓÇö ExactApply CAN bus subnet 4 terminator 2
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+W0087 ΓÇö Center Frame Sensing Harness (249-40W)
+ΓÇó
+W0093 ΓÇö Left-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0094 ΓÇö Right-Hand Inner Wing 1 Harness (249-40W)
+ΓÇó
+W0095 ΓÇö Left-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0096 ΓÇö Right-Hand Inner Wing 2 Harness (249-40W)
+ΓÇó
+W0098 ΓÇö Right-Hand Outer Wing Harness (249-40W)
+ΓÇó
+W0101 ΓÇö Left-Hand Breakaway Harness (249-40W)
+ΓÇó
+W0102 ΓÇö Right-Hand Breakaway Harness (249-40W)
+ΓÇó
+W0105 ΓÇö Left-Hand Inner Wing Sensing Harness(249-40W)
+ΓÇó
+W0106 ΓÇö Right-Hand Inner Wing Sensing Harness (249-40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4249 (len=1417)
+######################################################################
+4249
+[TOC-ANCHOR:sec-09001faa859f6469]
+HVAC LIN Bus ΓÇö Electrical Theory of Operation
+The heating, ventilation, and air conditioning (HVAC) local interconnect network (LIN) binary unit system
+(bus) facilitates information across the HVAC LIN bus circuit from HVAC components to the auto
+temperature control unit (ATC)
+Component Information:
+The ATC receives temperature information and utilizes it to determine when the various motor assemblies
+should be activated. This information is communicated through the HVAC LIN bus. Each motor assembly
+adjusts position when commanded.
+The ATC functions as a gateway, connecting the HVAC LIN bus and the operator station domain (OSD) CAN
+bus.
+The ATC communicates with the circulation motor, electrical water valve motor, and HVAC air mode
+actuator motor through the HVAC LIN bus.
+Related Information:
+HVAC LIN Bus ΓÇö Electrical Schematic(Section 240, Group 30D)
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+OSD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+A112 ΓÇö Auto temperature control unit (ATC)
+ΓÇó
+M104 ΓÇö Electrical water valve motor
+ΓÇó
+M106 ΓÇö Circulation motor
+ΓÇó
+M109 ΓÇö Heating, ventilation, and air conditioning (HVAC) air mode actuator motor
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+W0035 ΓÇö Front Console Support Harness(Section 249, Group 40W)
+ΓÇó
+W0041 ΓÇö HVAC Harness (Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4250 (len=1916)
+######################################################################
+4250
+[TOC-ANCHOR:sec-09001faa860ecb06]
+Implement CAN Bus ΓÇö Electrical Theory of Operation
+The implement controller area network (CAN) binary unit system (bus) allows control units to send and
+receive messages to and from one another using a two-wire system with two terminators. The two-wire
+system provides the implement CAN bus high and implement CAN bus low signals.
+Component Information:
+The premium server, MTG, MNC, and SA port function as a gateway to connect the implement CAN bus and
+vehicle CAN bus. The BCHU acts as a gateway to connect the implement CAN bus and BoomTrac CAN bus.
+The OSDC acts as a gateway to connect implement CAN bus, vehicle CAN bus, operator station domain
+(OSD) LIN bus, and operator station domain (OSD) CAN bus.
+Related Information:
+Implement CAN Bus ΓÇö Electrical Schematic(240-30D)
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (240-20D)
+A101 ΓÇö Operator station domain control unit (OSDC)
+ΓÇó
+A121 ΓÇö Premium server
+ΓÇó
+A123 ΓÇö Modular telematics gateway control unit (MTG)
+ΓÇó
+A125 ΓÇö Integrated StarFire control unit
+ΓÇó
+A126 ΓÇö StarFire global positioning system (GPS) receiver
+ΓÇó
+A212 ΓÇö Vision camera
+ΓÇó
+A306 ΓÇö Primary solution system control (PSSC)
+ΓÇó
+A311 ΓÇö Dual system keypad
+ΓÇó
+A312 ΓÇö Micro display system 1
+ΓÇó
+A313 ΓÇö Micro display system 2
+ΓÇó
+A314 ΓÇö Front fill display
+ΓÇó
+A609 ΓÇö Boom control hydraulic unit (BCHU)
+ΓÇó
+A725 ΓÇö Gateway control unit
+ΓÇó
+A4000 ΓÇö Master nozzle control unit (MNC)
+ΓÇó
+A4901 ΓÇö Wireless gateway control unit
+ΓÇó
+K06 ΓÇö ISO relay
+ΓÇó
+M318 ΓÇö Agitation valve motor
+ΓÇó
+R105 ΓÇö Implement CAN bus terminator
+ΓÇó
+R702 ΓÇö Implement CAN bus terminator
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(249-40W)
+ΓÇó
+W0014 ΓÇö MTG Jumper Harness (249-40W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(249-40W)
+ΓÇó
+W0034 ΓÇö Roof Harness(249-40W)
+ΓÇó
+W0075 ΓÇö Solution Skid Dual Product Harness(249-40W)
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+X119 ΓÇö ISO connector
+ΓÇó
+X120 ΓÇö Service ADVISOR (SA) port
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4251 (len=262)
+######################################################################
+4251
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+Boom CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+OSD CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+OSD LIN Bus ΓÇö Electrical Theory of Operation (240-20D)
+XEC ΓÇö Cab Load Center (249-40F)
+
+
+######################################################################
+PDF PAGE 4252 (len=1697)
+######################################################################
+4252
+[TOC-ANCHOR:sec-09001faa85a11a94]
+OSD CAN Bus ΓÇö Electrical Theory of Operation
+The operator station domain (OSD) controller area network (CAN) binary unit system (bus) allows control
+units to send and receive messages to and from one another using a two-wire system with two
+terminators. The two-wire system provides the OSD CAN bus high and OSD CAN bus low signals.
+Component information:
+The OSDC functions as a gateway, connecting the vehicle CAN bus, implement CAN bus, OSD LIN bus, and
+OSD CAN bus.
+Related Information:
+OSD CAN Bus ΓÇö Electrical Schematic(Section 240, Group 30D)
+OSD LIN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+A101 ΓÇö Operator station domain control unit (OSDC)
+ΓÇó
+A102 ΓÇö CommandARM control unit (ARMC)
+ΓÇó
+A103 ΓÇö Multi-function control lever
+ΓÇó
+A109 ΓÇö MiniPod assembly
+ΓÇó
+A110 ΓÇö EActiveSeat control unit
+ΓÇó
+A112 ΓÇö Auto temperature control unit (ATC)
+ΓÇó
+A113 ΓÇö Select radio control unit (option) (DE7)
+ΓÇó
+A115 ΓÇö App radio control unit (option)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+W0034 ΓÇö Roof Harness(Section 249, Group 40W)
+ΓÇó
+W0035 ΓÇö Front Console Support Harness(Section 249, Group 40W)
+ΓÇó
+W0038 ΓÇö Select Radio Jumper Harness (When Equipped) (Section 249, Group 40W)
+ΓÇó
+W0039 ΓÇö App radio Jumper Harness (When Equipped) (Section 249, Group 40W)
+ΓÇó
+W0040 ΓÇö MiniPod Harness (Section 249, Group 40W)
+ΓÇó
+W0041 ΓÇö HVAC Harness (Section 249, Group 40W)
+ΓÇó
+W0049 ΓÇö CommandARM Harness(Section 249, Group 40W)
+ΓÇó
+W0050 ΓÇö Seat Base Active Harness (When Equipped)(Section 249, group 40W)
+ΓÇó
+R101 ΓÇö Operator station domain (OSD) controller area network (CAN) bus terminator
+ΓÇó
+R703 ΓÇöOperator station domain (OSD) controller area network (CAN) bus terminator
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4253 (len=1117)
+######################################################################
+4253
+[TOC-ANCHOR:sec-09001faa85a11a95]
+OSD LIN Bus ΓÇö Electrical Theory of Operation
+The operator station domain (OSD) local interconnect network (LIN) binary unit system (bus) monitors and
+detects switch activation between the operator station control unit (OSDC) and the minipod assembly.
+Component Information:
+The steering column control module (SCCM), located inside the minipod assembly, reports steering column
+information to the OSDC through the OSD LIN bus.
+The OSDC functions as a gateway, connecting the OSD LIN bus with the OSD CAN bus, vehicle CAN bus,
+and implement CAN bus.
+Related Information:
+OSD LIN BusΓÇö Electrical Schematic(Section 240, Group 30D)
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (Section 240, group 20D)
+OSD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+A101 ΓÇö Operator station domain control unit (OSDC)
+ΓÇó
+A109 ΓÇö MiniPod assembly
+ΓÇó
+W0032 ΓÇö Cab Main Harness(Section 249, Group 40W)
+ΓÇó
+W0034 ΓÇö Roof Harness(Section 249, Group 40W)
+ΓÇó
+W0035 ΓÇö Front Console Support Harness(Section 249, Group 40W)
+ΓÇó
+W0040 ΓÇö MiniPod Harness (Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4254 (len=1057)
+######################################################################
+4254
+[TOC-ANCHOR:sec-09001faa861a96b6]
+POD CAN Bus ΓÇö Electrical Theory of Operation
+The powertrain domain (POD) controller area network (CAN) binary unit system (bus) allows control units
+to send and receive messages to and from one another using a two-wire system with two terminators. The
+two-wire system provides the POD CAN bus high and POD CAN bus low signals.
+Component Information:
+The PODC acts as a gateway, connecting POD CAN bus and vehicle CAN bus.
+Related Information:
+POD CAN Bus ΓÇö Electrical Schematic (240-30D)
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (240-20D)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+A201 ΓÇö Powertrain domain control unit (PODC)
+ΓÇó
+A202 ΓÇöAutoTrac steering control unit (ATX)
+ΓÇó
+A205 ΓÇö Drive control unit (DCU)
+ΓÇó
+A5505 ΓÇö Engine control unit (ECU)
+ΓÇó
+R201 ΓÇö Powertrain domain (POD) CAN bus terminator
+ΓÇó
+R202 ΓÇö Powertrain domain (POD) CAN bus terminator
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(249-40W
+ΓÇó
+W0009 ΓÇö Right-Hand Chassis Harness (249-40W)
+ΓÇó
+W0031 ΓÇö Nose Casting Harness (249-40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4255 (len=1709)
+######################################################################
+4255
+[TOC-ANCHOR:sec-09001faa860ecb07]
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation
+The vehicle controller area network (CAN) binary unit system (bus) allows control units to send and receive
+messages to and from one another using a two-wire system with two terminators. The two-wire system
+provides the vehicle CAN bus high and vehicle CAN bus low signals.
+Component Information:
+The premium server, SA port, and MTG function as a gateway, connecting vehicle CAN bus and implement
+CAN bus. The PODC acts as a gateway to connect vehicle CAN bus and powertrain domain (POD) CAN bus.
+The OSDC acts as a gateway to connect vehicle CAN bus, implement CAN bus, and operator station domain
+(OSD) CAN bus.
+Related Information:
+Vehicle CAN Bus ΓÇö Electrical Schematic(240-30D)
+Overview: CAN Bus and LIN Bus ΓÇö Electrical Theory of Operation (240-20D)
+Implement CAN Bus ΓÇö Electrical Theory of Operation (240-20D)
+Premium Server ΓÇö Electrical Theory of Operation (245-20)
+MTG ΓÇö Electrical Theory of Operation (245-20)
+OSDC ΓÇö Electrical Theory of Operation (245-20)
+PODC ΓÇö Electrical Theory of Operation (245-20)
+A101 ΓÇö Operator station domain control unit (OSDC)
+ΓÇó
+A120 ΓÇö Corner post display (PDU)
+ΓÇó
+A121 ΓÇö Premium server
+ΓÇó
+A123 ΓÇö Modular telematics control unit (MTG)
+ΓÇó
+A201 ΓÇö Powertrain domain control unit (PODC)
+ΓÇó
+A4000 ΓÇö Master nozzle control unit (MNC)
+ΓÇó
+R104 ΓÇö Vehicle CAN terminator
+ΓÇó
+R701 ΓÇö Vehicle CAN terminator
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(249-40W)
+ΓÇó
+W0014 ΓÇö MTG Jumper Harness (249-40W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness(249-40W)
+ΓÇó
+W0034 ΓÇö Roof Harness(249-40W)
+ΓÇó
+W0075 ΓÇö Solution Skid Dual Product Harness(249-40W)
+ΓÇó
+W0080 ΓÇö Center Frame Dual Product Harness(249-40W)
+ΓÇó
+X120 ΓÇö ServiceADVISOR (SA) port
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4256 (len=2644)
+######################################################################
+4256
+[TOC-ANCHOR:sec-09001faa85a25a2f]
+Aftertreatment ΓÇö Electrical Theory of Operation
+The aftertreatment device (ATD) passively and actively captures the particulate matter (soot) from the
+engine exhaust gas. The aftertreatment process cleans the engine of hydrocarbons and nitrogen oxide
+(NOx). In total, the machine aftertreatment regenerates the engine exhaust, producing only clean nitrogen
+gas and water vapor.
+Component Information:
+Exhaust gas enters the diesel oxidation catalyst (DOC) chamber and then flows through the diesel
+particulate filter (DPF). The DOC actively oxidizes hydrocarbons, while the DPF passively captures
+particulates. Constant monitoring of exhaust gas temperature allows the electronic control unit to manage
+this regeneration process.
+There are two aftertreatment NOx sensors. The NOx sensor, located at the DPF outlet, and the
+aftertreatment outlet NOx sensor, located at the selective catalyst reduction (SCR) outlet. These sensors
+monitor emission levels and machine NOx conversion efficiency. The engine control unit (ECU) provides
+power for both sensors.
+Information from these sensors, travels along the engine controller area network (CAN) binary unit system
+(bus) high and low circuits and into the ECU. The ECU uses this information to assess the NOx conversion
+efficiency.
+A120 ΓÇö Corner post display (PDU)
+ΓÇó
+A5505 ΓÇö Engine control unit (ECU)
+ΓÇó
+B5109 ΓÇö Diesel particulate filter (DPF) differential pressure sensor
+ΓÇó
+B5500 ΓÇö Tri comp inlet humidity/press/tem controller area network (CAN)
+ΓÇó
+B5501 ΓÇö Selective catalytic reduction (SCR) supply module
+ΓÇó
+B5502 ΓÇö NOx sensor, diesel particulate filter (DPF) outlet
+ΓÇó
+B5503 ΓÇö NOx sensor, selective catalytic reduction (SCR) outlet
+ΓÇó
+B5506 ΓÇö Diesel exhaust fluid (DEF) quality sensor
+ΓÇó
+E5601 ΓÇö Diesel exhaust fluid (DEF) heater, pressure line
+ΓÇó
+E5602 ΓÇö Diesel exhaust fluid (DEF) heater, suction line
+ΓÇó
+E5603 ΓÇö Diesel exhaust fluid (DEF) heater, return line
+ΓÇó
+R5603 ΓÇö Engine controller area network (CAN) terminator
+ΓÇó
+R5605 ΓÇö Engine controller area network (CAN) terminator
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0009 ΓÇö Right-Hand Chassis Harness (Section 249, Group 40W)
+ΓÇó
+W0010 ΓÇö Hood Extension Harness (Section 249, Group 40W)
+ΓÇó
+W0018 ΓÇö CAN Jumper Harness (Section 249, Group 40W)
+ΓÇó
+W0026 ΓÇö Exhaust Jumper Harness (Section 249, Group 40W)
+ΓÇó
+W0028 ΓÇö Engine Harness (Section 249, Grouo 40W)
+ΓÇó
+W0031 ΓÇö Nose Casting Harness (Section 249, Group 40W)
+ΓÇó
+Y5019 ΓÇö Diesel exhaust fluid (DEF) header coolant control solenoid valve
+ΓÇó
+Y5020 ΓÇö Selective catalytic reduction (SCR) dosing control solenoid valve
+ΓÇó
+Y5500 ΓÇö Turbo actuator position
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4257 (len=1493)
+######################################################################
+4257
+Diesel exhaust fluid (DEF) converts NOx into nitrogen gas and water vapor. The SCR injects a high purity
+urea-based additive into the exhaust system cleaning the engine emissions.
+The DEF fluid temperature sensor and DPF differential pressure sensor measures the initial output from
+the turbocharger and DPF.
+The DEF dosing injector then mixes high purity urea-based additive into the exhaust line, which converts
+NOx into nitrogen and water.
+DEF tank header assembly, SCR supply module, and DEF dosing line heaters (when in good working order),
+allow the DEF dosing injector to function correctly. The DEF tank assembly allows coolant flow when
+needed. It also measures the fluid level and temperature. DEF supply module pumps DEF from tank to the
+dosing injector. When the temperature is cold, DEF dosing unit heater and DEF dosing line heaters keep
+the lines from freezing.
+The ECU powers and controls all DEF and SCR components. Signals return to the ECU and, when needed,
+information passes to the corner post display (PDU) through CAN bus circuits.
+For more detailed information on the aftertreatment system, see the appropriate engine component
+technical manual (CTM).
+Related Information:
+Aftertreatment ΓÇö Electrical Schematic (Section 240, Group 30E)
+Grounds: Battery and Chassis ΓÇö Electrical Schematic(Section 240, Group 30G)
+Corner Post Display ΓÇö Electrical Theory of Operation (Section 240, Group 20C)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+
+
+######################################################################
+PDF PAGE 4258 (len=1495)
+######################################################################
+4258
+[TOC-ANCHOR:sec-09001faa85a25a30]
+Fuel Level Sender ΓÇö Electrical Theory of Operation
+Fuel level is displayed on the corner post display as a segmented gauge for the operator. When the level
+reaches 10% remaining fuel, the fuel indicator flashes, an alarm sounds, and a low fuel message appears.
+Component Information:
+The system is active whenever the key switch is in the RUN position.
+The fuel level sender is a variable resistor that provides a signal output proportional to the fuel level in the
+tank. The greater the fuek volume, the higher the resistance. When the fuel level is lowest, there is no
+resistance across the sensor.
+The powertrain domain control unit (PODC) monitors the fuel level and a vehicle controller area network
+(CAN) binary unit system (bus) message is sent to the PDU where the fuel level is displayed.
+For additional information, refer to the appropriate engine component technical manual (CTM).
+Related Information:
+Fuel Level Sender ΓÇö Electrical Schematic (Section 240, Group 30E)
+PODC ΓÇö Electrical Theory Of Operation (Section 245, Group 20)
+POD CAN BusΓÇö Electrical Theory of Operation (Section 245, Group 20D)
+Vehicle CAN Bus ΓÇö Electrical Schematic(Section 240, Group 20D)
+A120 ΓÇö Corner Post Display (PDU)
+ΓÇó
+A201 ΓÇö Powertrain Domain Control Unit (PODC)
+ΓÇó
+B208 ΓÇö Fuel Level Sender
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness(Section 249, Group 40W)
+ΓÇó
+W0009 ΓÇö Right-Hand Chassis Harness (Section 249, Group 40W)
+ΓÇó
+W0032 ΓÇö Cab Main Harness (Section 249, Group 40W)
+ΓÇó
+
+
+######################################################################
+PDF PAGE 4259 (len=1629)
+######################################################################
+4259
+[TOC-ANCHOR:sec-09001faa85a212db]
+Fuel Transfer Pump ΓÇö Electrical Theory of Operation
+When commanded by the engine control unit (ECU), the fuel transfer pump solenoid valve delivers
+necessary fuel from the fuel tank into the high-pressure pump.
+Component Information:
+Fuel level information is sent from the ECU to the fuel transfer pump when the key switch is turned to the
+RUN position. Power continuously flows from the mid-chassis load center and relay block into the fuel
+transfer pump.
+The ECU enables the fuel transfer pump to run for one minute, allowing the fuel system to prime and bleed
+any air from the fuel supply. If the engine is not started after this time, then the ECU automatically
+switches off the fuel transfer pump.
+For additional information, refer to the appropriate engine component technical manual (CTM).
+Related Information:
+Fuel Transfer Pump ΓÇö Electrical Schematic (Section 240, Group 20E)
+Power Distribution ΓÇö Electrical Schematic (Section 240, Group 30G)
+ECU ΓÇö Electrical Theory of Operation (Section 245, Group 20)
+POD CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Vehicle CAN Bus ΓÇö Electrical Theory of Operation (Section 240, Group 20D)
+Grounds: Battery and Chassis ΓÇö Electrical Theory of Operation (Section 240, Group 20G)
+F100 ΓÇö Mid-Chassis Load Center (Section 249, Group 40F)
+A201 ΓÇö Powertrain domain control unit (PODC)
+ΓÇó
+A5505 ΓÇö Engine control unit (ECU)
+ΓÇó
+F104 ΓÇö Fuel transfer pump fuse
+ΓÇó
+Y5501 ΓÇö Fuel transfer pump solenoid valve
+ΓÇó
+W0008 ΓÇö Left-Hand Chassis Harness
+ΓÇó
+W0009 ΓÇö Right-Hand Chassis Harness
+ΓÇó
+W0028 ΓÇö Engine Harness
+ΓÇó
+W0031 ΓÇö Nose Casting Harness
+ΓÇó
+
