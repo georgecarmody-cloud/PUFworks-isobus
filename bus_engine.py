@@ -1487,7 +1487,9 @@ def main():
                 ctrl.log_isobus_event(f"VISION_BITMAP invalid JSON: {e}")
             continue  # high-rate path: skip the command echo below
 
-        print(f"Bus engine received command: {line}", flush=True)
+        # UI_HEARTBEAT arrives at 1 Hz from the UI host — echoing it floods the log.
+        if line != 'UI_HEARTBEAT':
+            print(f"Bus engine received command: {line}", flush=True)
 
         if line == 'STOP_CAN':
             ctrl.stop()
