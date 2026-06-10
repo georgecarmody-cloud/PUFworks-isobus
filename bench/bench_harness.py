@@ -91,6 +91,8 @@ def main():
         t0 = time.time()
         last_hb = 0.0
         section_count = 10
+        mid_interlocks = None
+        mid_seen = None
         while time.time() - t0 < args.duration:
             now = time.time()
             if now - last_hb >= 1.0:
@@ -109,14 +111,19 @@ def main():
             }
             send(proc, "VISION_BITMAP:" + json.dumps(msg))
             seq += 1
+            # Snapshot WHILE the feed is live (sampling after the loop would
+            # already be past the 300 ms staleness window by design).
+            if mid_interlocks is None and now - t0 > args.duration / 2:
+                mid_interlocks = dict(get_tel("control_interlocks", {}))
+                mid_seen = get_tel("vision_seen")
             time.sleep(0.1)
 
-        time.sleep(0.3)
-        if not get_tel("vision_seen"):
-            failures.append("telemetry vision_seen is false after feeding vectors")
-        interlocks = get_tel("control_interlocks", {})
-        print(f"[bench] interlocks during feed: {interlocks}")
-        if not interlocks.get("vision", False):
+        print(f"[bench] interlocks mid-feed: {mid_interlocks}")
+        if not mid_seen:
+            failures.append("telemetry vision_seen is false while feeding vectors")
+        # speed/rx are expected to be tripped on a bare bench (no speed frames,
+        # no peer nodes on the virtual bus) — only vision is asserted here.
+        if not (mid_interlocks or {}).get("vision", False):
             failures.append("vision interlock not healthy while feed fresh")
 
         # --- 4. Staleness fail-safe: stop the feed, keep heartbeating ---

@@ -615,9 +615,11 @@ class ISOBUSController:
         but does NOT demote. Loss of bus comms, the UI control link, or the vision
         feed (real faults) trigger a demote.
         """
+        # Refresh interlock_status every tick (pure computation, no TX) so
+        # telemetry reports true interlock health even while disarmed/SHADOW.
+        self._interlocks_ok()
         if not self.armed:
             return
-        self._interlocks_ok()  # refresh interlock_status
         fault = [k for k in ("rx", "ui", "vision") if not self.interlock_status.get(k, True)]
         if fault:
             self.last_demote_reason = f"{', '.join(fault)} lost"
