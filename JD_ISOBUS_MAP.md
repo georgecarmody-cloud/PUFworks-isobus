@@ -496,7 +496,7 @@ The weed → section decision was moved out of the renderer and into the engine 
 - **Path**: PUFVision claims an address, announces as a TC client, and injects DDI 141 section state + DDI 157 rate directly to the GRC.001. The Goldacres G5 Universal stack is comparatively open and listens for process data from any valid address-claimed node.
 - **End capability**: whole-section Green-on-Brown spot spray **with variable rate**, cooperatively AND-gated with the host so PUFVision can only close sections the host left open.
 - **Main risks**: TC-SC authorization handshake nuances, section command cadence/oscillation tuning, confirming DDI 141 element addressing on the specific GRC firmware.
-- **Field bring-up (liquid GRC, OMPFP10673 operator manual):** Before section-blanking GoB trials, set **Minimum Flow Rate = 0** in G5 *Work Setup*. The GRC maintains a minimum-flow floor even when all sections are commanded OFF; at ground speeds below the engine speed interlock (`0.5 km/h`, §9.2) this produces measurable over-application on closed sections. Section blanking on the `goldacres_grc` profile (DDI 141 only — rate held by GRC, see §4.2 and engine `PROFILE_GOLDACRES_GRC`) therefore depends on the operator zeroing that floor first.
+- **Field bring-up (Goldacres liquid GRC + Raven fast-close valves):** Section actuation is **on/off** via the fast-close valve — there is no proportional dribble through a minimum-flow floor on this hardware path. Section blanking on the `goldacres_grc` profile (DDI 141 only — rate held by GRC Work Setup, see §4.2) commands sections fully closed or open. *(The OMPFP10673 *Minimum Flow Rate* setting applies to GRC-internal liquid rate control semantics; it is not the limiting factor when Raven fast-close valves provide hard shutoff.)*
 - **Section geometry:** Map the vision section bitmap to the **configured section count and widths** from GRC *Work Setup*, not the engine default `num_boom_sections = 10` (§9.3). A typical Goldacres 3-wire Raven boom supports up to **10 sections**, but the active count may be fewer — bit positions must align to the display's section indexing (center-outward C / L1–L5 / R1–R5). Hardcoding ten equal camera columns mis-aims spot spray when fewer sections are configured. On cooperative profiles the bitmap is still AND-gated against `jd_commanded_sections` (§9.1) before any `SECTION`-rung TX.
 
 #### 10.1.1 GRC Section Bitmask, EF00 Elements & DDI 141 Command Path
@@ -640,7 +640,7 @@ This section folds the service-manual analysis from **TM174719** — *616R See &
 | **Primary networks** | JD proprietary CAN domains (VB1, IB1, IB2, IB3–IB6) | PUFVision's ISOBUS/J1939 integration targets **IB1 (Implement CAN)** only peripherally |
 | **ISOBUS** | ISO connector (`X119`) on implement bus; not the See & Spray control plane | Standard TC-GEO / PGN 160 paths (§4) remain valid on IB1 |
 | **ISOBUS VT** | Mentioned only for **GPS position viewing** on the display | PUFVision does not need VT emulation for the GreenSeeker serial path (§4.3) |
-| **Ethernet** | See & Spray camera/video backbone (FAKRA + Ethernet switches) | Closed to PUFVision; see §3.5 Tier 2 and §12.6 |
+| **Ethernet** | Cab Config 1 LAN + optional boom See & Spray plant (FAKRA + switches) | Passive tap + Wireshark bench (§16); not an injection surface |
 
 > **Dependency rule (TM174719 p. 4360):** ExactApply **can** operate without See & Spray. See & Spray **cannot** operate without ExactApply. Any spot-spray integration that bypasses ExactApply/MNC is architecturally invalid on the 616R.
 
@@ -813,6 +813,11 @@ Quick-reference page index for field diagnostics and bench study:
 | **5685–5687** | MNC + NZC theory — PWM ADDR sync, subnet topology |
 | **5692–5694** | PSSC + SSSC (+ Premium Server) electrical theory |
 | **5695** | VPU electrical theory — valve B, dual-CAN presence |
+| **4214** | Corner post display (PDU) — CAN-driven gauges (A120) |
+| **4235** | Video — secondary vs main CommandCenter; Premium Server → ARMC → OSDC |
+| **4265** | Premium Server + CommandCenter display — Ethernet + CAN bridge |
+| **240-30F** | Ethernet Configuration 1 & 2 + Premium Server schematics (**XX116**) |
+| **240-30L** | See & Spray Ethernet + FAKRA (boom plant; often depopulated on EA-only) |
 
 ### 12.9 Suggested Compatibility Improvements
 
@@ -845,7 +850,7 @@ Refuse `ARM` at `SECTION`/`FULL` (§9.1) when any of:
 
 - **No `0xCC` RX** for longer than the existing bus-RX watchdog (`2.0 s`, §9.2) while the implement adapter is attached.
 - **Stale DDI 158** — no flow feedback despite commanded sections ON and speed above the interlock floor.
-- **Unexpected flow while sections commanded OFF** — GRC still dispensing at the minimum-flow floor (see §10.1 bring-up: *Minimum Flow Rate* must be 0 before blanking trials).
+- **Unexpected flow while sections commanded OFF** — valve or wiring fault (fast-close path should be hard off); check GRC diagnostics and physical section valves, not a software minimum-flow floor on the Raven fast-close install.
 
 False **block** (refuse arm when GRC is fine) is preferable to false **arm** (actuate into a dead or misconfigured controller). The ladder already defaults to `OBSERVE`/`SHADOW`; an extra GRC gate extends §9.2 without replacing it.
 
@@ -1064,3 +1069,187 @@ If native DDI 141 injection is blocked on a specific machine, §14 defines the m
 3. **Code GRC health interlock** — extend `interlock_status`; refuse ARM when feedback disagrees (§13.4 sketch).
 4. **Defer MITM hardware** unless native claim/pairing fails on a specific Goldacres unit; prototype AND-gate on virtual bus first (§14.9).
 5. **Document per-machine latency table** — after first field pass, record p50/p95 lead and trail at each target speed; store in session metadata / `DEV_NOTES.md`.
+
+---
+
+## 16. Passive Ethernet Tap — Dual Capture with CAN (616R bench)
+
+*Field/bench plan for correlating **cab Ethernet** with **IB1 CAN (X119)** to detect parallel handshakes, display-side state, or off-bus data paths. **OBSERVE only** — no injection on Ethernet or CAN. Complements `library/SPRAY_DECODE.md` and `PUFworks-isobus/bench-ui/`.*
+
+### 16.1 Purpose & scope
+
+| Goal | Method |
+| :--- | :--- |
+| Detect **parallel paths** beside implement CAN (encryption, proprietary framing, TC/display traffic) | Simultaneous **Wireshark (pcapng)** + **CAN recorder** (`bench-ui` or `field_sniff_616r.ps1`) |
+| Explain **section / ASC mismatch** (manual toggles vs MNC vs SRC on X119) | Time-align marked operator events across both captures |
+| Map **local sprayer Ethernet** (cab LAN) | Passive tap — not USB (X117), not JDLink/MTG cellular (filter out in analysis) |
+
+**Out of scope:** Ethernet injection, MITM, USB Service ADVISOR probing, replacing the Task Controller.
+
+### 16.2 Machine context — ExactApply-only (no See & Spray cameras)
+
+TM174719 p. **4360**: **ExactApply can operate without See & Spray**; the reverse is not true. On an **EA-only** sprayer:
+
+- **IB1 (X119)** — SRC, MNC (gateway face), DISP, ATX; field captures often show **no GWC `0x94`**.
+- **IB3–IB6** — true nozzle actuation (MNC ↔ NZC); **not visible** on X119 alone.
+- **Boom Ethernet plant** (A726/A727/A728, VPUs, FAKRA) — often **absent or quiet**; cab Ethernet still active.
+
+See & Spray **integration into ExactApply** is architectural (MNC/NZC/subnets); absence of cameras does **not** remove display-side or MNC work-state paths.
+
+### 16.3 Local cab Ethernet topology (MTG de-emphasised)
+
+TM174719 does **not** publish a full L2/L3 network map (no IP plan in field manual). Electrical groups **240-30F** (cab) and **240-30L** (boom) are the schematic sources.
+
+**Layer 1 — Cab backbone (always present on Gen 4 + EA):**
+
+| ID | Role |
+| :--- | :--- |
+| **A124** | Configuration 1 Ethernet switch — cab hub |
+| **A121** | Premium Server — **Ethernet ↔ VB1/IB1 CAN** bridge; display data hub |
+| **A122** | CommandCenter display (4600 processor) |
+| **A125** | Integrated StarFire control unit — Ethernet participant |
+| **A120 / X116** | Corner post PDU gauges (CAN) vs **auxiliary corner post display** (Ethernet, **XX116**) |
+| **X111–X114** | Video inputs (backup / row guidance — not See & Spray FAKRA) |
+
+Premium Server theory (p. **4265**): gathers video, drives CommandCenter and **auxiliary corner post display**; *“Using Ethernet, communication between the monitors and video connectors can return to the machine.”*
+
+**Layer 2 — Boom / center frame (See & Spray equipped only):** A726/A727 → A728 → A207 (Config 2) → A124; VPUs, FAKRA. Depopulated on EA-only.
+
+**Layer 3 — JDLink (MTG A123):** cellular/cloud; **filter out** in Wireshark when hunting implement-local traffic.
+
+```
+  [4600 CommandCenter A122]────┐
+  [Extended monitor XX116]─────┼── A124 Config 1 ── A121 Premium Server ── VB1 / IB1 CAN
+  [Integrated StarFire A125]───┘         │
+                                         └── (A123 MTG — cloud; not analysis focus)
+```
+
+### 16.4 Display roles — corner post vs 4640 UT
+
+| Unit | Role | Tap value |
+| :--- | :--- | :--- |
+| **4600 CommandCenter (A122)** | TC server, spray UI, .NET app stack | Indirect — via Premium Server / Config 1 LAN |
+| **Gen 4 extended monitor (XX116)** | **Display extension only** — confirmed **not** a second Task Controller | Cab↔monitor leg; video/UI mirror |
+| **4640 Universal Terminal** | ISOBUS **UT** (separate from 4600 app) | **Dedicated Ethernet port** — best for ISO parallel path vs X119 |
+| **PDU (A120)** | Speed/fuel/alarms on **vehicle CAN** | Not the extended-monitor Ethernet path |
+
+Video theory (p. **4235**): 4600 supports four camera inputs; image may appear on **secondary or main** display; activation uses **CAN** (Premium Server → ARMC → OSDC); video return is **Ethernet**.
+
+### 16.5 Section / ASC — why CAN and operator UI diverge
+
+Cross-reference **`library/SPRAY_DECODE.md`** (ASC vs manual, ExactApply override):
+
+| Path | Bus signal | Meaning |
+| :--- | :--- | :--- |
+| Operator **manual** section toggles | SRC **`4F0B0602`** on IB1 | What the operator pressed (when in manual mode) |
+| **ASC / overlap / headland** | MNC **`0xCB00`** cascades | Work-state / ASC intent — **not** SRC bitmap |
+| Physical nozzles | MNC → **IB3–IB6** → NZC | Ground truth; **invisible on X119** |
+
+With **ASC ON**, boom sections may **not visibly section off** on overlap — ExactApply nozzle control overrides classic section-valve ASC. Ethernet may carry **display-computed setpoints or maps** that precede or parallel MNC work messages; that is a primary correlation target for dual capture.
+
+### 16.6 Tap points (priority order)
+
+| Priority | Location | Captures | CAN bench pairing |
+| :---: | :--- | :--- | :--- |
+| **1** | **4640 UT Ethernet** (RJ45 or M12 on UT — identify at install) | ISOBUS VT / UT stack vs ISO CAN | X119 + `SET_CAN_RX_ONLY:1`, profile `jd_616r` |
+| **2** | **X119** (CANable COM2 / PCAN) | IB1 SRC, MNC face, DISP, ATX | `bench-ui` or `scripts/field_sniff_616r.ps1` |
+| **3** | **XX116 extended monitor leg** (M12 D-code) | Config 1 LAN traffic to/from extension | Same CAN session, same wall-clock markers |
+| **4** | Premium Server / main CommandCenter leg | Full app ↔ server (if harness access) | Highest section-UI correlation; harder physical access |
+
+**PUFworks bench UI:** `PUFworks-isobus/bench-ui/` — spawns `bus_engine.py`, live **CAN monitor**, recorder → `recordings/<session>/frames.csv` with `timestamp_ms`.
+
+**Avoid:** USB **X117** (Premium Server) — locked down; not continuous passive sniff.
+
+### 16.7 Physical layer — Gen 4 extended monitor cable
+
+**Confirmed on Clare Downs bench machine:** official JD extension uses **round M12, 4-pin, D-coded** → **100BASE-TX** (not a non-Ethernet fieldbus). Manual: *“twisted pair Ethernet cables”* (p. **4362**). JD harness **BPF11526** (0.6 m Gen 4 extended monitor cable) and longer **PFP11275** / **PFP11276** class M12 Ethernet assemblies.
+
+**M12 D-code → RJ45 pinout (100BASE-TX, shielded):**
+
+| M12 pin | Signal | RJ45 (T568B) |
+| :---: | :--- | :---: |
+| 1 | TX+ | 1 |
+| 3 | TX− | 2 |
+| 2 | RX+ | 3 |
+| 4 | RX− | 6 |
+| Shell | Shield | Shield |
+
+Use **shielded** M12–RJ45 assemblies only (cab EMI). **Do not** use X-coded 8-pin parts on this leg.
+
+**Protocol stack expectation:**
+
+| Layer | Expectation |
+| :--- | :--- |
+| Physical / data link | **IEEE 802.3** 100BASE-TX |
+| Network / transport | Often **IPv4** + **UDP/TCP** |
+| Application | JD proprietary (display stream, status); possibly protobuf/gstreamer-class payloads per `library/JD_THIRD_PARTY_SOFTWARE.md` |
+| **Not** | CAN-over-Ethernet on this leg; ISOBUS directly on extension cable |
+
+### 16.8 Tap topology — passive inline (required)
+
+**Do not** replace the extended monitor with a laptop-only RJ45 termination:
+
+- Point-to-point link: you receive **cab → monitor direction only**; monitor → cab is lost.
+- Extended monitor is **offline**; cab may set Ethernet/display DTCs (e.g. GWC **523268.02** class).
+- **Do not** parallel-wire (Y-split) two devices on one pair set.
+
+**Required topology:**
+
+```text
+Cab XX116 (female) ← M12 male/RJ45 ← patch ← TAP Network A — Network B ← patch ← M12 female/RJ45 ← monitor cable ← Extended monitor
+                                                                                    TAP Monitor → USB NIC → laptop (Wireshark)
+```
+
+Laptop is **receive-only** on TAP monitor port(s); **monitor stays connected** on the through path.
+
+### 16.9 Parts list (616R extended monitor, 100BASE-TX)
+
+| Qty | Part | Notes |
+| :---: | :--- | :--- |
+| 1 | **Passive 100 Mbit RJ45 TAP** | e.g. Throwing Star LAN Tap; or Dualcomm DC802S if also tapping gigabit legs later |
+| 1 | **M12 D-code male → RJ45**, shielded | Into cab **XX116** female socket |
+| 1 | **M12 D-code female → RJ45**, shielded | Onto **male** plug of monitor harness |
+| 2 | **Short STP Cat5e/6 patch** (0.3–1 m) | TAP inline legs |
+| 1 | **USB 3 Gigabit Ethernet adapter** | Dedicated sniff NIC (AX88179 / RTL8153); **no IP / no DHCP** on capture port |
+| 1 | **M12 D-code F–F coupler** (optional) | Spare / bench flexibility |
+
+**Copy-paste order list:** Throwing Star LAN Tap ×1 · M12 D-code male→RJ45 shielded ×1 · M12 D-code female→RJ45 shielded ×1 · STP patch 0.5 m ×2 · USB3 GbE adapter ×1 · M12 D-code F–F coupler ×1 (optional).
+
+**4640 UT:** if port is **RJ45**, add TAP + one patch cord; if **M12**, same D-code adapters as above.
+
+### 16.10 Capture procedure (correlate with CAN)
+
+1. **Wall-clock marker** — note key-on time; log `Get-Date` or voice marker on video.
+2. **CAN** — `bench-ui`: **Field sniff → OBSERVE**, profile **`jd_616r`**, sniff **`616r_full`** for discovery or **`spray`** for curated; **● Start** recorder with label matching pcap (e.g. `616r_eth_correlate_1`).
+3. **Ethernet** — Wireshark on TAP monitor port; save **pcapng** with same label; promiscuous on; disable NIC offload on Windows.
+4. **Marked events** (repeat ASC OFF then ASC ON sessions):
+   - Master OFF → ON
+   - One **manual section** toggle (ASC **OFF**, manual mode — ground truth per `SPRAY_DECODE.md`)
+   - ASC ON + headland / overlap pass
+   - Rate / pressure preset change (known CAN signature e.g. `F43401100000FFFF`)
+5. **Post-process** — align `frames.csv` `timestamp_ms` with pcap `frame.time_epoch`; check ±2 s around each event for new UDP/TCP flows or TLS ClientHello (MTG/cloud — deprioritise).
+
+**Wireshark filters (first pass):** `ether` → then narrow by Premium Server / display MACs learned from ARP at key-on; exclude sustained **tcp.port == 443** if analysing local implement traffic only.
+
+### 16.11 Interpretation guide
+
+| Observation | Likely meaning |
+| :--- | :--- |
+| Burst on **4600/XX116** at section toggle; no new **4640** traffic | Internal JD app → Premium Server → CAN; UT not in path |
+| Burst on **4640**; quiet on X119 | UT/ISOBUS-over-Ethernet path (investigate) |
+| **SRC `4F0B0602`** changes; MNC **`0xCB00`** different pattern | Manual vs ASC / ExactApply (expected on EA) |
+| **StarFire Ethernet** DTC class (**523162.08**) | Cab LAN position/GPS parallel to ATX **`FEE8`** on CAN |
+| Link up but no sensible Ethernet II | Wrong M12 gender, pair swap, or missing shield |
+
+### 16.12 Open items
+
+1. **4640 UT port type** at install (RJ45 vs M12) — add adapter line to §16.9 when confirmed.
+2. **Correlation script** — `frames.csv` + pcap timeline merge (future `scripts/` tool).
+3. **IB3–IB6 second CAN tap** — only if nozzle-level ground truth needed beyond MNC face on IB1.
+4. **Document discovered MAC/IP roles** per machine after first successful pcap (append to session folder README).
+
+### 16.13 Safety
+
+- **Passive TAP only** on display Ethernet; never inline-bridge or inject.
+- **CAN:** **`SET_CAN_RX_ONLY:1`** + **`OBSERVE`** for field sniff (§616R README).
+- Unplugging extended monitor for adapter fitting **disables extension only** — acceptable for short bench sessions; restore through-TAP before spray operations if operator relies on second screen.

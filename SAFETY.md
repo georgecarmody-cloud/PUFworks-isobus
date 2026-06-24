@@ -8,6 +8,19 @@ weaken them without an explicit field-owner decision recorded in
 
 The engine **boots in `OBSERVE`** — zero CAN TX, pure sniffer.
 
+### CAN RX-only seal (`SET_CAN_RX_ONLY:1`)
+
+For listen-only field taps (e.g. **CANable 2.0 on COM2** with TX enabled in
+firmware), send `SET_CAN_RX_ONLY:1` before `START_CAN`. This:
+
+- Forces authority to `OBSERVE` and disarms actuation
+- Blocks **every** `bus.send` at `_bus_send()` (including address-conflict
+  "Cannot Claim" and VT/TP paths that previously bypassed gates)
+- Refuses `SET_CONTROL_AUTHORITY` above `OBSERVE` and refuses `ARM` until
+  `SET_CAN_RX_ONLY:0`
+
+Field launcher `bench/field_sniff_616r.py` enables this by default.
+
 | Rung | TX allowed |
 | :--- | :--- |
 | `OBSERVE` | Nothing |

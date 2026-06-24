@@ -38,13 +38,24 @@ except ImportError:
     print("Warning: pyserial not found. Serial/slcan COM ports will be disabled.", flush=True)
 
 from greenseeker_emitter import GreenSeekerEmitter
+from sniff_616r import (
+    EXTRA_WATCH_PGNS_616R,
+    SNIFF_MODES,
+    WATCH_SAS_616R,
+    short_sa_label,
+)
+from spray_pgn_library import frame_in_spray_library, pgn_info
+from contract_import import load as _load_contracts
 
-# Contract constants (mirror of PUFworks-contracts; keep in sync).
-SECTION_BITMAP_STALE_MS = 300
-UI_HEARTBEAT_TIMEOUT_S = 3.0
-CAN_RX_TIMEOUT_S = 2.0
+_contracts = _load_contracts()
+SCHEMA_SECTION_BITMAP_V1 = _contracts.SCHEMA_SECTION_BITMAP_V1
+SECTION_BITMAP_STALE_MS = _contracts.SECTION_BITMAP_STALE_MS
+UI_HEARTBEAT_TIMEOUT_S = _contracts.UI_HEARTBEAT_TIMEOUT_S
+CAN_RX_TIMEOUT_S = _contracts.CAN_RX_TIMEOUT_S
+validate_section_bitmap_v1 = _contracts.validate_section_bitmap_v1
+ContractError = _contracts.ContractError
 
-DEPRECATED_COMMANDS = ("NOZZLE_CMD", "SET_ENGINE_SIDE_SECTIONS", "SET_PRESCRIPTION")
+DEPRECATED_COMMANDS = tuple(_contracts.DEPRECATED_COMMANDS) + ("SET_PRESCRIPTION",)
 
 
 class ISOBUSController:
@@ -53,9 +64,10 @@ class ISOBUSController:
     PROFILE_JD_616R = "jd_616r"               # 4600 CommandCenter V2 + ExactApply — TC-GEO rate source primary
     PROFILE_GENERIC = "generic"               # Unknown/generic ISOBUS implement
 
-    def __init__(self, interface='none', bitrate=250000):
+    def __init__(self, interface='none', bitrate=250000, tty_baudrate=115200):
         self.interface = interface
         self.bitrate = bitrate
+        self.tty_baudrate = tty_baudrate  # USB-serial speed for slcan (CANable COM2)
         self.bus = None
         self.is_running = False
         self.can_status = "uninitialized"  # "uninitialized", "connecting", "connected", "error"
@@ -150,6 +162,10 @@ class ISOBUSController:
         self.last_shadow_log_time = 0.0
         self.sniffed_grc_ddi141 = None
         self.sniffed_grc_ddi157 = None
+        # filtered = legacy Goldacres-centric capture; 616r = roster + watch PGNs; 616r_full = all frames
+        self.sniff_mode = "filtered"
+        self._node_last_rx = {}
+        self._node_rx_counts = {}
         self.recordings_root = os.path.normpath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), "recordings"))
 
@@ -176,6 +192,9 @@ class ISOBUSController:
         # Proves what cleared _tx_allowed()/interlocks — the bench asserts that
         # 'section' stays flat in SHADOW and only grows at SECTION+ when ARMed.
         self.tx_counts = {"claim": 0, "presence": 0, "rate": 0, "section": 0}
+        # Hardware seal: when True, ALL CAN TX is blocked at _bus_send (listen-only tap).
+        self.can_rx_only = False
+        self.tx_blocked_count = 0
 
         try:
             with open(self.isobus_log_path, "a") as f:
@@ -261,22 +280,62 @@ class ISOBUSController:
         return pf, ps, sa, pgn, da
 
     # --- Recorder ---------------------------------------------------------------
-    def _record_watch_sas(self):
+    def _touch_node_rx(self, sa):
+        now = time.time()
+        self._node_last_rx[sa] = now
+        if self.record_active:
+            key = f"0x{sa:02X}"
+            self._node_rx_counts[key] = self._node_rx_counts.get(key, 0) + 1
+
+    def _node_alive(self, sa, window=None):
+        window = self.rx_watchdog_timeout if window is None else window
+        t = self._node_last_rx.get(sa)
+        return t is not None and (time.time() - t) <= window
+
+    def _616r_shadow_health(self):
+        """Per-node liveness for 616R integrated sniff (§12.3 roster)."""
+        src_ok = self._node_alive(0x17) or self._node_alive(0xE1)
+        mnc_ok = self._node_alive(0x68) or self._node_alive(0xD4) or self._node_alive(0x69)
+        vpu_count = sum(
+            1 for sa, t in self._node_last_rx.items()
+            if sa == 0xA2 and (time.time() - t) <= self.rx_watchdog_timeout
+        )
         return {
+            "gwc_alive": 1 if self._node_alive(0x94) else 0,
+            "src_alive": 1 if src_ok else 0,
+            "mnc_alive": 1 if mnc_ok else 0,
+            "bhc_alive": 1 if self._node_alive(0x8A) else 0,
+            "atx_alive": 1 if self._node_alive(0x1C) else 0,
+            "vpu_rx_2s": vpu_count,
+        }
+
+    def _record_watch_sas(self):
+        base = {
             self.jdrc_address, self.tc_server_address, 0x06, 0x26, 0xF7,
             self.vt_address, self.source_address,
         }
+        if self.sniff_mode in ("616r", "616r_full") or self.sprayer_profile == self.PROFILE_JD_616R:
+            base |= WATCH_SAS_616R
+        return base
 
     def _record_should_capture(self, pf, sa, pgn):
+        if self.record_active and self.sniff_mode == "616r_full":
+            return True
+        if self.sniff_mode == "spray":
+            return frame_in_spray_library(pf, sa, pgn)
         if pf in (0xA0, 0xCB):
             return True
         if sa in self._record_watch_sas():
             return True
-        if pgn in (
+        watch_pgns = (
             0xCB00, 0xEA00, 0xEE00, 0xFE0D, 0xFEF1, 0xFEE8, 0xFEF3,
             0xFECA, 0xE700, 0xEF00, 65267, 59136,
-        ):
+        )
+        if pgn in watch_pgns:
             return True
+        if self.sniff_mode == "616r" or self.sprayer_profile == self.PROFILE_JD_616R:
+            if sa in WATCH_SAS_616R or pgn in EXTRA_WATCH_PGNS_616R:
+                return True
         return False
 
     def _grc_is_alive(self):
@@ -419,25 +478,36 @@ class ISOBUSController:
         try:
             os.makedirs(self.record_dir, exist_ok=True)
             with open(os.path.join(self.record_dir, "frames.csv"), "w") as f:
-                f.write("timestamp_ms,dir,can_id,sa_hex,sa_dec,pgn_hex,da_hex,dlc,data_hex\n")
+                f.write(
+                    "timestamp_ms,dir,can_id,sa_hex,sa_dec,sa_label,"
+                    "pgn_hex,pgn_dec,pgn_name,category,da_hex,dlc,data_hex\n"
+                )
             with open(os.path.join(self.record_dir, "shadow_channels.csv"), "w") as f:
                 f.write(
                     "timestamp,speed_kmh,host_commanded_bitmap,sniffed_grc_ddi141,"
                     "ddi_158_val,vision_bitmap,shadow_and_bitmap,control_authority,"
                     "grc_alive,record_frame_count,grc_ef00_rate_l_ha,grc_master_on,"
                     "grc_ef00_section_bitmap,grc_ef00_coarse_bitmap,"
-                    "grc_L1,grc_L2,grc_C,grc_R2,grc_R1\n"
+                    "grc_L1,grc_L2,grc_C,grc_R2,grc_R1,"
+                    "gwc_alive,src_alive,mnc_alive,bhc_alive,atx_alive,vpu_rx_2s,sniff_mode\n"
+                )
+            note = "Tier-1 filtered CAN + Tier-2 10Hz shadow channels."
+            if self.sniff_mode in ("616r", "616r_full"):
+                note = (
+                    f"616R integrated sniff ({self.sniff_mode}): roster SAs + node health. "
+                    "OBSERVE/SHADOW only — zero actuation TX."
                 )
             meta = {
                 "session_id": self.record_session_id,
                 "started_at": datetime.now().isoformat(),
                 "label": label,
                 "sprayer_profile": self.sprayer_profile,
+                "sniff_mode": self.sniff_mode,
                 "control_authority": self.control_authority,
                 "jdrc_address": hex(self.jdrc_address),
                 "tc_server_address": hex(self.tc_server_address),
                 "num_boom_sections": self.num_boom_sections,
-                "note": "Tier-1 filtered CAN frames + Tier-2 10Hz shadow channels for Goldacres design capture.",
+                "note": note,
             }
             with open(os.path.join(self.record_dir, "session_meta.json"), "w") as f:
                 json.dump(meta, f, indent=2)
@@ -449,9 +519,13 @@ class ISOBUSController:
         self.record_shadow_count = 0
         self.record_started_at = time.time()
         self.last_shadow_log_time = 0.0
+        self._node_rx_counts = {}
         self.sniffed_grc_ddi141 = None
         self.sniffed_grc_ddi157 = None
-        self.log_isobus_event(f"Record session STARTED: {self.record_session_id} -> {self.record_dir}")
+        self.log_isobus_event(
+            f"Record session STARTED: {self.record_session_id} -> {self.record_dir} "
+            f"(sniff_mode={self.sniff_mode})"
+        )
         return True
 
     def stop_record_session(self):
@@ -469,6 +543,7 @@ class ISOBUSController:
                 meta["frame_count"] = self.record_frame_count
                 meta["shadow_row_count"] = self.record_shadow_count
                 meta["control_authority_at_stop"] = self.control_authority
+                meta["node_rx_counts"] = dict(sorted(self._node_rx_counts.items()))
                 with open(meta_path, "w") as f:
                     json.dump(meta, f, indent=2)
         except Exception as e:
@@ -487,9 +562,12 @@ class ISOBUSController:
             return
         self._parse_grc_ef00(sa, pgn, msg.data)
         self._record_update_sniffed_ddi(sa, pf, ps, msg.data)
+        info = pgn_info(pgn, pf)
         row = (
             f"{int(time.time() * 1000)},{direction},0x{msg.arbitration_id:08X},"
-            f"0x{sa:02X},{sa},0x{pgn:04X},0x{da:02X},{msg.dlc},{msg.data.hex().upper()}\n"
+            f"0x{sa:02X},{sa},{short_sa_label(sa)},"
+            f"0x{pgn:04X},{pgn},{info.get('name', '')},{info.get('category', '')},"
+            f"0x{da:02X},{msg.dlc},{msg.data.hex().upper()}\n"
         )
         try:
             with self._record_lock:
@@ -510,6 +588,7 @@ class ISOBUSController:
         ddi141 = self.sniffed_grc_ddi141 if self.sniffed_grc_ddi141 is not None else ""
         master = "" if self.grc_master_on is None else (1 if self.grc_master_on else 0)
         sec = self.grc_section_enabled
+        h616 = self._616r_shadow_health()
         row = (
             f"{now:.3f},{self.speed_kmh:.2f},{self.jd_commanded_sections},"
             f"{ddi141},{self.ddi_158_val},{self.section_bitmap},"
@@ -519,7 +598,10 @@ class ISOBUSController:
             f"{self.grc_ef00_coarse_bitmap},"
             f"{1 if sec.get('L1', True) else 0},{1 if sec.get('L2', True) else 0},"
             f"{1 if sec.get('C', True) else 0},{1 if sec.get('R2', True) else 0},"
-            f"{1 if sec.get('R1', True) else 0}\n"
+            f"{1 if sec.get('R1', True) else 0},"
+            f"{h616['gwc_alive']},{h616['src_alive']},{h616['mnc_alive']},"
+            f"{h616['bhc_alive']},{h616['atx_alive']},{h616['vpu_rx_2s']},"
+            f"{self.sniff_mode}\n"
         )
         try:
             with self._record_lock:
@@ -550,6 +632,11 @@ class ISOBUSController:
         if rung not in self.AUTHORITY_ORDER:
             self.log_isobus_event(f"Rejected unknown control authority '{rung}'")
             return False
+        if self.can_rx_only and rung != "OBSERVE":
+            self.log_isobus_event(
+                f"Rejected authority '{rung}': CAN RX-only seal active — send SET_CAN_RX_ONLY:0 to clear."
+            )
+            return False
         prev = self.control_authority
         self.control_authority = rung
         # Dropping below RATE_ONLY implicitly disarms actuation.
@@ -563,6 +650,9 @@ class ISOBUSController:
 
     def set_armed(self, armed):
         armed = bool(armed)
+        if armed and self.can_rx_only:
+            self.log_isobus_event("ARM refused: CAN RX-only seal active")
+            return False
         if armed and self._authority_level() < self.AUTHORITY_ORDER["RATE_ONLY"]:
             self.log_isobus_event("ARM refused: raise authority to RATE_ONLY or higher first")
             return False
@@ -593,6 +683,31 @@ class ISOBUSController:
         """Whether the active sprayer profile transmits DDI 157 (PGN 160) rate."""
         return self.sprayer_profile != self.PROFILE_GOLDACRES_GRC
 
+    def _can_tx_permitted(self):
+        """True when any CAN frame may be placed on the wire."""
+        if self.can_rx_only:
+            return False
+        return self._authority_level() >= self.AUTHORITY_ORDER["ANNOUNCE"]
+
+    def _bus_send(self, msg, context=""):
+        """Single choke-point for all CAN TX. OBSERVE and can_rx_only never transmit."""
+        if not HAS_CAN or self.bus is None:
+            return False
+        if not self._can_tx_permitted():
+            self.tx_blocked_count += 1
+            if self.tx_blocked_count <= 5:
+                self.log_isobus_event(
+                    f"CAN TX blocked ({context or 'unspecified'}) — "
+                    f"authority={self.control_authority} rx_only={self.can_rx_only}"
+                )
+            return False
+        try:
+            self.bus.send(msg)
+            return True
+        except Exception as e:
+            self.log_isobus_event(f"CAN TX ERROR ({context}): {e}")
+            return False
+
     def _tx_allowed(self, kind):
         """Authority/arm gate for a transmit category.
 
@@ -601,6 +716,8 @@ class ISOBUSController:
         permits this category. Interlocks are evaluated separately so callers can
         choose to force-safe (send zeros) rather than go silent.
         """
+        if self.can_rx_only:
+            return False
         level = self._authority_level()
         if kind in ("claim", "presence"):
             return level >= self.AUTHORITY_ORDER["ANNOUNCE"]
@@ -609,6 +726,23 @@ class ISOBUSController:
         if kind == "section":
             return self.armed and level >= self.AUTHORITY_ORDER["SECTION"]
         return False
+
+    def set_can_rx_only(self, enabled):
+        """Seal the adapter for passive sniffing — blocks every CAN TX path."""
+        enabled = bool(enabled)
+        self.can_rx_only = enabled
+        if enabled:
+            self.control_authority = "OBSERVE"
+            self.armed = False
+            self.address_claimed = False
+            self.vt_handshake_state = "DISCONNECTED"
+            self.log_isobus_event(
+                "CAN RX-only SEALED: all TX blocked, authority locked to OBSERVE. "
+                "Raise authority is refused until seal is cleared."
+            )
+        else:
+            self.log_isobus_event("CAN RX-only seal cleared — normal authority ladder applies.")
+        return True
 
     def ui_heartbeat(self):
         self.last_ui_heartbeat = time.time()
@@ -636,15 +770,9 @@ class ISOBUSController:
     def ingest_vision_bitmap(self, msg):
         """Consume a SectionBitmapV1 dict from the vision process (or bench harness)."""
         try:
-            if msg.get("schema") != "SectionBitmapV1":
-                self.log_isobus_event(f"VISION_BITMAP rejected: schema={msg.get('schema')!r}")
-                return False
+            validate_section_bitmap_v1(msg)
             section_count = int(msg["section_count"])
             bitmap = int(str(msg["bitmap"]), 16)
-            if bitmap >= (1 << section_count):
-                self.log_isobus_event(
-                    f"VISION_BITMAP rejected: bits above section_count={section_count} in {msg['bitmap']}")
-                return False
             seq = int(msg.get("seq", 0))
             if self.vision_seen and seq <= self.vision_seq:
                 # Log gaps/repeats but only staleness triggers fail-safe.
@@ -659,6 +787,9 @@ class ISOBUSController:
                 self.log_isobus_event(
                     f"Vision feed connected: source={self.vision_source} sections={section_count}")
             return True
+        except ContractError as e:
+            self.log_isobus_event(f"VISION_BITMAP contract error: {e}")
+            return False
         except (KeyError, ValueError, TypeError) as e:
             self.log_isobus_event(f"VISION_BITMAP parse error: {e}")
             return False
@@ -702,8 +833,8 @@ class ISOBUSController:
             val_bytes = list(self.ddi_157_val.to_bytes(4, byteorder='little', signed=True))
             data = ddi_bytes + val_bytes + [0xFF, 0xFF]
             msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
-            self.bus.send(msg)
-            self.tx_counts["rate"] += 1
+            if self._bus_send(msg, "DDI 157 rate"):
+                self.tx_counts["rate"] += 1
             current_time = time.time()
             if not hasattr(self, 'last_ddi157_log_time') or current_time - self.last_ddi157_log_time >= 1.0 \
                     or getattr(self, 'last_logged_ddi157_val', -1) != self.ddi_157_val:
@@ -753,15 +884,12 @@ class ISOBUSController:
 
         arbitration_id = (6 << 26) | (0xEEFF << 8) | self.source_address
         msg = can.Message(arbitration_id=arbitration_id, data=self.name_payload, is_extended_id=True)
-        try:
-            self.bus.send(msg)
+        if self._bus_send(msg, "address claim"):
             self.tx_counts["claim"] += 1
             self.log_isobus_event(f"TX PGN 60928: Sent Address Claim for SA {hex(self.source_address)}")
             self.address_claimed = True
             self.vt_handshake_state = "CLAIMING_ADDRESS"
             self.last_state_transition_time = time.time()
-        except Exception as e:
-            self.log_isobus_event(f"CAN TX ERROR (Address Claim): {e}")
 
     def process_incoming_address_claim(self, arbitration_id, data):
         pf = (arbitration_id >> 16) & 0xFF
@@ -791,12 +919,11 @@ class ISOBUSController:
                         "Cannot Claim Address: all 120 dynamic addresses exhausted. "
                         "Broadcasting Cannot Claim (SA 0xFE) per J1939.")
                     cannot_claim_id = (6 << 26) | (0xEEFF << 8) | 0xFE
-                    if HAS_CAN and self.bus is not None:
-                        try:
-                            self.bus.send(can.Message(arbitration_id=cannot_claim_id,
-                                                      data=self.name_payload, is_extended_id=True))
-                        except Exception:
-                            pass
+                    self._bus_send(
+                        can.Message(arbitration_id=cannot_claim_id,
+                                    data=self.name_payload, is_extended_id=True),
+                        "cannot claim",
+                    )
                     self._address_claim_attempts = 0
                     return
                 current_offset = self.source_address - 0x80
@@ -821,14 +948,11 @@ class ISOBUSController:
             return
         arbitration_id = (6 << 26) | (0xE6 << 16) | (self.vt_address << 8) | self.source_address
         data = [0xC0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
-        try:
-            msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
-            self.bus.send(msg)
+        msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
+        if self._bus_send(msg, "get VT version"):
             print(f"[ISOBUS] Sent 'Get VT Version' (0xC0) Command to VT (SA {hex(self.vt_address)})", flush=True)
             self.vt_handshake_state = "GET_VT_VERSION_SENT"
             self.last_state_transition_time = time.time()
-        except Exception as e:
-            print(f"CAN TX ERROR (Get VT Version): {e}", flush=True)
 
     def send_get_vt_capabilities(self):
         if not HAS_CAN or self.bus is None:
@@ -837,14 +961,11 @@ class ISOBUSController:
             return
         arbitration_id = (6 << 26) | (0xE6 << 16) | (self.vt_address << 8) | self.source_address
         data = [0xC1, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
-        try:
-            msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
-            self.bus.send(msg)
+        msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
+        if self._bus_send(msg, "get VT capabilities"):
             print(f"[ISOBUS] Sent 'Get VT Capabilities' (0xC1) Command to VT (SA {hex(self.vt_address)})", flush=True)
             self.vt_handshake_state = "GET_VT_CAPABILITIES_SENT"
             self.last_state_transition_time = time.time()
-        except Exception as e:
-            print(f"CAN TX ERROR (Get VT Capabilities): {e}", flush=True)
 
     def initiate_tp_object_pool(self):
         if not HAS_CAN or self.bus is None:
@@ -868,18 +989,15 @@ class ISOBUSController:
             0xFF,
             0x00, 0xE6, 0x00,
         ]
-        try:
-            msg = can.Message(arbitration_id=arbitration_id, data=rts_data, is_extended_id=True)
-            self.bus.send(msg)
+        msg = can.Message(arbitration_id=arbitration_id, data=rts_data, is_extended_id=True)
+        if self._bus_send(msg, "TP RTS"):
             print(f"[ISOBUS] Sent J1939 TP.RTS for Object Pool upload. Size: {total_size} bytes, "
                   f"{num_packets} packets.", flush=True)
             self.vt_handshake_state = "TP_RTS_SENT"
             self.last_state_transition_time = time.time()
-        except Exception as e:
-            print(f"CAN TX ERROR (TP RTS Initiate): {e}", flush=True)
 
     def send_tp_data_packets(self, max_packets_allowed, start_packet_num):
-        if not HAS_CAN or self.bus is None:
+        if not HAS_CAN or self.bus is None or not self._tx_allowed("presence"):
             return
         arbitration_id = (6 << 26) | (0xEB << 16) | (self.vt_address << 8) | self.source_address
         self.vt_handshake_state = "TP_SENDING_PACKETS"
@@ -897,15 +1015,12 @@ class ISOBUSController:
             while len(packet_bytes) < 7:
                 packet_bytes.append(0xFF)
             packet_data = [current_packet] + list(packet_bytes)
-            try:
-                msg = can.Message(arbitration_id=arbitration_id, data=packet_data, is_extended_id=True)
-                self.bus.send(msg)
-                print(f"[ISOBUS] Sent TP.DT Packet {current_packet}/{self.tp_tx_num_packets} -> "
-                      f"Data: {' '.join(f'{b:02X}' for b in packet_data)}", flush=True)
-                time.sleep(0.01)  # Small delay to prevent TX buffer overruns
-            except Exception as e:
-                print(f"CAN TX ERROR (TP Packet {current_packet}): {e}", flush=True)
+            msg = can.Message(arbitration_id=arbitration_id, data=packet_data, is_extended_id=True)
+            if not self._bus_send(msg, f"TP DT packet {current_packet}"):
                 break
+            print(f"[ISOBUS] Sent TP.DT Packet {current_packet}/{self.tp_tx_num_packets} -> "
+                  f"Data: {' '.join(f'{b:02X}' for b in packet_data)}", flush=True)
+            time.sleep(0.01)  # Small delay to prevent TX buffer overruns
             current_packet += 1
             packets_sent += 1
 
@@ -920,18 +1035,18 @@ class ISOBUSController:
             self.vt_handshake_state = "TP_RTS_SENT"
 
     def change_active_mask(self, mask_id=2):
-        if not HAS_CAN or self.bus is None:
+        if not HAS_CAN or self.bus is None or not self._tx_allowed("presence"):
             return
         arbitration_id = (6 << 26) | (0xE6 << 16) | (self.vt_address << 8) | self.source_address
         data = [0x0A, 0xFF, 0xFF, mask_id & 0xFF, (mask_id >> 8) & 0xFF, 0xFF, 0xFF, 0xFF]
-        try:
-            msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
-            self.bus.send(msg)
+        msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
+        if self._bus_send(msg, "change active mask"):
             print(f"[ISOBUS] Sent 'Change Active Mask' to ID {mask_id} over VT", flush=True)
-        except Exception as e:
-            print(f"CAN TX ERROR (Change Active Mask): {e}", flush=True)
 
     def upload_vt_object_pool(self):
+        if not self._tx_allowed("claim"):
+            self.vt_handshake_state = "DISCONNECTED"
+            return
         print(f"[ISOBUS] Connecting to Universal Terminal (UT) at SA {hex(self.vt_address)}...", flush=True)
         self.vt_handshake_state = "CLAIMING_ADDRESS"
         self.last_state_transition_time = time.time()
@@ -979,7 +1094,10 @@ class ISOBUSController:
             print(f"[ISOBUS] Auto-Scan probing {label} (channel={channel} bustype={bustype})...", flush=True)
 
             try:
-                test_bus = can.interface.Bus(channel=channel, bustype=bustype, bitrate=self.bitrate)
+                bus_kw = {"bitrate": self.bitrate}
+                if bustype == "slcan":
+                    bus_kw["ttyBaudrate"] = self.tty_baudrate
+                test_bus = can.interface.Bus(channel=channel, bustype=bustype, **bus_kw)
                 start_probe = time.time()
                 traffic_detected = False
                 while time.time() - start_probe < 0.35:
@@ -1047,11 +1165,18 @@ class ISOBUSController:
                         bustype = 'slcan'
                         channel = channel.upper() if channel.upper().startswith('COM') else channel
 
+                    bus_kw = {"bitrate": self.bitrate}
+                    if bustype == "slcan":
+                        bus_kw["ttyBaudrate"] = self.tty_baudrate
                     print(f"[ISOBUS] Connecting on channel={channel} bustype={bustype} "
-                          f"bitrate={self.bitrate}bps...", flush=True)
-                    self.bus = can.interface.Bus(channel=channel, bustype=bustype, bitrate=self.bitrate)
+                          f"bitrate={self.bitrate}bps tty={self.tty_baudrate if bustype == 'slcan' else 'n/a'}...",
+                          flush=True)
+                    self.bus = can.interface.Bus(channel=channel, bustype=bustype, **bus_kw)
                     print(f"CAN Bus strictly initialized on {channel} at {self.bitrate}bps "
                           f"(bustype: {bustype})", flush=True)
+                    self.log_isobus_event(
+                        f"Adapter open on {channel} ({bustype}). Waiting for implement-bus traffic..."
+                    )
                     self.can_status = "connected"
                     self.can_error_msg = f"Connected to {self.interface} ({bustype})"
                     self.perform_address_claim()
@@ -1082,11 +1207,9 @@ class ISOBUSController:
         arbitration_id = (6 << 26) | (0xCB << 16) | (0xFF << 8) | self.source_address
         tc_capabilities = 0x07  # TC-SC + TC-GEO + TC-BASIC
         data = [0xFF, tc_capabilities, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
-        try:
-            msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
-            self.bus.send(msg)
-        except Exception as e:
-            self.log_isobus_event(f"TX TC Client Announce Error: {e}")
+        msg = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=True)
+        if self._bus_send(msg, "TC client announce"):
+            self.tx_counts["presence"] += 1
 
     def send_section_commands(self, out_bitmap):
         """Send section on/off commands using the appropriate method for the active sprayer profile.
@@ -1109,23 +1232,17 @@ class ISOBUSController:
             ddi_bytes = [0x8D, 0x00]  # DDI 141 little-endian
             val_bytes = list(out_bitmap.to_bytes(4, byteorder='little', signed=False))
             data = ddi_bytes + val_bytes + [0x00, 0x00]
-            try:
-                msg = can.Message(arbitration_id=arb_id, data=data, is_extended_id=True)
-                self.bus.send(msg)
+            msg = can.Message(arbitration_id=arb_id, data=data, is_extended_id=True)
+            if self._bus_send(msg, "DDI 141 section"):
                 self.tx_counts["section"] += 1
-            except Exception as e:
-                self.log_isobus_event(f"TX DDI 141 (GRC section) Error: {e}")
         else:
             arb_id = (3 << 26) | (0xCB << 16) | (0xF7 << 8) | self.source_address
             b0 = out_bitmap & 0xFF
             b1 = (out_bitmap >> 8) & 0xFF
             data = [b0, b1, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
-            try:
-                msg = can.Message(arbitration_id=arb_id, data=data, is_extended_id=True)
-                self.bus.send(msg)
+            msg = can.Message(arbitration_id=arb_id, data=data, is_extended_id=True)
+            if self._bus_send(msg, "section bitmap"):
                 self.tx_counts["section"] += 1
-            except Exception:
-                pass
 
     def listen_loop(self):
         # Background thread listening for ISOBUS feedback (speed, sections, VT packets)
@@ -1148,6 +1265,7 @@ class ISOBUSController:
                         else:
                             pgn = (pf << 8) | ps
                         sa = msg.arbitration_id & 0xFF
+                        self._touch_node_rx(sa)
 
                         # --- J1939 Request PGN (0xEA00) ---
                         if pgn == 0xEA00 and len(msg.data) >= 3:
@@ -1296,11 +1414,13 @@ class ISOBUSController:
             # --- Stateful Virtual Terminal Handshake Timeouts & Retries ---
             if HAS_CAN and self.bus is not None:
                 if self.vt_handshake_state == "CLAIMING_ADDRESS":
-                    if current_time - self.last_state_transition_time >= 0.25:
+                    if self.address_claimed and current_time - self.last_state_transition_time >= 0.25:
                         print("[ISOBUS] Address contention period completed safely. Address claimed "
                               "successfully. Waiting for UT Status broadcast to start handshake...", flush=True)
                         self.vt_handshake_state = "ADDRESS_CLAIMED"
                         self.last_state_transition_time = current_time
+                    elif not self._can_tx_permitted():
+                        self.vt_handshake_state = "DISCONNECTED"
                 elif self.vt_handshake_state == "GET_VT_VERSION_SENT":
                     if current_time - self.last_state_transition_time >= 3.0:
                         print("[ISOBUS] Retry: 'Get VT Version' request timed out. Resending...", flush=True)
@@ -1332,15 +1452,13 @@ class ISOBUSController:
                     wsm_id = (6 << 26) | (0xFE0D << 8) | self.source_address
                     wsm_data = [0x00, 0x05, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
                     if HAS_CAN and self.bus is not None and self._tx_allowed("presence"):
-                        try:
-                            msg = can.Message(arbitration_id=wsm_id, data=wsm_data, is_extended_id=True)
-                            self.bus.send(msg)
+                        msg = can.Message(arbitration_id=wsm_id, data=wsm_data, is_extended_id=True)
+                        if self._bus_send(msg, "WSM"):
+                            self.tx_counts["presence"] += 1
                             if int(current_time) % 5 == 0:
                                 self.log_isobus_event(
                                     f"TX PGN 65021 (WSM): Active, master={hex(self.source_address)}, "
                                     f"target_vt={hex(self.vt_address)}")
-                        except Exception as e:
-                            self.log_isobus_event(f"TX PGN 65021 Error: Failed to send WSM: {e}")
 
                     self.send_tc_client_announce()
                     self.last_tc_client_announce_time = current_time
@@ -1380,8 +1498,16 @@ class ISOBUSController:
                 else:
                     if current_time - getattr(self, 'last_reconnect_attempt', 0) > 10.0:
                         self.last_reconnect_attempt = current_time
-                        self.log_isobus_event("Graceful connection recovery: broadcasting Address Claim...")
-                        self.perform_address_claim()
+                        if self.can_rx_only or not self._can_tx_permitted():
+                            if self.bus is not None:
+                                self.log_isobus_event(
+                                    "No CAN traffic yet (RX-only sniff) — adapter open, waiting for bus frames."
+                                )
+                        else:
+                            self.log_isobus_event(
+                                "Graceful connection recovery: broadcasting Address Claim..."
+                            )
+                            self.perform_address_claim()
 
             elapsed = time.time() - start_time
             time.sleep(max(0, 0.1 - elapsed))
@@ -1448,6 +1574,16 @@ def build_telemetry(ctrl, gs_emitter):
         "vision_seq": ctrl.vision_seq,
         "vision_source": ctrl.vision_source,
         "tx_counts": dict(ctrl.tx_counts),
+        "sniff_mode": ctrl.sniff_mode,
+        "gwc_alive": ctrl._node_alive(0x94),
+        "src_alive": ctrl._node_alive(0x17) or ctrl._node_alive(0xE1),
+        "mnc_alive": ctrl._node_alive(0x68) or ctrl._node_alive(0xD4) or ctrl._node_alive(0x69),
+        "bhc_alive": ctrl._node_alive(0x8A),
+        "atx_alive": ctrl._node_alive(0x1C),
+        "can_rx_only": ctrl.can_rx_only,
+        "tx_blocked_count": ctrl.tx_blocked_count,
+        "can_bus_open": ctrl.bus is not None,
+        "can_tty_baudrate": ctrl.tty_baudrate,
     }
     status.update(gs_emitter.get_status())
     return status
@@ -1515,6 +1651,23 @@ def main():
                 ctrl.stop()
                 ctrl.interface = new_iface
                 ctrl.start()
+        elif line.startswith('SET_CAN_TTY_BAUD:'):
+            parts = line.split(':')
+            if len(parts) == 2:
+                try:
+                    ctrl.tty_baudrate = int(parts[1])
+                    print(f"[ISOBUS] slcan USB-serial baud set to {ctrl.tty_baudrate}", flush=True)
+                    ctrl.log_isobus_event(f"slcan tty baud -> {ctrl.tty_baudrate}")
+                except ValueError:
+                    pass
+        elif line.startswith('SET_CAN_BITRATE:'):
+            parts = line.split(':')
+            if len(parts) == 2:
+                try:
+                    ctrl.bitrate = int(parts[1])
+                    print(f"[ISOBUS] CAN bitrate set to {ctrl.bitrate}", flush=True)
+                except ValueError:
+                    pass
         elif line.startswith('SET_COOPERATIVE_MODE:'):
             parts = line.split(':')
             if len(parts) == 2:
@@ -1556,6 +1709,12 @@ def main():
                         ctrl.log_isobus_event(
                             "Goldacres: DDI 157 rate TX suppressed — GRC holds Work Setup rate; "
                             "DDI 141 sections only.")
+                    elif profile == ISOBUSController.PROFILE_JD_616R and ctrl.sniff_mode == "filtered":
+                        ctrl.sniff_mode = "spray"
+                        ctrl.log_isobus_event(
+                            "616R profile: sniff_mode auto-set to spray (GPS, rate/section, "
+                            "flow/pressure, boom height). Use SET_SNIFF_MODE:616r_full for discovery."
+                        )
                 else:
                     print(f"[ISOBUS] Unknown sprayer profile '{profile}'. Valid: {valid_profiles}", flush=True)
         elif line.startswith('SET_TC_SERVER_ADDRESS:'):
@@ -1672,6 +1831,22 @@ def main():
                     pass
         elif line == 'STOP_RECORD_SESSION':
             ctrl.stop_record_session()
+        elif line.startswith('SET_CAN_RX_ONLY:'):
+            parts = line.split(':')
+            if len(parts) == 2:
+                try:
+                    ctrl.set_can_rx_only(bool(int(parts[1])))
+                except ValueError:
+                    pass
+        elif line.startswith('SET_SNIFF_MODE:'):
+            parts = line.split(':')
+            if len(parts) == 2:
+                mode = parts[1].strip().lower()
+                if mode in SNIFF_MODES:
+                    ctrl.sniff_mode = mode
+                    ctrl.log_isobus_event(f"Sniff mode -> {mode}")
+                else:
+                    ctrl.log_isobus_event(f"Rejected sniff mode '{mode}' — valid: {list(SNIFF_MODES)}")
         elif line.startswith('START_RECORD_SESSION'):
             label = line.split(':', 1)[1].strip() if ':' in line else ""
             ctrl.start_record_session(label)

@@ -1,0 +1,915 @@
+{
+  "compiled_at": "2026-06-11T14:07:21.948829",
+  "catalog_entries": 16,
+  "sessions_scanned": 1,
+  "aggregate_top_pairs": [
+    {
+      "sa": "0xD4",
+      "pgn": "0xCB00",
+      "frames": 25093,
+      "sa_label": "MNC/0xD4/SA212",
+      "pgn_info": {
+        "pgn": 51968,
+        "name": "TC Process Data / Section Control",
+        "category": "rate_section",
+        "status": "confirmed",
+        "notes": "DDI 141/157/158, section bitmap. Includes SR1 work msgs PF=0xCB."
+      }
+    },
+    {
+      "sa": "0x26",
+      "pgn": "0xE600",
+      "frames": 8013,
+      "sa_label": "DISP/0x26/SA038",
+      "pgn_info": {
+        "pgn": 58880,
+        "name": "PGN 0xE600",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xEF00",
+      "frames": 7242,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 61184,
+        "name": "JD/GRC Proprietary Process Data",
+        "category": "spray_proprietary",
+        "status": "confirmed",
+        "notes": "GRC rate/master/sections on Goldacres SA 0xCC; probe SRC/GWC on 616R."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xFFF8",
+      "frames": 3360,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 65528,
+        "name": "PGN 0xFFF8",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xBA",
+      "pgn": "0xE700",
+      "frames": 3341,
+      "sa_label": "0xBA/SA186",
+      "pgn_info": {
+        "pgn": 59136,
+        "name": "PGN 0xE700",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0x1C",
+      "pgn": "0xFFFF",
+      "frames": 3024,
+      "sa_label": "ATX/0x1C/SA028",
+      "pgn_info": {
+        "pgn": 65535,
+        "name": "PGN 0xFFFF",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xEF00",
+      "frames": 2688,
+      "sa_label": "DISP/0xF0/SA240",
+      "pgn_info": {
+        "pgn": 61184,
+        "name": "JD/GRC Proprietary Process Data",
+        "category": "spray_proprietary",
+        "status": "confirmed",
+        "notes": "GRC rate/master/sections on Goldacres SA 0xCC; probe SRC/GWC on 616R."
+      }
+    },
+    {
+      "sa": "0xCD",
+      "pgn": "0xFFF4",
+      "frames": 2100,
+      "sa_label": "NZC/0xCD/SA205",
+      "pgn_info": {
+        "pgn": 65524,
+        "name": "PGN 0xFFF4",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xD4",
+      "pgn": "0xE700",
+      "frames": 2014,
+      "sa_label": "MNC/0xD4/SA212",
+      "pgn_info": {
+        "pgn": 59136,
+        "name": "PGN 0xE700",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xD4",
+      "pgn": "0xEF00",
+      "frames": 1929,
+      "sa_label": "MNC/0xD4/SA212",
+      "pgn_info": {
+        "pgn": 61184,
+        "name": "JD/GRC Proprietary Process Data",
+        "category": "spray_proprietary",
+        "status": "confirmed",
+        "notes": "GRC rate/master/sections on Goldacres SA 0xCC; probe SRC/GWC on 616R."
+      }
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFF8",
+      "frames": 1848,
+      "sa_label": "DISP/0xF0/SA240",
+      "pgn_info": {
+        "pgn": 65528,
+        "name": "PGN 0xFFF8",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xFFFB",
+      "frames": 1680,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 65531,
+        "name": "PGN 0xFFFB",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xE700",
+      "frames": 1229,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 59136,
+        "name": "PGN 0xE700",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xCD",
+      "pgn": "0xE700",
+      "frames": 1148,
+      "sa_label": "NZC/0xCD/SA205",
+      "pgn_info": {
+        "pgn": 59136,
+        "name": "PGN 0xE700",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFF4",
+      "frames": 1008,
+      "sa_label": "DISP/0xF0/SA240",
+      "pgn_info": {
+        "pgn": 65524,
+        "name": "PGN 0xFFF4",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFFE",
+      "frames": 924,
+      "sa_label": "DISP/0xF0/SA240",
+      "pgn_info": {
+        "pgn": 65534,
+        "name": "PGN 0xFFFE",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xCD",
+      "pgn": "0xEF00",
+      "frames": 924,
+      "sa_label": "NZC/0xCD/SA205",
+      "pgn_info": {
+        "pgn": 61184,
+        "name": "JD/GRC Proprietary Process Data",
+        "category": "spray_proprietary",
+        "status": "confirmed",
+        "notes": "GRC rate/master/sections on Goldacres SA 0xCC; probe SRC/GWC on 616R."
+      }
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xF022",
+      "frames": 840,
+      "sa_label": "DISP/0xF0/SA240",
+      "pgn_info": {
+        "pgn": 61474,
+        "name": "PGN 0xF022",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFEF1",
+      "frames": 840,
+      "sa_label": "DISP/0xF0/SA240",
+      "pgn_info": {
+        "pgn": 65265,
+        "name": "CCVS Wheel-Based Speed",
+        "category": "gps_motion",
+        "status": "confirmed",
+        "notes": "SPN 84 bytes 1-2, 1/256 km/h. Primary speed for latency budget."
+      }
+    },
+    {
+      "sa": "0xD5",
+      "pgn": "0xEF00",
+      "frames": 840,
+      "sa_label": "0xD5/SA213",
+      "pgn_info": {
+        "pgn": 61184,
+        "name": "JD/GRC Proprietary Process Data",
+        "category": "spray_proprietary",
+        "status": "confirmed",
+        "notes": "GRC rate/master/sections on Goldacres SA 0xCC; probe SRC/GWC on 616R."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xFF25",
+      "frames": 840,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 65317,
+        "name": "PGN 0xFF25",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xFF28",
+      "frames": 840,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 65320,
+        "name": "PGN 0xFF28",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xAC00",
+      "frames": 840,
+      "sa_label": "DISP/0xF0/SA240",
+      "pgn_info": {
+        "pgn": 44032,
+        "name": "PGN 0xAC00",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xFE5A",
+      "frames": 840,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 65114,
+        "name": "PGN 0xFE5A",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    },
+    {
+      "sa": "0xE1",
+      "pgn": "0xFF26",
+      "frames": 840,
+      "sa_label": "SRC/0xE1/SA225",
+      "pgn_info": {
+        "pgn": 65318,
+        "name": "PGN 0xFF26",
+        "category": "spray_proprietary",
+        "status": "unknown",
+        "notes": "Observed on wire; add to catalog after decode."
+      }
+    }
+  ],
+  "aggregate_top_pgns": [
+    [
+      "0xCB00",
+      25664
+    ],
+    [
+      "0xEF00",
+      13904
+    ],
+    [
+      "0xE700",
+      8486
+    ],
+    [
+      "0xE600",
+      8013
+    ],
+    [
+      "0xFFF8",
+      5208
+    ],
+    [
+      "0xFFF4",
+      3808
+    ],
+    [
+      "0xFFFF",
+      3150
+    ],
+    [
+      "0xFFFE",
+      1864
+    ],
+    [
+      "0xFFFB",
+      1734
+    ],
+    [
+      "0xF022",
+      840
+    ],
+    [
+      "0xFEF1",
+      840
+    ],
+    [
+      "0xFF25",
+      840
+    ],
+    [
+      "0xFF28",
+      840
+    ],
+    [
+      "0xAC00",
+      840
+    ],
+    [
+      "0xFE5A",
+      840
+    ],
+    [
+      "0xFF26",
+      840
+    ],
+    [
+      "0xFF23",
+      840
+    ],
+    [
+      "0xFED9",
+      840
+    ],
+    [
+      "0xFF13",
+      840
+    ],
+    [
+      "0xFFFA",
+      799
+    ]
+  ],
+  "sessions": [
+    {
+      "session": "20260611_140009_616r_observe_4_sections",
+      "frame_count": 85833,
+      "meta": {
+        "session_id": "20260611_140009_616r_observe_4_sections",
+        "started_at": "2026-06-11T14:00:09.432723",
+        "label": "616r_observe_4_sections",
+        "sprayer_profile": "jd_616r",
+        "sniff_mode": "616r",
+        "control_authority": "OBSERVE",
+        "jdrc_address": "0xcc",
+        "tc_server_address": "0x6",
+        "num_boom_sections": 10,
+        "note": "616R integrated sniff (616r): roster SAs + node health. OBSERVE/SHADOW only \u2014 zero actuation TX."
+      },
+      "top_pgns": [
+        [
+          "0xCB00",
+          25664
+        ],
+        [
+          "0xEF00",
+          13904
+        ],
+        [
+          "0xE700",
+          8486
+        ],
+        [
+          "0xE600",
+          8013
+        ],
+        [
+          "0xFFF8",
+          5208
+        ],
+        [
+          "0xFFF4",
+          3808
+        ],
+        [
+          "0xFFFF",
+          3150
+        ],
+        [
+          "0xFFFE",
+          1864
+        ],
+        [
+          "0xFFFB",
+          1734
+        ],
+        [
+          "0xF022",
+          840
+        ],
+        [
+          "0xFEF1",
+          840
+        ],
+        [
+          "0xFF25",
+          840
+        ],
+        [
+          "0xFF28",
+          840
+        ],
+        [
+          "0xAC00",
+          840
+        ],
+        [
+          "0xFE5A",
+          840
+        ],
+        [
+          "0xFF26",
+          840
+        ],
+        [
+          "0xFF23",
+          840
+        ],
+        [
+          "0xFED9",
+          840
+        ],
+        [
+          "0xFF13",
+          840
+        ],
+        [
+          "0xFFFA",
+          799
+        ]
+      ],
+      "top_sas": [
+        [
+          "0xD4",
+          30565
+        ],
+        [
+          "0xE1",
+          20670
+        ],
+        [
+          "0xF0",
+          9837
+        ],
+        [
+          "0x26",
+          8238
+        ],
+        [
+          "0x1C",
+          4782
+        ],
+        [
+          "0xCD",
+          4340
+        ],
+        [
+          "0xBA",
+          3349
+        ],
+        [
+          "0x8A",
+          1680
+        ],
+        [
+          "0xD5",
+          1232
+        ],
+        [
+          "0xB9",
+          462
+        ],
+        [
+          "0xCC",
+          200
+        ],
+        [
+          "0xF7",
+          109
+        ],
+        [
+          "0xFB",
+          105
+        ],
+        [
+          "0xEE",
+          92
+        ],
+        [
+          "0xED",
+          84
+        ]
+      ],
+      "top_pairs": [
+        {
+          "sa": "0xD4",
+          "pgn": "0xCB00",
+          "n": 25093,
+          "sa_label": "MNC/0xD4/SA212"
+        },
+        {
+          "sa": "0x26",
+          "pgn": "0xE600",
+          "n": 8013,
+          "sa_label": "DISP/0x26/SA038"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xEF00",
+          "n": 7242,
+          "sa_label": "SRC/0xE1/SA225"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xFFF8",
+          "n": 3360,
+          "sa_label": "SRC/0xE1/SA225"
+        },
+        {
+          "sa": "0xBA",
+          "pgn": "0xE700",
+          "n": 3341,
+          "sa_label": "0xBA/SA186"
+        },
+        {
+          "sa": "0x1C",
+          "pgn": "0xFFFF",
+          "n": 3024,
+          "sa_label": "ATX/0x1C/SA028"
+        },
+        {
+          "sa": "0xF0",
+          "pgn": "0xEF00",
+          "n": 2688,
+          "sa_label": "DISP/0xF0/SA240"
+        },
+        {
+          "sa": "0xCD",
+          "pgn": "0xFFF4",
+          "n": 2100,
+          "sa_label": "NZC/0xCD/SA205"
+        },
+        {
+          "sa": "0xD4",
+          "pgn": "0xE700",
+          "n": 2014,
+          "sa_label": "MNC/0xD4/SA212"
+        },
+        {
+          "sa": "0xD4",
+          "pgn": "0xEF00",
+          "n": 1929,
+          "sa_label": "MNC/0xD4/SA212"
+        },
+        {
+          "sa": "0xF0",
+          "pgn": "0xFFF8",
+          "n": 1848,
+          "sa_label": "DISP/0xF0/SA240"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xFFFB",
+          "n": 1680,
+          "sa_label": "SRC/0xE1/SA225"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xE700",
+          "n": 1229,
+          "sa_label": "SRC/0xE1/SA225"
+        },
+        {
+          "sa": "0xCD",
+          "pgn": "0xE700",
+          "n": 1148,
+          "sa_label": "NZC/0xCD/SA205"
+        },
+        {
+          "sa": "0xF0",
+          "pgn": "0xFFF4",
+          "n": 1008,
+          "sa_label": "DISP/0xF0/SA240"
+        },
+        {
+          "sa": "0xF0",
+          "pgn": "0xFFFE",
+          "n": 924,
+          "sa_label": "DISP/0xF0/SA240"
+        },
+        {
+          "sa": "0xCD",
+          "pgn": "0xEF00",
+          "n": 924,
+          "sa_label": "NZC/0xCD/SA205"
+        },
+        {
+          "sa": "0xF0",
+          "pgn": "0xF022",
+          "n": 840,
+          "sa_label": "DISP/0xF0/SA240"
+        },
+        {
+          "sa": "0xF0",
+          "pgn": "0xFEF1",
+          "n": 840,
+          "sa_label": "DISP/0xF0/SA240"
+        },
+        {
+          "sa": "0xD5",
+          "pgn": "0xEF00",
+          "n": 840,
+          "sa_label": "0xD5/SA213"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xFF25",
+          "n": 840,
+          "sa_label": "SRC/0xE1/SA225"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xFF28",
+          "n": 840,
+          "sa_label": "SRC/0xE1/SA225"
+        },
+        {
+          "sa": "0xF0",
+          "pgn": "0xAC00",
+          "n": 840,
+          "sa_label": "DISP/0xF0/SA240"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xFE5A",
+          "n": 840,
+          "sa_label": "SRC/0xE1/SA225"
+        },
+        {
+          "sa": "0xE1",
+          "pgn": "0xFF26",
+          "n": 840,
+          "sa_label": "SRC/0xE1/SA225"
+        }
+      ],
+      "categories": {
+        "spray_proprietary": 58387,
+        "gps_motion": 1680,
+        "rate_section": 25766
+      },
+      "unknown_pgns": [
+        {
+          "pgn_hex": "0xE700",
+          "pgn_dec": 59136,
+          "frames": 8486,
+          "suggested": {
+            "pgn": 59136,
+            "name": "PGN 0xE700",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xE600",
+          "pgn_dec": 58880,
+          "frames": 8013,
+          "suggested": {
+            "pgn": 58880,
+            "name": "PGN 0xE600",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFFF8",
+          "pgn_dec": 65528,
+          "frames": 5208,
+          "suggested": {
+            "pgn": 65528,
+            "name": "PGN 0xFFF8",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFFF4",
+          "pgn_dec": 65524,
+          "frames": 3808,
+          "suggested": {
+            "pgn": 65524,
+            "name": "PGN 0xFFF4",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFFFF",
+          "pgn_dec": 65535,
+          "frames": 3150,
+          "suggested": {
+            "pgn": 65535,
+            "name": "PGN 0xFFFF",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFFFE",
+          "pgn_dec": 65534,
+          "frames": 1864,
+          "suggested": {
+            "pgn": 65534,
+            "name": "PGN 0xFFFE",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFFFB",
+          "pgn_dec": 65531,
+          "frames": 1734,
+          "suggested": {
+            "pgn": 65531,
+            "name": "PGN 0xFFFB",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xF022",
+          "pgn_dec": 61474,
+          "frames": 840,
+          "suggested": {
+            "pgn": 61474,
+            "name": "PGN 0xF022",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFF25",
+          "pgn_dec": 65317,
+          "frames": 840,
+          "suggested": {
+            "pgn": 65317,
+            "name": "PGN 0xFF25",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFF28",
+          "pgn_dec": 65320,
+          "frames": 840,
+          "suggested": {
+            "pgn": 65320,
+            "name": "PGN 0xFF28",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xAC00",
+          "pgn_dec": 44032,
+          "frames": 840,
+          "suggested": {
+            "pgn": 44032,
+            "name": "PGN 0xAC00",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFE5A",
+          "pgn_dec": 65114,
+          "frames": 840,
+          "suggested": {
+            "pgn": 65114,
+            "name": "PGN 0xFE5A",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFF26",
+          "pgn_dec": 65318,
+          "frames": 840,
+          "suggested": {
+            "pgn": 65318,
+            "name": "PGN 0xFF26",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFF23",
+          "pgn_dec": 65315,
+          "frames": 840,
+          "suggested": {
+            "pgn": 65315,
+            "name": "PGN 0xFF23",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        },
+        {
+          "pgn_hex": "0xFED9",
+          "pgn_dec": 65241,
+          "frames": 840,
+          "suggested": {
+            "pgn": 65241,
+            "name": "PGN 0xFED9",
+            "category": "spray_proprietary",
+            "status": "unknown",
+            "notes": "Observed on wire; add to catalog after decode."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -5,27 +5,20 @@ import {
   ControlAuthority,
   Telemetry,
 } from './types';
+import { downloadCsv, ExportFrame, framesToCsv } from './exportFrames';
+import {
+  frameInSprayLibrary,
+  isUiNoise,
+  pgnMeta,
+  SPRAY_CATEGORIES,
+  SprayCategory,
+} from './sprayFilter';
 
 const MAX_LOG_LINES = 400;
 const MAX_CAN_FRAMES = 600;
 
-interface CanFrame {
-  t: number;        // local rx time (ms)
-  id: number;
-  sa: number;
-  da: number;
-  pgn: number;
-  dlc: number;
-  data: string;
-}
-
-/** Periodic bus chatter: WSM, VT status, speed broadcasts, TC client announce. */
-function isPeriodicNoise(f: CanFrame): boolean {
-  if (f.pgn === 0xfe0d) return true;                    // WSM heartbeat
-  if (f.pgn === 0xe700) return true;                    // VT status broadcast
-  if (f.pgn === 0xfef1 || f.pgn === 0xfee8) return true; // wheel/nav speed
-  if (f.pgn === 0xcb00 && f.da === 0xff) return true;   // TC client announce
-  return false;
+interface CanFrame extends ExportFrame {
+  pf: number;
 }
 
 function parseCanLine(json: string): CanFrame | null {
@@ -34,14 +27,22 @@ function parseCanLine(json: string): CanFrame | null {
     const id = parseInt(raw.id, 16);
     const pf = (id >> 16) & 0xff;
     const ps = (id >> 8) & 0xff;
+    const sa = id & 0xff;
+    const da = pf < 240 ? ps : 0xff;
+    const pgn = pf < 240 ? pf << 8 : (pf << 8) | ps;
+    const meta = pgnMeta(pgn);
     return {
       t: Date.now(),
       id,
-      sa: id & 0xff,
-      da: pf < 240 ? ps : 0xff,
-      pgn: pf < 240 ? pf << 8 : (pf << 8) | ps,
+      sa,
+      da,
+      pf,
+      pgn,
       dlc: raw.dlc ?? 0,
       data: raw.data ?? '',
+      pgnName: meta.name,
+      category: meta.category,
+      saLabel: '',
     };
   } catch {
     return null;
@@ -71,14 +72,17 @@ export default function App() {
   const [canFrames, setCanFrames] = useState<CanFrame[]>([]);
   const [iface, setIface] = useState(() => localStorage.getItem('bench.iface') ?? 'virtual');
   const [recordLabel, setRecordLabel] = useState('');
+  const [sniffMode, setSniffMode] = useState<'filtered' | 'spray' | '616r' | '616r_full'>('spray');
   const [manualBitmap, setManualBitmap] = useState('0x0');
   const [simSpeed, setSimSpeed] = useState('5');
 
-  // CAN monitor filters
-  const [hideNoise, setHideNoise] = useState(true);
+  // CAN monitor — spray library preset (default on)
+  const [sprayLibraryOnly, setSprayLibraryOnly] = useState(true);
+  const [hideUiNoise, setHideUiNoise] = useState(true);
+  const [enabledCats, setEnabledCats] = useState<Set<SprayCategory>>(
+    () => new Set(SPRAY_CATEGORIES.map((c) => c.id)),
+  );
   const [onlySa, setOnlySa] = useState('');
-  const [hideSa, setHideSa] = useState('');
-  const [onlyPgn, setOnlyPgn] = useState('');
   const [paused, setPaused] = useState(false);
   const pausedRef = useRef(paused);
   pausedRef.current = paused;
@@ -143,7 +147,18 @@ export default function App() {
     if (ok) send('ARM');
   };
 
-  /** One-click bench bring-up: interface -> START_CAN -> SHADOW. */
+  /** Field sniff bring-up: COM/slcan -> RX-only seal -> OBSERVE -> START_CAN. */
+  const fieldSniffStart = () => {
+    send('SET_CAN_RX_ONLY:1');
+    send('SET_GS_EMITTER:0');
+    send(`SET_CAN_INTERFACE:${iface}`);
+    send('SET_SPRAYER_PROFILE:jd_616r');
+    send('SET_SNIFF_MODE:spray');
+    setTimeout(() => send('SET_CONTROL_AUTHORITY:OBSERVE'), 150);
+    setTimeout(() => send('START_CAN'), 400);
+  };
+
+  /** Bench bring-up (virtual bus only): interface -> START_CAN -> SHADOW. */
   const benchStart = () => {
     send(`SET_CAN_INTERFACE:${iface}`);
     setTimeout(() => send('START_CAN'), 200);
@@ -152,16 +167,29 @@ export default function App() {
 
   const visibleFrames = useMemo(() => {
     const only = parseCsvHex(onlySa);
-    const hide = parseCsvHex(hideSa);
-    const pgns = parseCsvHex(onlyPgn);
     return canFrames.filter((f) => {
-      if (hideNoise && isPeriodicNoise(f)) return false;
+      if (hideUiNoise && isUiNoise(f.pgn, f.sa, f.da)) return false;
+      if (sprayLibraryOnly && !frameInSprayLibrary(f.pgn, f.sa, f.pf)) return false;
+      if (!enabledCats.has(f.category)) return false;
       if (only.length && !only.includes(f.sa)) return false;
-      if (hide.length && hide.includes(f.sa)) return false;
-      if (pgns.length && !pgns.includes(f.pgn)) return false;
       return true;
     });
-  }, [canFrames, hideNoise, onlySa, hideSa, onlyPgn]);
+  }, [canFrames, sprayLibraryOnly, hideUiNoise, enabledCats, onlySa]);
+
+  const toggleCategory = (cat: SprayCategory) => {
+    setEnabledCats((prev) => {
+      const next = new Set(prev);
+      if (next.has(cat)) next.delete(cat);
+      else next.add(cat);
+      return next;
+    });
+  };
+
+  const exportCsv = () => {
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const label = t?.record_session_id ?? 'monitor';
+    downloadCsv(`spray_frames_${label}_${stamp}.csv`, framesToCsv(visibleFrames));
+  };
 
   const t = telemetry;
   const authority = t?.control_authority ?? 'OBSERVE';
@@ -194,6 +222,9 @@ export default function App() {
         <span className="pill" title="Frames actually transmitted per category (post-gate)">
           TX sec {t?.tx_counts?.section ?? 0} · rate {t?.tx_counts?.rate ?? 0} · claim {t?.tx_counts?.claim ?? 0}
         </span>
+        {t?.can_rx_only ? (
+          <span className="pill ok">RX-ONLY sealed</span>
+        ) : null}
         {t?.record_session_active ? (
           <span className="pill danger">● REC {t?.record_session_id} ({t?.record_frame_count})</span>
         ) : null}
@@ -209,12 +240,14 @@ export default function App() {
             <div className="row">
               <select value={iface} onChange={(e) => setIface(e.target.value)}>
                 <option value="virtual">virtual (bench)</option>
+                <option value="COM2">COM2 (CANable slcan)</option>
                 <option value="auto">auto-scan</option>
                 <option value="pcan">PCAN</option>
                 <option value="ixxat">IXXAT</option>
                 <option value="can0">can0</option>
               </select>
-              <button className="primary" onClick={benchStart}>Bench start → SHADOW</button>
+              <button className="primary" onClick={fieldSniffStart}>Field sniff → OBSERVE</button>
+              <button onClick={benchStart}>Bench → SHADOW</button>
             </div>
             <div className="row">
               <button onClick={() => send('START_CAN')}>Start</button>
@@ -267,6 +300,15 @@ export default function App() {
           <section className="panel">
             <h2>Recorder (OBSERVE–SHADOW)</h2>
             <div className="row">
+              {(['filtered', 'spray', '616r', '616r_full'] as const).map((m) => (
+                <button key={m}
+                  className={sniffMode === m ? 'active' : ''}
+                  onClick={() => { setSniffMode(m); send(`SET_SNIFF_MODE:${m}`); }}>
+                  {m}
+                </button>
+              ))}
+            </div>
+            <div className="row">
               <input value={recordLabel} onChange={(e) => setRecordLabel(e.target.value)}
                 placeholder="session label" />
             </div>
@@ -280,6 +322,21 @@ export default function App() {
               <b>{t?.record_shadow_count ?? 0} shadow rows</b>
             </div>
           </section>
+
+          {t?.sprayer_profile === 'jd_616r' ? (
+            <section className="panel">
+              <h2>616R nodes (2s window)</h2>
+              <div className="kv">
+                {(['gwc_alive', 'src_alive', 'mnc_alive', 'bhc_alive', 'atx_alive'] as const).map((k) => (
+                  <span key={k}>{k.replace('_alive', '').toUpperCase()}</span>
+                ))}
+                {(['gwc_alive', 'src_alive', 'mnc_alive', 'bhc_alive', 'atx_alive'] as const).map((k) => (
+                  <b key={`${k}-v`} className={t?.[k] ? 'ok-text' : ''}>{t?.[k] ? 'alive' : '—'}</b>
+                ))}
+                <span>sniff</span><b>{String(t?.sniff_mode ?? sniffMode)}</b>
+              </div>
+            </section>
+          ) : null}
 
           {t?.can_interface === 'virtual' ? (
             <section className="panel">
@@ -326,32 +383,44 @@ export default function App() {
             <div className="panel-head">
               <h2>CAN monitor</h2>
               <label className="check">
-                <input type="checkbox" checked={hideNoise}
-                  onChange={(e) => setHideNoise(e.target.checked)} />
-                Hide periodic (WSM / VT / speed / TC announce)
+                <input type="checkbox" checked={sprayLibraryOnly}
+                  onChange={(e) => setSprayLibraryOnly(e.target.checked)} />
+                Spray library only
               </label>
+              <label className="check">
+                <input type="checkbox" checked={hideUiNoise}
+                  onChange={(e) => setHideUiNoise(e.target.checked)} />
+                Hide UI noise (WSM / VT)
+              </label>
+              <div className="cat-toggles">
+                {SPRAY_CATEGORIES.map((c) => (
+                  <label key={c.id}>
+                    <input type="checkbox" checked={enabledCats.has(c.id)}
+                      onChange={() => toggleCategory(c.id)} />
+                    {c.label}
+                  </label>
+                ))}
+              </div>
               <input className="filter" value={onlySa} onChange={(e) => setOnlySa(e.target.value)}
-                placeholder="only SA: CC,F7" title="Comma-separated hex SAs to show exclusively" />
-              <input className="filter" value={hideSa} onChange={(e) => setHideSa(e.target.value)}
-                placeholder="hide SA: 1C" title="Comma-separated hex SAs to mute" />
-              <input className="filter" value={onlyPgn} onChange={(e) => setOnlyPgn(e.target.value)}
-                placeholder="only PGN: EF00,CB00" title="Comma-separated hex PGNs to show exclusively" />
+                placeholder="only SA: 94,17,CC" title="Comma-separated hex SAs" />
               <button className={paused ? 'active' : ''} onClick={() => setPaused(!paused)}>
                 {paused ? '▶ Resume' : '❚❚ Pause'}
               </button>
+              <button onClick={exportCsv} disabled={!visibleFrames.length}>Export CSV</button>
               <button onClick={() => setCanFrames([])}>Clear</button>
               <span className="count">{visibleFrames.length} shown / {canFrames.length} buffered</span>
             </div>
             <div className="can-table">
               <div className="can-row can-headrow">
-                <span>time</span><span>ID</span><span>SA→DA</span><span>PGN</span><span>data</span>
+                <span>time</span><span>ID</span><span>SA→DA</span><span>PGN</span><span>category</span><span>data</span>
               </div>
               {visibleFrames.map((f, i) => (
                 <div className="can-row" key={`${f.t}-${i}`}>
                   <span>{fmtTime(f.t)}</span>
                   <span>{hex(f.id, 8)}</span>
                   <span>{hex(f.sa)}→{hex(f.da)}</span>
-                  <span>{hex(f.pgn, 4)}</span>
+                  <span title={f.pgnName}>{hex(f.pgn, 4)}</span>
+                  <span className={`cat cat-${f.category}`}>{f.category.replace('_', ' ')}</span>
                   <span className="data">{f.data}</span>
                 </div>
               ))}

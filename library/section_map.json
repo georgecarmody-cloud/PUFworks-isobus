@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "compiled_from": "20260611 single-toggle captures 616r_R5 .. 616r_L5",
+  "controller": "SRC",
+  "sa_hex": "0xE1",
+  "pgn_hex": "0xEF00",
+  "baseline_all_on": {
+    "bitmap": "4F0B06025555D53F",
+    "ff_preamble": "4F0B06FFD1010000"
+  },
+  "sections": [
+    {
+      "name": "R5",
+      "session": "20260611_141549_616r_R5",
+      "toggle_t_s": 11.5,
+      "ff_cmd": "4F0B06FFF1010000",
+      "ff_idx_byte4": "0xF1",
+      "bitmap_toggle": "4F0B06025555F53F",
+      "bitmap_delta": "byte6: D5→F5"
+    },
+    {
+      "name": "R4",
+      "session": "20260611_141657_616r_R4",
+      "toggle_t_s": 10.5,
+      "ff_cmd": "4F0B06FFD9010000",
+      "ff_idx_byte4": "0xD9",
+      "bitmap_toggle": "4F0B06025555DD3F",
+      "bitmap_delta": "byte6: D5→DD"
+    },
+    {
+      "name": "R3",
+      "session": "20260611_141749_616r_R3",
+      "toggle_t_s": 11.5,
+      "ff_cmd": "4F0B06FFD3010000",
+      "ff_idx_byte4": "0xD3",
+      "bitmap_toggle": "4F0B06025555D73F",
+      "bitmap_delta": "byte6: D5→D7"
+    },
+    {
+      "name": "R2",
+      "session": "20260611_141857_616r_R2",
+      "toggle_t_s": 11.0,
+      "ff_cmd": "4F0B06FF51020000",
+      "ff_idx_byte4": "0x51",
+      "bitmap_toggle": "4F0B060255D5D53F",
+      "bitmap_delta": "byte5: 55→D5"
+    },
+    {
+      "name": "R1",
+      "session": "20260611_141943_616r_R1",
+      "toggle_t_s": 10.4,
+      "ff_cmd": "4F0B06FFF1010000",
+      "ff_idx_byte4": "0xF1",
+      "bitmap_toggle": "4F0B06025575D53F",
+      "bitmap_delta": "byte5: 55→75"
+    },
+    {
+      "name": "C",
+      "session": "20260611_142101_616r_C",
+      "toggle_t_s": 11.0,
+      "ff_cmd": "4F0B06FFD9010000",
+      "ff_idx_byte4": "0xD9",
+      "bitmap_toggle": "4F0B0602555DD53F",
+      "bitmap_delta": "byte5: 55→5D"
+    },
+    {
+      "name": "L1",
+      "session": "20260611_142254_616r_L1",
+      "toggle_t_s": 11.2,
+      "ff_cmd": "4F0B06FFD3010000",
+      "ff_idx_byte4": "0xD3",
+      "bitmap_toggle": "4F0B06025557D53F",
+      "bitmap_delta": "byte5: 55→57"
+    },
+    {
+      "name": "L2",
+      "session": "20260611_142422_616r_L2",
+      "toggle_t_s": 10.9,
+      "ff_cmd": "4F0B06FF51020000",
+      "ff_idx_byte4": "0x51",
+      "bitmap_toggle": "4F0B0602D555D53F",
+      "bitmap_delta": "byte4: 55→D5"
+    },
+    {
+      "name": "L3",
+      "session": "20260611_142530_616r_L3",
+      "toggle_t_s": 10.9,
+      "ff_cmd": "4F0B06FFF1010000",
+      "ff_idx_byte4": "0xF1",
+      "bitmap_toggle": "4F0B06027555D53F",
+      "bitmap_delta": "byte4: 55→75"
+    },
+    {
+      "name": "L4",
+      "session": "20260611_142619_616r_L4",
+      "toggle_t_s": 11.8,
+      "ff_cmd": "4F0B06FFD9010000",
+      "ff_idx_byte4": "0xD9",
+      "bitmap_toggle": "4F0B06025D55D53F",
+      "bitmap_delta": "byte4: 55→5D"
+    },
+    {
+      "name": "L5",
+      "session": "20260611_142706_616r_L5",
+      "toggle_t_s": 11.2,
+      "ff_cmd": "4F0B06FFD3010000",
+      "ff_idx_byte4": "0xD3",
+      "bitmap_toggle": "4F0B06025755D53F",
+      "bitmap_delta": "byte4: 55→57"
+    }
+  ],
+  "ff_idx_groups": {
+    "0xF1_010000": ["R5", "R1", "L3"],
+    "0xD9_010000": ["R4", "C", "L4"],
+    "0xD3_010000": ["R3", "L1", "L5"],
+    "0x51_020000": ["R2", "L2"]
+  },
+  "notes": "4F0B06FF byte[4] is a group key (not 1:1 per section). Section identity is in 4F0B0602 bitmap bytes 4-6. Baseline 5555D53F = all sections ON.",
+  "validation_20260611": {
+    "dir_R5_softkey": {
+      "session": "20260611_144457_616r_dir_R5",
+      "off_bitmap": "4F0B06025555F53F",
+      "off_t_s": 5.4,
+      "on_restore_seen": false,
+      "note": "Session ended on F53F; ON restore to D53F not captured"
+    },
+    "ibs_R5": {
+      "session": "20260611_144749_616r_ibs_R5_fix",
+      "off_bitmap": "4F0B06025555E53F",
+      "off_ff": "4F0B06FFE1010000",
+      "note": "IBS uses E5 nibble and FF 0xE1 — not same as soft-key F5/0xF1"
+    },
+    "pair_R5R4": {
+      "session": "20260611_145005_616r_pair_R5R4",
+      "steps": [
+        {"t_s": 6.4, "bitmap": "4F0B06025555F53F", "ff": "4F0B06FFF1010000", "sections": ["R5"]},
+        {"t_s": 10.8, "bitmap": "4F0B06025555FD3F", "ff": "4F0B06FFF9010000", "sections": ["R5", "R4"]}
+      ],
+      "composite_rule": "byte6 accumulates: D5→F5 (R5) then F5→FD (+R4)"
+    },
+    "pair_R5R4R3": {
+      "session": "20260611_155018_616r_pair_R5R4R3",
+      "steps": [
+        {"t_s": 5.4, "bitmap": "4F0B06025555F53F", "ff": "4F0B06FFF1010000", "sections": ["R5"]},
+        {"t_s": 11.3, "bitmap": "4F0B06025555FD3F", "ff": "4F0B06FFF9010000", "sections": ["R5", "R4"]},
+        {"t_s": 17.5, "bitmap": "4F0B06025555FF3F", "ff": "4F0B06FFFB010000", "sections": ["R5", "R4", "R3"]},
+        {"t_s": 25.9, "bitmap": "4F0B06025555D53F", "ff": "4F0B06FFD1010000", "sections": ["ALL_ON"]}
+      ],
+      "composite_rule": "byte6 OR-accumulates single deltas: D5 +0x20 (R5) +0x08 (R4) +0x02 (R3) → FF; FF index F1→F9→FB"
+    },
+    "asc_observation": "ASC headland does not change SRC 4F0B0602; section gating on MNC 0xCB00 (9311 cascade + 1300A5xx turn family)"
+  }
+}

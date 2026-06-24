@@ -1,0 +1,1925 @@
+{
+  "session": "20260615_095343_616r_spray_live",
+  "window_t_s": [
+    195.0,
+    215.0
+  ],
+  "duration_s": 20.0,
+  "disp_f0": {
+    "ef00": {
+      "sa_hex": "0xF0",
+      "pgn_hex": "0xEF00",
+      "frame_count": 630,
+      "unique_prefixes": 16,
+      "catalog": [
+        {
+          "prefix": "F002CC",
+          "frames": 200,
+          "pct": 31.75,
+          "sample": "F002CC003030FFFF",
+          "status": "likely",
+          "role": "tc_grc_presence",
+          "notes": "3030FFFF pattern; pairs with F107CC"
+        },
+        {
+          "prefix": "F10FFF",
+          "frames": 200,
+          "pct": 31.75,
+          "sample": "F10FFFFFCFFFFFFF",
+          "status": "likely",
+          "role": "display_heartbeat",
+          "notes": "~10 Hz F10FFFFF\u2026 stable tail"
+        },
+        {
+          "prefix": "F107CC",
+          "frames": 200,
+          "pct": 31.75,
+          "sample": "F107CCCC00000000",
+          "status": "likely",
+          "role": "grc_link_status",
+          "notes": "~10 Hz; suffix 0000; 0xCC = GRC SA"
+        },
+        {
+          "prefix": "F00E88",
+          "frames": 4,
+          "pct": 0.63,
+          "sample": "F00E888888888888",
+          "status": "hypothesis",
+          "role": "ui_state_block",
+          "notes": "62 frames/session bursts"
+        },
+        {
+          "prefix": "F00888",
+          "frames": 4,
+          "pct": 0.63,
+          "sample": "F008888888FFFF88",
+          "status": "hypothesis",
+          "role": "ui_state_block",
+          "notes": "62 frames/session bursts"
+        },
+        {
+          "prefix": "F00C88",
+          "frames": 4,
+          "pct": 0.63,
+          "sample": "F00C888188888818",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F43381",
+          "frames": 4,
+          "pct": 0.63,
+          "sample": "F433811888888888",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F437F8",
+          "frames": 4,
+          "pct": 0.63,
+          "sample": "F437F8FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F22700",
+          "frames": 2,
+          "pct": 0.32,
+          "sample": "F22700FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F22720",
+          "frames": 2,
+          "pct": 0.32,
+          "sample": "F22720FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F22740",
+          "frames": 1,
+          "pct": 0.16,
+          "sample": "F22740FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F22760",
+          "frames": 1,
+          "pct": 0.16,
+          "sample": "F22760FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F22780",
+          "frames": 1,
+          "pct": 0.16,
+          "sample": "F22780FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F227A0",
+          "frames": 1,
+          "pct": 0.16,
+          "sample": "F227A0FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F227C0",
+          "frames": 1,
+          "pct": 0.16,
+          "sample": "F227C0FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "F227E0",
+          "frames": 1,
+          "pct": 0.16,
+          "sample": "F227E0FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        }
+      ]
+    },
+    "fff8": {
+      "sa_hex": "0xF0",
+      "pgn_hex": "0xFFF8",
+      "frame_count": 440,
+      "unique_prefixes": 66,
+      "catalog": [
+        {
+          "prefix": "850400",
+          "frames": 200,
+          "pct": 45.45,
+          "sample": "850400FFFFFFFFFC",
+          "status": "likely",
+          "role": "display_static_a",
+          "notes": "850400FF\u2026 ~10 Hz dominant"
+        },
+        {
+          "prefix": "9B007D",
+          "frames": 100,
+          "pct": 22.73,
+          "sample": "9B007D006480F000",
+          "status": "hypothesis",
+          "role": "display_metric_b",
+          "notes": "9B007D00\u2026 ~5 Hz"
+        },
+        {
+          "prefix": "0ECCF5",
+          "frames": 20,
+          "pct": 4.55,
+          "sample": "0ECCF5FFFFFFFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "EAFFAE",
+          "frames": 13,
+          "pct": 2.95,
+          "sample": "EAFFAEADACACFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "793433",
+          "frames": 6,
+          "pct": 1.36,
+          "sample": "7934332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "793033",
+          "frames": 5,
+          "pct": 1.14,
+          "sample": "7930332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "EAFFAD",
+          "frames": 4,
+          "pct": 0.91,
+          "sample": "EAFFADACACACFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "793E33",
+          "frames": 4,
+          "pct": 0.91,
+          "sample": "793E332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "793A35",
+          "frames": 4,
+          "pct": 0.91,
+          "sample": "793A352200906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "EAFFAC",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "EAFFACACACACFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79BF32",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "79BF322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79C832",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "79C8322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79F831",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "79F8311F00906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "798A32",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "798A322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "792A33",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "792A332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79DE36",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "79DE362300906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79CB36",
+          "frames": 3,
+          "pct": 0.68,
+          "sample": "79CB362300906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "792534",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "7925342100906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79B532",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "79B5322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "791333",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "7913332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79D232",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "79D2322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "790532",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "7905321F00906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "790033",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "7900332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "791534",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "7915342100906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79E836",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "79E8362300906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79E436",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "79E4362300906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79C736",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "79C7362300906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79AE36",
+          "frames": 2,
+          "pct": 0.45,
+          "sample": "79AE362200906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "792733",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "7927332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "790B34",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "790B342100906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79F833",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "79F8332100906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "791D33",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "791D332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79B132",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "79B1322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "791733",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "7917332000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79E232",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "79E2322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79CF32",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "79CF322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "79F032",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "79F0322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "796332",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "7963322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "792232",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "7922322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "793632",
+          "frames": 1,
+          "pct": 0.23,
+          "sample": "7936322000906300",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        }
+      ]
+    },
+    "fff4": {
+      "sa_hex": "0xF0",
+      "pgn_hex": "0xFFF4",
+      "frame_count": 240,
+      "unique_prefixes": 88,
+      "catalog": [
+        {
+          "prefix": "650F00",
+          "frames": 40,
+          "pct": 16.67,
+          "sample": "650F0000FF81F0FF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAA8",
+          "frames": 8,
+          "pct": 3.33,
+          "sample": "63FAA80B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAA4",
+          "frames": 6,
+          "pct": 2.5,
+          "sample": "63FAA40D33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA3E",
+          "frames": 6,
+          "pct": 2.5,
+          "sample": "63FA3E0C33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAA2",
+          "frames": 6,
+          "pct": 2.5,
+          "sample": "63FAA20A33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAD1",
+          "frames": 4,
+          "pct": 1.67,
+          "sample": "63FAD11653E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAA6",
+          "frames": 4,
+          "pct": 1.67,
+          "sample": "63FAA60D33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA32",
+          "frames": 4,
+          "pct": 1.67,
+          "sample": "63FA320C33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA24",
+          "frames": 4,
+          "pct": 1.67,
+          "sample": "63FA240C33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAC2",
+          "frames": 4,
+          "pct": 1.67,
+          "sample": "63FAC20A33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA4F",
+          "frames": 4,
+          "pct": 1.67,
+          "sample": "63FA4F0E33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA7A",
+          "frames": 4,
+          "pct": 1.67,
+          "sample": "63FA7A1033E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA3C",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA3C1653E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA97",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA971553E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAF8",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAF81453E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA54",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA541453E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA8B",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA8B1353E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA17",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA171253E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA2B",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA2B1153E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "6336E5",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "6336E50F33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA8E",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA8E0E33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA04",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA040E33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FABF",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FABF0D33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAB7",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAB70D33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAF6",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAF60D33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA02",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA020E33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA38",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA380D33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAE5",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAE50C33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAAC",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAAC0C33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA6B",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA6B0C33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA12",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA120C33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAE3",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAE30B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAB4",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAB40B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FA9A",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FA9A0B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAB3",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAB30B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FACC",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FACC0B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FADF",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FADF0B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAB1",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAB10B33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FABE",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FABE0A33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "63FAD4",
+          "frames": 2,
+          "pct": 0.83,
+          "sample": "63FAD40A33E0FFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        }
+      ]
+    },
+    "fef1": {
+      "sa_hex": "0xF0",
+      "pgn_hex": "0xFEF1",
+      "frame_count": 200,
+      "unique_prefixes": 142,
+      "catalog": [
+        {
+          "prefix": "FF16",
+          "frames": 4,
+          "pct": 2.0,
+          "sample": "FF160AFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF1F",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FF1F13FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFFC",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FFFC11FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF84",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FF840EFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFB4",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FFB40DFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFC7",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FFC70DFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF83",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FF830DFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFD1",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FFD10CFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFA1",
+          "frames": 3,
+          "pct": 1.5,
+          "sample": "FFA10CFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF25",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF2516FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF2D",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF2D15FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFF9",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFF914FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF2F",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF2F14FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF5F",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF5F13FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF9E",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF9E12FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF56",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF5612FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF80",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF8011FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFC2",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFC210FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF2C",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF2C10FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF43",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF430FFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF48",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF480EFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF19",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF190EFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFBA",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFBA0DFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFAB",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFAB0DFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFFF",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFFF0DFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF11",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF110DFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFC6",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFC60CFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFB0",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFB00BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF81",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF810BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF4E",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF4E0BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF68",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF680BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFDD",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFDD0BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF35",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF350BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF71",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF710AFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF0C",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF0C0AFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFFE",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFFE09FFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF6C",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF6C0AFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF85",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF850BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FFB6",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FFB60BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FF72",
+          "frames": 2,
+          "pct": 1.0,
+          "sample": "FF720BFFFF1AFFFF",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        }
+      ]
+    }
+  },
+  "disp_26": {
+    "e600": {
+      "sa_hex": "0x26",
+      "pgn_hex": "0xE600",
+      "frame_count": 2086,
+      "unique_prefixes": 64,
+      "catalog": [
+        {
+          "prefix": "A83C04",
+          "frames": 197,
+          "pct": 9.44,
+          "sample": "A83C040052535353",
+          "status": "likely",
+          "role": "vt_transport_chunk",
+          "notes": "A8xx0400 family \u2014 VT multipacket to TC"
+        },
+        {
+          "prefix": "A83D04",
+          "frames": 193,
+          "pct": 9.25,
+          "sample": "A83D040052525253",
+          "status": "likely",
+          "role": "vt_transport_chunk",
+          "notes": ""
+        },
+        {
+          "prefix": "A83E04",
+          "frames": 181,
+          "pct": 8.68,
+          "sample": "A83E040000515151",
+          "status": "likely",
+          "role": "vt_transport_chunk",
+          "notes": "High churn during spray UI updates"
+        },
+        {
+          "prefix": "A80804",
+          "frames": 58,
+          "pct": 2.78,
+          "sample": "A808040085710000",
+          "status": "likely",
+          "role": "vt_transport_chunk",
+          "notes": "Lower rate baseline"
+        },
+        {
+          "prefix": "A8F503",
+          "frames": 41,
+          "pct": 1.97,
+          "sample": "A8F50300F80A0000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A8F403",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A8F4030048140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A84C14",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A84C1400DA0D0000",
+          "status": "hypothesis",
+          "role": "vt_object_pool",
+          "notes": "A8xx1400 subfamily ~613 frames"
+        },
+        {
+          "prefix": "A84E14",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A84E140028170000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A84D14",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A84D140074090000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A88513",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A885130090140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A85313",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A853130052040000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81015",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A810150047140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A87D13",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A87D130095140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A85913",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A8591300EB030000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81115",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A81115001C150000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81C14",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A81C140036170000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A8D814",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A8D81400E9140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A87717",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A8771700E9140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81215",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A812150015150000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81814",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A8181400D6140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A8B814",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A8B81400AF020000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81315",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A813150018150000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A88713",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A88713007A160000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A8B114",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A8B114005E000000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81415",
+          "frames": 40,
+          "pct": 1.92,
+          "sample": "A814150046140000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A87104",
+          "frames": 39,
+          "pct": 1.87,
+          "sample": "A87104009B070000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A8F203",
+          "frames": 33,
+          "pct": 1.58,
+          "sample": "A8F2030085000000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A83704",
+          "frames": 28,
+          "pct": 1.34,
+          "sample": "A83704008E170000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81E04",
+          "frames": 24,
+          "pct": 1.15,
+          "sample": "A81E0400CB000000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FE26FF",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "FE26FFFFFFFF0000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A89B05",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A89B05000F080000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "FEFF5A",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "FEFF5A75FFFF0011",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A82B04",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A82B040018000000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A82D04",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A82D04001B000000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A82705",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A827050002000000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A82805",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A828050002000000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A83804",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A838040035030000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A81405",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A814050017030000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A83904",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A83904005F020000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        },
+        {
+          "prefix": "A83A04",
+          "frames": 20,
+          "pct": 0.96,
+          "sample": "A83A0400EF030000",
+          "status": "unknown",
+          "role": "unclassified",
+          "notes": ""
+        }
+      ]
+    }
+  },
+  "pgn_summary": [
+    {
+      "sa": "0x26",
+      "pgn": "0xE600",
+      "frames": 2086
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xEF00",
+      "frames": 630
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFF8",
+      "frames": 440
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFF4",
+      "frames": 240
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFFE",
+      "frames": 220
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xAC00",
+      "frames": 200
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xF022",
+      "frames": 200
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFEF1",
+      "frames": 200
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFFA",
+      "frames": 60
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFFF",
+      "frames": 30
+    },
+    {
+      "sa": "0x26",
+      "pgn": "0xFFFE",
+      "frames": 24
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFE41",
+      "frames": 22
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xF005",
+      "frames": 20
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFE68",
+      "frames": 20
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xFFF3",
+      "frames": 20
+    },
+    {
+      "sa": "0x26",
+      "pgn": "0xFD07",
+      "frames": 20
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xF004",
+      "frames": 10
+    },
+    {
+      "sa": "0x26",
+      "pgn": "0xFEE6",
+      "frames": 2
+    },
+    {
+      "sa": "0xF0",
+      "pgn": "0xE800",
+      "frames": 2
+    },
+    {
+      "sa": "0x26",
+      "pgn": "0xEA00",
+      "frames": 1
+    }
+  ],
+  "mnc_cb00_window": {
+    "window_t_s": [
+      195.0,
+      215.0
+    ],
+    "frames": 5253,
+    "suffix_top": [
+      [
+        "110200",
+        1824
+      ],
+      [
+        "110100",
+        1000
+      ],
+      [
+        "00A500",
+        201
+      ],
+      [
+        "00A400",
+        187
+      ],
+      [
+        "00A300",
+        169
+      ],
+      [
+        "00A200",
+        162
+      ],
+      [
+        "00A600",
+        144
+      ],
+      [
+        "100200",
+        117
+      ],
+      [
+        "00A100",
+        116
+      ],
+      [
+        "00A700",
+        101
+      ],
+      [
+        "002201",
+        100
+      ],
+      [
+        "002801",
+        100
+      ]
+    ],
+    "asc_suffixes": [
+      [
+        "00A500",
+        201
+      ],
+      [
+        "00A400",
+        187
+      ],
+      [
+        "00A300",
+        169
+      ],
+      [
+        "00A200",
+        162
+      ],
+      [
+        "00A600",
+        144
+      ],
+      [
+        "00A100",
+        116
+      ],
+      [
+        "00A700",
+        101
+      ]
+    ],
+    "lane_top": [
+      [
+        "13",
+        2379
+      ],
+      [
+        "03",
+        370
+      ],
+      [
+        "93",
+        295
+      ],
+      [
+        "23",
+        291
+      ],
+      [
+        "73",
+        289
+      ],
+      [
+        "43",
+        287
+      ],
+      [
+        "33",
+        284
+      ],
+      [
+        "83",
+        282
+      ],
+      [
+        "53",
+        278
+      ],
+      [
+        "63",
+        271
+      ],
+      [
+        "F3",
+        217
+      ],
+      [
+        "FF",
+        10
+      ]
+    ],
+    "prefix4_top": [
+      [
+        "1300A500",
+        201
+      ],
+      [
+        "93110200",
+        195
+      ],
+      [
+        "23110200",
+        191
+      ],
+      [
+        "73110200",
+        189
+      ],
+      [
+        "1300A400",
+        187
+      ],
+      [
+        "43110200",
+        187
+      ],
+      [
+        "33110200",
+        184
+      ],
+      [
+        "83110200",
+        182
+      ],
+      [
+        "53110200",
+        178
+      ],
+      [
+        "13110200",
+        177
+      ],
+      [
+        "63110200",
+        171
+      ],
+      [
+        "03110200",
+        170
+      ]
+    ]
+  }
+}

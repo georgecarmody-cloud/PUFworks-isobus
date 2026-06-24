@@ -1,0 +1,196 @@
+
+
+=== 1 MNC CB00 tail offset 4 full ===
+
+Session: 20260615_095343_616r_spray_live  sa=0xD4 pgn=0xCB00  unique=2900  frames=90733
+Byte offset before probe: 4
+
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[6, 7]  13005F0130023800
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[15, 7]  13005F0178173800
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[6, 7]  13005F01301C3800
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[13, 7]  13005F01681D3800
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[10, 7]  13005F0150443800
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[8, 7]  13005F01404A3800
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[5, 7]  13005F0128573800
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[3, 7]  13005F0118043A00
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[9, 7]  13005F0148223A00
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[6, 7]  13005F0130353A00
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[13, 7]  13005F0168393A00
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[1, 7]  13005F0108453A00
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[12, 7]  13005F01605A3A00
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 89.0  frames=     1  len=4  H=2.0  tags=2  full      fields=[10, 7]  13005F0150733A00
+         ^ low frame count ù likely false positive; correlate before trusting
+score= 57.0  frames=    65  len=4  H=2.0  tags=1  full      fields=[18377]  F3100200C8FC0800
+
+Interpretation:
+  score >= 70 + status=full  -> strong protobuf candidate
+  score 40-69                -> maybe nested message or nanopb subset
+  score < 40                 -> likely JD fixed element / bitmap / not protobuf
+
+=== 2 MNC 110200 tail ===
+
+Session: 20260615_095343_616r_spray_live  sa=0xD4 pgn=0xCB00  unique=62  frames=4206
+Prefix filter: 93110200
+Byte offset before probe: 4
+
+score= 57.0  frames=    32  len=4  H=2.0  tags=1  full      fields=[18377]  93110200C8FC0800
+score= 57.0  frames=    23  len=4  H=2.0  tags=1  full      fields=[18316]  93110200E0F80800
+score= 57.0  frames=    14  len=4  H=2.0  tags=1  full      fields=[17690]  93110200D0D10800
+score= 57.0  frames=    12  len=4  H=2.0  tags=1  full      fields=[17751]  93110200B8D50800
+score= 57.0  frames=    10  len=4  H=2.0  tags=1  full      fields=[18255]  93110200F8F40800
+score= 57.0  frames=     9  len=4  H=2.0  tags=1  full      fields=[17873]  9311020088DD0800
+score= 57.0  frames=     7  len=4  H=2.0  tags=1  full      fields=[17812]  93110200A0D90800
+score= 57.0  frames=     4  len=4  H=2.0  tags=1  full      fields=[18451]  9311020098810900
+
+Interpretation:
+  score >= 70 + status=full  -> strong protobuf candidate
+  score 40-69                -> maybe nested message or nanopb subset
+  score < 40                 -> likely JD fixed element / bitmap / not protobuf
+
+=== 3 SRC F70400 ===
+
+Session: 20260615_095343_616r_spray_live  sa=0xE1 pgn=0xEF00  unique=1  frames=3845
+Prefix filter: F70400
+
+score= 15.0  frames=  3845  len=8  H=1.549  tags=0  bad_wire_7  fields=[]  F70400FFFFFFFFFF
+
+Interpretation:
+  score >= 70 + status=full  -> strong protobuf candidate
+  score 40-69                -> maybe nested message or nanopb subset
+  score < 40                 -> likely JD fixed element / bitmap / not protobuf
+
+=== 4 SRC 4F1401 tail offset 6 ===
+
+Session: 20260615_095343_616r_spray_live  sa=0xE1 pgn=0xEF00  unique=38  frames=1473
+Prefix filter: 4F1401
+Byte offset before probe: 6
+
+score= 57.0  frames=   254  len=2  H=1.0  tags=1  full      fields=[5]  4F14015502002A00
+score= 57.0  frames=   190  len=2  H=1.0  tags=1  full      fields=[5]  4F14015302002A00
+score= 57.0  frames=   177  len=2  H=1.0  tags=1  full      fields=[5]  4F14015602002A00
+score= 57.0  frames=   130  len=2  H=1.0  tags=1  full      fields=[5]  4F14015802002A00
+score= 57.0  frames=   125  len=2  H=1.0  tags=1  full      fields=[5]  4F14015102002A00
+score= 57.0  frames=    89  len=2  H=1.0  tags=1  full      fields=[5]  4F14010000002A00
+score= 57.0  frames=    79  len=2  H=1.0  tags=1  full      fields=[5]  4F14015A02002A00
+score= 57.0  frames=    67  len=2  H=1.0  tags=1  full      fields=[5]  4F14015002002A00
+
+Interpretation:
+  score >= 70 + status=full  -> strong protobuf candidate
+  score 40-69                -> maybe nested message or nanopb subset
+  score < 40                 -> likely JD fixed element / bitmap / not protobuf
+
+=== 5 SA 0xBA E700 ===
+
+Session: 20260615_095343_616r_spray_live  sa=0xBA pgn=0xE700  unique=120  frames=12270
+
+score= 19.0  frames=   308  len=8  H=2.75  tags=2  bad_field  fields=[10677, 1]  A89B05FF0F080000
+score= 17.0  frames=   614  len=8  H=2.75  tags=1  bad_wire_7  fields=[1221]  A84C14FFDA0D0000
+score= 17.0  frames=   614  len=8  H=2.75  tags=1  bad_wire_7  fields=[1253]  A84E14FF28170000
+score= 17.0  frames=   614  len=8  H=2.75  tags=1  bad_wire_7  fields=[1237]  A84D14FF74090000
+score= 17.0  frames=   614  len=8  H=2.75  tags=1  bad_field  fields=[38997]  A88513FF90140000
+score= 17.0  frames=   613  len=8  H=2.75  tags=1  bad_wire_7  fields=[261]  A81015FF47140000
+score= 17.0  frames=   613  len=8  H=2.75  tags=1  bad_wire_7  fields=[2005]  A87D13FF95140000
+score= 17.0  frames=   613  len=8  H=2.5  tags=1  bad_wire_7  fields=[277]  A81115FF1C150000
+score= 17.0  frames=   613  len=8  H=2.75  tags=1  bad_wire_7  fields=[453]  A81C14FF36170000
+score= 17.0  frames=   613  len=8  H=2.5  tags=1  bad_field  fields=[42373]  A8D814FFE9140000
+score= 17.0  frames=   613  len=8  H=2.75  tags=1  bad_wire_7  fields=[1909]  A87717FFE9140000
+score= 17.0  frames=   613  len=8  H=2.156  tags=1  bad_wire_7  fields=[293]  A81215FF15150000
+score= 17.0  frames=   613  len=8  H=2.5  tags=1  bad_wire_7  fields=[389]  A81814FFD6140000
+score= 17.0  frames=   613  len=8  H=2.5  tags=1  bad_wire_7  fields=[309]  A81315FF18150000
+score= 17.0  frames=   613  len=8  H=2.75  tags=1  bad_wire_6  fields=[39029]  A88713FF7A160000
+
+Interpretation:
+  score >= 70 + status=full  -> strong protobuf candidate
+  score 40-69                -> maybe nested message or nanopb subset
+  score < 40                 -> likely JD fixed element / bitmap / not protobuf
+
+=== 6 DISP FFF4 ===
+
+Session: 20260615_095343_616r_spray_live  sa=0xF0 pgn=0xFFF4  unique=763  frames=3692
+
+score= 17.0  frames=   616  len=8  H=2.5  tags=1  varint_err  fields=[12]  650F0000FF81F0FF
+score= 15.0  frames=    28  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FA141953E0FFFF
+score= 15.0  frames=    22  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FA0B1953E0FFFF
+score= 15.0  frames=    22  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FAD21953E0FFFF
+score= 15.0  frames=    18  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FACC1953E0FFFF
+score= 15.0  frames=    18  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FADF1953E0FFFF
+score= 15.0  frames=    16  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FA061953E0FFFF
+score= 15.0  frames=    16  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FA171953E0FFFF
+score= 15.0  frames=    16  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FAC61953E0FFFF
+score= 15.0  frames=    14  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FAF31853E0FFFF
+score= 15.0  frames=    14  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FA0C1953E0FFFF
+score= 15.0  frames=    14  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FAEB1853E0FFFF
+score= 15.0  frames=    14  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FAD41953E0FFFF
+score= 15.0  frames=    14  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FACD1953E0FFFF
+score= 15.0  frames=    14  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  63FAC71953E0FFFF
+
+Interpretation:
+  score >= 70 + status=full  -> strong protobuf candidate
+  score 40-69                -> maybe nested message or nanopb subset
+  score < 40                 -> likely JD fixed element / bitmap / not protobuf
+
+=== 7 NZC FFF4 ===
+
+Session: 20260615_095343_616r_spray_live  sa=0xCD pgn=0xFFF4  unique=7647  frames=7690
+
+score= 15.0  frames=     2  len=8  H=2.156  tags=0  bad_wire_3  fields=[]  9B00D30389030000
+score= 15.0  frames=     2  len=8  H=2.156  tags=0  bad_wire_3  fields=[]  9B00040419030000
+score= 15.0  frames=     2  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  9B02D60362031240
+score= 15.0  frames=     2  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  9B01050555041A27
+score= 15.0  frames=     2  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  9B02360430041240
+score= 15.0  frames=     2  len=8  H=3.0  tags=0  bad_wire_3  fields=[]  9B02C00486031240
+score= 15.0  frames=     2  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  9B01E80445041A27
+score= 15.0  frames=     2  len=8  H=2.406  tags=0  bad_wire_3  fields=[]  9B00CF04E4030000
+score= 15.0  frames=     2  len=8  H=2.0  tags=0  bad_wire_3  fields=[]  9B0000047C030000
+score= 15.0  frames=     2  len=8  H=2.406  tags=0  bad_wire_3  fields=[]  9B0089049F030000
+score= 15.0  frames=     2  len=8  H=2.406  tags=0  bad_wire_3  fields=[]  9B0078047F030000
+score= 15.0  frames=     2  len=8  H=3.0  tags=0  bad_wire_3  fields=[]  9B029504B6031240
+score= 15.0  frames=     2  len=8  H=2.75  tags=0  bad_wire_3  fields=[]  9B013C0409041A27
+score= 15.0  frames=     2  len=8  H=2.156  tags=0  bad_wire_3  fields=[]  9B00ED037D030000
+score= 15.0  frames=     2  len=8  H=3.0  tags=0  bad_wire_3  fields=[]  9B0AA9042B031240
+
+Interpretation:
+  score >= 70 + status=full  -> strong protobuf candidate
+  score 40-69                -> maybe nested message or nanopb subset
+  score < 40                 -> likely JD fixed element / bitmap / not protobuf
+
+=== 8 MNC ASC windows 120-190 / 195-215 / 220-250 ===
+
+
+=== +120û190 s  MNC=22527  speed=22.9 km/h (21.4û23.6) ===
+  suffix6: 110200(11541), 110100(3500), 100200(1151), 00A200(350), 002201(350)
+  tail4 (bytes4-7): C0270900(4362), 00000000(2800), 20180900(2205), F01F0900(1823), 55555555(1750), 50100900(1554)
+  u16 LE @4: 0x27c0(4362), 0x0(2800), 0x1820(2205), 0x5555(2100)
+
+=== +195û215 s  MNC=5253  speed=15.1 km/h (10.1û22.5) ===
+  suffix6: 110200(1824), 110100(1000), 00A500(201), 00A400(187), 00A300(169)
+  tail4 (bytes4-7): 00000000(2239), C0270900(1110), 55555555(216), 01000000(117), 885A0900(72), 60370900(66)
+  u16 LE @4: 0x0(2329), 0x27c0(1110), 0x5555(273), 0x1(121)
+
+=== +220û250 s  MNC=6747  speed=24.9 km/h (20.0û26.4) ===
+  suffix6: 110200(1875), 110100(1500), 100200(505), 00A200(179), 00A300(168)
+  tail4 (bytes4-7): 00000000(3303), C0270900(1700), 01000000(175), 20180900(129), F01F0900(126), 50100900(102)
+  u16 LE @4: 0x0(3303), 0x27c0(1700), 0x1(175), 0x5550(146)
+
+Wrote C:\Projects\PUFworks-isobus\library\mnc_tail_spray_live_asc.json
+MNC CB00: 766648 frames, 47 prefix4
+  Top suffix families: ['110200', '110100', '100200', '00A500', '00A400']
+SRC EF00: 227850 frames, 17 prefixes, known coverage 69.3%
+  Top unknown prefixes:
+    F70400  14.7%  F70400FFFFFFFFFF...
+Unknown SAs: [{'sa_hex': '0x25', 'sa_dec': 37, 'frames': 2202}, {'sa_hex': '0x2A', 'sa_dec': 42, 'frames': 1960}, {'sa_hex': '0x91', 'sa_dec': 145, 'frames': 205}, {'sa_hex': '0xA1', 'sa_dec': 161, 'frames': 563}, {'sa_hex': '0xBE', 'sa_dec': 190, 'frames': 55}, {'sa_hex': '0xD2', 'sa_dec': 210, 'frames': 941}, {'sa_hex': '0xED', 'sa_dec': 237, 'frames': 2338}, {'sa_hex': '0xEE', 'sa_dec': 238, 'frames': 2948}, {'sa_hex': '0xF8', 'sa_dec': 248, 'frames': 28}, {'sa_hex': '0xFB', 'sa_dec': 251, 'frames': 2987}]
+
+Wrote library/mnc_cb00_map.json, src_ef00_catalog.json, bus_roster.json

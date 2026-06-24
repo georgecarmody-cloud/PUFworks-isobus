@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "source": "John Deere Section Setup + operator confirm nozzle 1 = left, 2026-06-11",
+  "machine": "616R ExactApply",
+  "boom_order": "L5,L4,L3,L2,L1,C,R1,R2,R3,R4,R5",
+  "boom_order_note": "Left to right facing forward. Nozzle 1 = L5 outboard (far left).",
+  "nozzle_spacing_cm": 38.1,
+  "total_boom_width_m": 37.0,
+  "nozzle_indexing": {
+    "base": 1,
+    "origin": "left",
+    "first_nozzle_section": "L5",
+    "first_nozzle_position": "L5_outboard"
+  },
+  "sections": [
+    {"name": "L5", "nozzle_count": 9, "section_width_cm": 342.9, "nozzles_1based": [1, 9]},
+    {"name": "L4", "nozzle_count": 10, "section_width_cm": 381.0, "nozzles_1based": [10, 19]},
+    {"name": "L3", "nozzle_count": 8, "section_width_cm": 304.8, "nozzles_1based": [20, 27]},
+    {"name": "L2", "nozzle_count": 8, "section_width_cm": 304.8, "nozzles_1based": [28, 35]},
+    {"name": "L1", "nozzle_count": 9, "section_width_cm": 342.9, "nozzles_1based": [36, 44]},
+    {"name": "C", "nozzle_count": 9, "section_width_cm": 342.9, "nozzles_1based": [45, 53]},
+    {"name": "R1", "nozzle_count": 9, "section_width_cm": 342.9, "nozzles_1based": [54, 62]},
+    {"name": "R2", "nozzle_count": 8, "section_width_cm": 304.8, "nozzles_1based": [63, 70]},
+    {"name": "R3", "nozzle_count": 8, "section_width_cm": 304.8, "nozzles_1based": [71, 78]},
+    {"name": "R4", "nozzle_count": 10, "section_width_cm": 381.0, "nozzles_1based": [79, 88]},
+    {"name": "R5", "nozzle_count": 9, "section_width_cm": 342.9, "nozzles_1based": [89, 97]}
+  ],
+  "totals": {
+    "section_count": 11,
+    "nozzle_count": 97
+  },
+  "exactapply_subnets": {
+    "source": "JD Help Center — ExactApply | Subnets, 2026-06-11",
+    "count": 4,
+    "numbering": "Left to right, facing direction of forward travel. Subnet 1 = far left.",
+    "within_subnet_order": "First nozzle body in each subnet is closest to the **center of the machine** (inboard); counts vary per subnet.",
+    "can_buses": {
+      "1": {"jd_bus": "IB3", "label": "far_left", "color_help": "green"},
+      "2": {"jd_bus": "IB4", "label": "left_of_center", "color_help": "yellow"},
+      "3": {"jd_bus": "IB5", "label": "right_of_center", "color_help": "orange"},
+      "4": {"jd_bus": "IB6", "label": "far_right", "color_help": "blue"}
+    },
+    "boundaries_hypothesis": {
+      "status": "hypothesis",
+      "note": "Exact nozzle boundaries per subnet not in Help text. Diagnostics Center nozzle-body status pages unavailable after recent display update (operator 2026-06-11). Using section-frame split below until key-on sniff or NZC traffic analysis refines it.",
+      "candidates": [
+        {
+          "subnet": 1,
+          "sections": ["L5", "L4", "L3", "L2"],
+          "nozzles_1based": [1, 35],
+          "nozzle_count": 35
+        },
+        {
+          "subnet": 2,
+          "sections": ["L1", "C"],
+          "nozzles_1based": [36, 53],
+          "nozzle_count": 18
+        },
+        {
+          "subnet": 3,
+          "sections": ["R1", "R2"],
+          "nozzles_1based": [54, 70],
+          "nozzle_count": 17
+        },
+        {
+          "subnet": 4,
+          "sections": ["R3", "R4", "R5"],
+          "nozzles_1based": [71, 97],
+          "nozzle_count": 27
+        }
+      ]
+    },
+    "within_subnet_indexing": {
+      "note": "Global Work Setup index: nozzle 1 = L5 outboard (left tip). JD subnet-local index: first = inboard (toward centre), then outboard. These are opposite ends on subnet 1.",
+      "addressing_flow": "Key-on: MNC sends addressing on Sync circuit to inboard-most NZC on subnet, then Sync Out → Sync In daisy-chain outboard.",
+      "sync_flow": "After addressing: 15 Hz heartbeat enters inboard NZC, passes in-series outboard on Sync circuit.",
+      "subnet_1_example": {"jd_subnet_first_inboard": "~global 35", "jd_subnet_last_outboard": "global 1"},
+      "subnet_4_example": {"jd_subnet_first_inboard": "~global 71", "jd_subnet_last_outboard": "global 97"}
+    }
+  },
+  "nozzle_body_hardware": {
+    "source": "JD Help Center — Nozzle Body Circuits, Sync Circuit, Addressing Mode, Sync Mode, 2026-06-11",
+    "connector_8pin": {
+      "layout_top_row": ["4", "3", "2", "1"],
+      "layout_bottom_row": ["8", "7", "6", "5"],
+      "pins": {
+        "1": "Sync Out",
+        "2": "CAN Hi Out",
+        "3": "CAN Lo Out",
+        "4": "Ground",
+        "5": "Sync In",
+        "6": "CAN Hi In",
+        "7": "CAN Lo In",
+        "8": "Power (12V)"
+      }
+    },
+    "can_circuit": {
+      "topology": "Daisy-chain pass-through per subnet (CAN Hi/Lo In and Out on each NZC).",
+      "protocol": "CAN to MNC master controller; NZC has internal 12V-powered control unit per body."
+    },
+    "sync_circuit": {
+      "topology": "Series circuit — NOT pass-through like CAN; Sync Out of NZC N → Sync In of NZC N+1.",
+      "functions": {
+        "addressing": "Key-on: each NZC reports physical position on boom; runs per subnet.",
+        "heartbeat": "Sync Mode: 15 Hz signal keeps boom time-aligned for solenoid pulse timing."
+      },
+      "key_on_sequence": ["Addressing Mode (per subnet)", "Sync Mode (15 Hz heartbeat)"]
+    },
+    "failure_modes": {
+      "power_circuit_break": "Broken sync at faulted NZC → all outboard NZCs on that subnet fault (as if Sync Out unplugged).",
+      "diagnostic_hint": "Inboard NZCs on subnet may still be OK; outboard chain dead."
+    }
+  },
+  "control_layers": {
+    "note": "Three independent layers seen on X119 sniff vs boom subnets.",
+    "layers": [
+      {
+        "layer": "section",
+        "count": 11,
+        "bus": "IB1 X119",
+        "controller": "SRC 0xE1 EF00 4F0B0602",
+        "use": "Manual soft-key / IBS section bitmap; unchanged during ASC on headland."
+      },
+      {
+        "layer": "subnet",
+        "count": 4,
+        "bus": "IB3–IB6",
+        "controller": "MNC 0xD4",
+        "use": "ExactApply master; assigns NZC addresses each key-on; MNC CB00 work traffic on IB1."
+      },
+      {
+        "layer": "nozzle",
+        "count": 97,
+        "bus": "IB3–IB6 per subnet",
+        "controller": "NZC 0xCD (ephemeral SA)",
+        "use": "Per-nozzle solenoid timing; overrides section valves when See & Spray / ExactApply active."
+      }
+    ]
+  },
+  "links": {
+    "src_section_map": "library/section_map.json",
+    "spray_decode": "library/SPRAY_DECODE.md"
+  }
+}

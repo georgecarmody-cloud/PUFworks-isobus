@@ -1,0 +1,1852 @@
+{
+  "compiled_at": "2026-06-15T03:13:39.264801+00:00",
+  "live_session": "20260615_103325_616r_transport",
+  "sessions": [
+    {
+      "id": "20260611_110727_616r_observe_1",
+      "frames": 90243
+    },
+    {
+      "id": "20260611_122653_616r_observe_2",
+      "frames": 257276
+    },
+    {
+      "id": "20260611_131017_616r_observe_3_long",
+      "frames": 507020
+    },
+    {
+      "id": "20260611_140009_616r_observe_4_sections",
+      "frames": 85833
+    },
+    {
+      "id": "20260611_141549_616r_R5",
+      "frames": 19515
+    },
+    {
+      "id": "20260611_141657_616r_R4",
+      "frames": 21155
+    },
+    {
+      "id": "20260611_141749_616r_R3",
+      "frames": 22647
+    },
+    {
+      "id": "20260611_141857_616r_R2",
+      "frames": 21619
+    },
+    {
+      "id": "20260611_141943_616r_R1",
+      "frames": 20688
+    },
+    {
+      "id": "20260611_142101_616r_C",
+      "frames": 22609
+    },
+    {
+      "id": "20260611_142254_616r_L1",
+      "frames": 21843
+    },
+    {
+      "id": "20260611_142422_616r_L2",
+      "frames": 22680
+    },
+    {
+      "id": "20260611_142530_616r_L3",
+      "frames": 25063
+    },
+    {
+      "id": "20260611_142619_616r_L4",
+      "frames": 22895
+    },
+    {
+      "id": "20260611_142706_616r_L5",
+      "frames": 23064
+    },
+    {
+      "id": "20260611_144457_616r_dir_R5",
+      "frames": 21082
+    },
+    {
+      "id": "20260611_144631_616r_ibs_R5",
+      "frames": 19790
+    },
+    {
+      "id": "20260611_144749_616r_ibs_R5_fix",
+      "frames": 17403
+    },
+    {
+      "id": "20260611_145005_616r_pair_R5R4",
+      "frames": 22648
+    },
+    {
+      "id": "20260611_145213_616r_asc_headland",
+      "frames": 26589
+    },
+    {
+      "id": "20260611_145346_616r_asc_headland_on",
+      "frames": 19903
+    },
+    {
+      "id": "20260611_145535_616r_spray_asc",
+      "frames": 231405
+    },
+    {
+      "id": "20260611_150407_616r_headland_on",
+      "frames": 22154
+    },
+    {
+      "id": "20260611_150628_616r_dir5_2",
+      "frames": 27311
+    },
+    {
+      "id": "20260611_155018_616r_pair_R5R4R3",
+      "frames": 37358
+    },
+    {
+      "id": "20260611_175457_spray_gps",
+      "frames": 134042
+    },
+    {
+      "id": "20260612_141619_616r_full_short_2",
+      "frames": 58119
+    },
+    {
+      "id": "20260615_095343_616r_spray_live",
+      "frames": 334762
+    },
+    {
+      "id": "20260615_103325_616r_transport",
+      "frames": 652714
+    }
+  ],
+  "mnc_cb00": {
+    "frame_count": 766648,
+    "unique_prefix4": 47,
+    "unique_prefix6": 17438,
+    "top_prefix4": [
+      {
+        "prefix": "03110200",
+        "frames": 37721
+      },
+      {
+        "prefix": "13110200",
+        "frames": 36963
+      },
+      {
+        "prefix": "F3100200",
+        "frames": 36566
+      },
+      {
+        "prefix": "23110200",
+        "frames": 35695
+      },
+      {
+        "prefix": "83110200",
+        "frames": 35244
+      },
+      {
+        "prefix": "33110200",
+        "frames": 35105
+      },
+      {
+        "prefix": "73110200",
+        "frames": 34849
+      },
+      {
+        "prefix": "93110200",
+        "frames": 34045
+      },
+      {
+        "prefix": "63110200",
+        "frames": 33680
+      },
+      {
+        "prefix": "53110200",
+        "frames": 33499
+      },
+      {
+        "prefix": "43110200",
+        "frames": 31768
+      },
+      {
+        "prefix": "1300A500",
+        "frames": 14372
+      },
+      {
+        "prefix": "1300A400",
+        "frames": 14160
+      },
+      {
+        "prefix": "1300A300",
+        "frames": 14000
+      },
+      {
+        "prefix": "1300A200",
+        "frames": 13935
+      },
+      {
+        "prefix": "1300A600",
+        "frames": 13840
+      },
+      {
+        "prefix": "1300A100",
+        "frames": 13623
+      },
+      {
+        "prefix": "1300A700",
+        "frames": 13413
+      },
+      {
+        "prefix": "F3100100",
+        "frames": 13405
+      },
+      {
+        "prefix": "03110100",
+        "frames": 13405
+      },
+      {
+        "prefix": "13110100",
+        "frames": 13404
+      },
+      {
+        "prefix": "33110100",
+        "frames": 13404
+      },
+      {
+        "prefix": "23110100",
+        "frames": 13403
+      },
+      {
+        "prefix": "43110100",
+        "frames": 13403
+      },
+      {
+        "prefix": "53110100",
+        "frames": 13403
+      },
+      {
+        "prefix": "73110100",
+        "frames": 13403
+      },
+      {
+        "prefix": "83110100",
+        "frames": 13403
+      },
+      {
+        "prefix": "13005F01",
+        "frames": 13403
+      },
+      {
+        "prefix": "63110100",
+        "frames": 13402
+      },
+      {
+        "prefix": "93110100",
+        "frames": 13402
+      }
+    ],
+    "suffix_families": [
+      {
+        "suffix_hex": "110200",
+        "frames": 348569,
+        "status": "likely",
+        "role": "spray_active_idle_lane",
+        "notes": "Dominant during application"
+      },
+      {
+        "suffix_hex": "110100",
+        "frames": 134032,
+        "status": "likely",
+        "role": "lane_handshake",
+        "notes": "Secondary family; full_short sessions"
+      },
+      {
+        "suffix_hex": "100200",
+        "frames": 36566,
+        "status": "likely",
+        "role": "lane_alt_state",
+        "notes": "F3100200 idle broadcast family"
+      },
+      {
+        "suffix_hex": "00A500",
+        "frames": 14372,
+        "status": "likely",
+        "role": "asc_turn_variant",
+        "notes": "Headland / turn windows"
+      },
+      {
+        "suffix_hex": "00A400",
+        "frames": 14160,
+        "status": "likely",
+        "role": "asc_turn_variant",
+        "notes": "Headland / turn windows"
+      },
+      {
+        "suffix_hex": "00A300",
+        "frames": 14000,
+        "status": "likely",
+        "role": "asc_turn_variant",
+        "notes": "spray_live slowdown +195\u2013215 s"
+      },
+      {
+        "suffix_hex": "00A200",
+        "frames": 13935,
+        "status": "likely",
+        "role": "transport_asc_variant",
+        "notes": "616r_transport + spray slowdown windows"
+      },
+      {
+        "suffix_hex": "00A600",
+        "frames": 13840,
+        "status": "likely",
+        "role": "asc_turn_variant",
+        "notes": "Headland / turn windows"
+      },
+      {
+        "suffix_hex": "00A100",
+        "frames": 13623,
+        "status": "likely",
+        "role": "transport_asc_variant",
+        "notes": "616r_transport; lighter ASC family vs spray 00A4xx"
+      },
+      {
+        "suffix_hex": "00A700",
+        "frames": 13413,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "100100",
+        "frames": 13405,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "005F01",
+        "frames": 13403,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002801",
+        "frames": 13400,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002500",
+        "frames": 13400,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002501",
+        "frames": 13399,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002601",
+        "frames": 13399,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002701",
+        "frames": 13399,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002201",
+        "frames": 13398,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "008D00",
+        "frames": 13397,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002401",
+        "frames": 13396,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002301",
+        "frames": 13395,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "FFFFFF",
+        "frames": 1334,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "002FE0",
+        "frames": 272,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "0034E0",
+        "frames": 264,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "0030E0",
+        "frames": 227,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "0031E0",
+        "frames": 202,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "0033E0",
+        "frames": 202,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "0032E0",
+        "frames": 188,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      },
+      {
+        "suffix_hex": "0035E0",
+        "frames": 58,
+        "status": "unknown",
+        "role": "unclassified",
+        "notes": ""
+      }
+    ],
+    "lane_byte0_map": [
+      {
+        "lane_byte0": "0x03",
+        "section_name": "L5",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x13",
+        "section_name": "L4",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x23",
+        "section_name": "L3",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x33",
+        "section_name": "L2",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x43",
+        "section_name": "L1",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x53",
+        "section_name": "C",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x63",
+        "section_name": "R1",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x73",
+        "section_name": "R2",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x83",
+        "section_name": "R3",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0x93",
+        "section_name": "R4",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0xA3",
+        "section_name": "R5",
+        "status": "hypothesis"
+      },
+      {
+        "lane_byte0": "0xF3",
+        "section_name": "summary_idle",
+        "status": "likely"
+      },
+      {
+        "lane_byte0": "0xFF",
+        "section_name": "broadcast",
+        "status": "likely"
+      }
+    ],
+    "lane_totals": [
+      {
+        "lane_byte0": "0x13",
+        "section_name": "L4",
+        "status": "likely",
+        "frames": 269712
+      },
+      {
+        "lane_byte0": "0x03",
+        "section_name": "L5",
+        "status": "likely",
+        "frames": 64523
+      },
+      {
+        "lane_byte0": "0xF3",
+        "section_name": "summary_idle",
+        "status": "likely",
+        "frames": 49971
+      },
+      {
+        "lane_byte0": "0x23",
+        "section_name": "L3",
+        "status": "likely",
+        "frames": 49098
+      },
+      {
+        "lane_byte0": "0x83",
+        "section_name": "R3",
+        "status": "likely",
+        "frames": 48647
+      },
+      {
+        "lane_byte0": "0x33",
+        "section_name": "L2",
+        "status": "likely",
+        "frames": 48509
+      },
+      {
+        "lane_byte0": "0x73",
+        "section_name": "R2",
+        "status": "likely",
+        "frames": 48252
+      },
+      {
+        "lane_byte0": "0x93",
+        "section_name": "R4",
+        "status": "likely",
+        "frames": 47447
+      },
+      {
+        "lane_byte0": "0x63",
+        "section_name": "R1",
+        "status": "likely",
+        "frames": 47082
+      },
+      {
+        "lane_byte0": "0x53",
+        "section_name": "C",
+        "status": "likely",
+        "frames": 46902
+      },
+      {
+        "lane_byte0": "0x43",
+        "section_name": "L1",
+        "status": "likely",
+        "frames": 45171
+      },
+      {
+        "lane_byte0": "0xFF",
+        "section_name": "broadcast",
+        "status": "likely",
+        "frames": 1334
+      }
+    ],
+    "transition_count": 765048,
+    "sample_transitions": [
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247082,
+        "from": "F3100200",
+        "to": "03110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247083,
+        "from": "03110200",
+        "to": "13110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247084,
+        "from": "13110200",
+        "to": "23110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247085,
+        "from": "23110200",
+        "to": "33110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247086,
+        "from": "33110200",
+        "to": "53110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247087,
+        "from": "53110200",
+        "to": "63110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247087,
+        "from": "63110200",
+        "to": "83110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247088,
+        "from": "83110200",
+        "to": "93110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247095,
+        "from": "93110200",
+        "to": "F3100200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247095,
+        "from": "F3100200",
+        "to": "03110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247096,
+        "from": "03110200",
+        "to": "13110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247097,
+        "from": "13110200",
+        "to": "23110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247098,
+        "from": "23110200",
+        "to": "33110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247098,
+        "from": "33110200",
+        "to": "53110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247099,
+        "from": "53110200",
+        "to": "63110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247100,
+        "from": "63110200",
+        "to": "83110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247101,
+        "from": "83110200",
+        "to": "93110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247108,
+        "from": "93110200",
+        "to": "13002201"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247109,
+        "from": "13002201",
+        "to": "13002301"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247109,
+        "from": "13002301",
+        "to": "13002401"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247109,
+        "from": "13002401",
+        "to": "13002501"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247110,
+        "from": "13002501",
+        "to": "F3100100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247110,
+        "from": "F3100100",
+        "to": "03110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247111,
+        "from": "03110100",
+        "to": "13110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247111,
+        "from": "13110100",
+        "to": "23110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247111,
+        "from": "23110100",
+        "to": "33110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247112,
+        "from": "33110100",
+        "to": "43110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247112,
+        "from": "43110200",
+        "to": "43110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247112,
+        "from": "43110100",
+        "to": "53110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247113,
+        "from": "53110100",
+        "to": "63110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247113,
+        "from": "63110100",
+        "to": "73110200"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247114,
+        "from": "73110200",
+        "to": "73110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247114,
+        "from": "73110100",
+        "to": "83110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247114,
+        "from": "83110100",
+        "to": "93110100"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247123,
+        "from": "93110100",
+        "to": "03008D00"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247123,
+        "from": "03008D00",
+        "to": "13002601"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247124,
+        "from": "13002601",
+        "to": "13002701"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247124,
+        "from": "13002701",
+        "to": "13002801"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247124,
+        "from": "13002801",
+        "to": "13002500"
+      },
+      {
+        "session": "20260611_110727_616r_observe_1",
+        "ts_ms": 1781147247139,
+        "from": "13002500",
+        "to": "13005F01"
+      }
+    ],
+    "grammar": {
+      "prefix4": "byte0 lane key + bytes1-3 state suffix (6 hex chars)",
+      "byte0": "0x03 + n*0x10 per boom lane (11 lanes + 0xF3 special + 0xFF bcast)",
+      "suffix_110200": "dominant spray / lane-active family",
+      "suffix_00A4xx": "ASC / turn / headland variant family",
+      "asc_on_cascade": "93110200 -> 83110200 -> ... descending byte0 during section re-entry"
+    }
+  },
+  "jd_sec_cb00": {
+    "frame_count": 94958,
+    "unique_prefix4": 9,
+    "top_prefix4": [
+      {
+        "prefix": "13002201",
+        "frames": 13094
+      },
+      {
+        "prefix": "13002301",
+        "frames": 13091
+      },
+      {
+        "prefix": "13002701",
+        "frames": 13088
+      },
+      {
+        "prefix": "13002601",
+        "frames": 13072
+      },
+      {
+        "prefix": "13002501",
+        "frames": 13070
+      },
+      {
+        "prefix": "13002401",
+        "frames": 13067
+      },
+      {
+        "prefix": "13002801",
+        "frames": 12994
+      },
+      {
+        "prefix": "13009E00",
+        "frames": 2144
+      },
+      {
+        "prefix": "FEFFFFFF",
+        "frames": 1338
+      }
+    ],
+    "notes": "Compare prefix families to MNC 0xD4 \u2014 often mirrored or offset timing"
+  },
+  "src_ef00": {
+    "frame_count": 227850,
+    "unique_prefix4": 17,
+    "catalog": [
+      {
+        "prefix": "4F0B06",
+        "frames": 51801,
+        "pct_of_src_ef00": 22.73,
+        "sample": "4F0B060002000000",
+        "status": "confirmed",
+        "role": "section_control",
+        "decode": "bitmap + FF cmds",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "F70400",
+        "frames": 33498,
+        "pct_of_src_ef00": 14.7,
+        "sample": "F70400FFFFFFFFFF",
+        "status": "unknown",
+        "role": "high_volume_idle",
+        "decode": "F70400FFFFFFFFFF dominant idle family",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "F00DFF",
+        "frames": 26800,
+        "pct_of_src_ef00": 11.76,
+        "sample": "F00DFFFFFFFFFFFF",
+        "status": "hypothesis",
+        "role": "idle_marker",
+        "decode": "F00DFFFFFFFFFFFF static idle",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "F10E4C",
+        "frames": 18495,
+        "pct_of_src_ef00": 8.12,
+        "sample": "F10E4CFFF4F624FF",
+        "status": "likely",
+        "role": "pressure_telemetry_rate_mode",
+        "decode": "F10E family rate-mode; byte6-7 counter (~13% EF00 in rate sessions)",
+        "sessions_seen": 24
+      },
+      {
+        "prefix": "F43401",
+        "frames": 18162,
+        "pct_of_src_ef00": 7.97,
+        "sample": "F43401000100FFFF",
+        "status": "confirmed",
+        "role": "rate_pressure_mode",
+        "decode": "BE u16[3:5]/4.096 kPa",
+        "sessions_seen": 26
+      },
+      {
+        "prefix": "4F0101",
+        "frames": 12945,
+        "pct_of_src_ef00": 5.68,
+        "sample": "4F01015802002AE1",
+        "status": "confirmed",
+        "role": "target_rate_l_ha",
+        "decode": "u16[3:5]/10",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "4F1401",
+        "frames": 12944,
+        "pct_of_src_ef00": 5.68,
+        "sample": "4F14010000002A00",
+        "status": "likely",
+        "role": "flow_or_line_metric",
+        "decode": "u16[3:5] churn ~1Hz during spray",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "4F3601",
+        "frames": 12944,
+        "pct_of_src_ef00": 5.68,
+        "sample": "4F3601707C36002D",
+        "status": "likely",
+        "role": "paired_flow_metric",
+        "decode": "u16[3:5]+ trailing u16; pairs with 4F1401",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "F10E1C",
+        "frames": 10800,
+        "pct_of_src_ef00": 4.74,
+        "sample": "F10E1CFFF47500FF",
+        "status": "confirmed",
+        "role": "pressure_telemetry_transport_mode",
+        "decode": "F10E family transport-mode; pairs with F43400; replaces F10E4C/5C off boom \u2014 616r_transport 2026-06-15",
+        "sessions_seen": 3
+      },
+      {
+        "prefix": "F225FA",
+        "frames": 9059,
+        "pct_of_src_ef00": 3.98,
+        "sample": "F225FAFFFFFFFFFF",
+        "status": "hypothesis",
+        "role": "session_marker",
+        "decode": "F225FAFFFFFFFFFF bookend bursts",
+        "sessions_seen": 26
+      },
+      {
+        "prefix": "F43400",
+        "frames": 8639,
+        "pct_of_src_ef00": 3.79,
+        "sample": "F43400100000FFFF",
+        "status": "confirmed",
+        "role": "transport_mode_selector",
+        "decode": "Transport counterpart to F43401; BE u16[3:5] static ~4096 (0x1000); dominant in 616r_transport \u2014 no kPa spray path",
+        "sessions_seen": 3
+      },
+      {
+        "prefix": "F22500",
+        "frames": 4340,
+        "pct_of_src_ef00": 1.9,
+        "sample": "F22500FFFFFFFFFF",
+        "status": "likely",
+        "role": "transport_idle_marker",
+        "decode": "F22500FFFFFFFFFF; transport sessions alongside F43400/F10E1C",
+        "sessions_seen": 5
+      },
+      {
+        "prefix": "F10E5C",
+        "frames": 4145,
+        "pct_of_src_ef00": 1.82,
+        "sample": "F10E5CFFF4AB01FF",
+        "status": "confirmed",
+        "role": "pressure_telemetry_pressure_mode",
+        "decode": "F10E family pressure-mode (1000 kPa); replaces F10E4C when F43401 kPa active \u2014 spray_live 2026-06-15",
+        "sessions_seen": 2
+      },
+      {
+        "prefix": "4F1C01",
+        "frames": 2677,
+        "pct_of_src_ef00": 1.17,
+        "sample": "4F1C013B00002BE1",
+        "status": "likely",
+        "role": "aux_spray_metric",
+        "decode": "u16[3:5] occasional burst",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "F009FF",
+        "frames": 541,
+        "pct_of_src_ef00": 0.24,
+        "sample": "F009FFFFFFFFFFFF",
+        "status": "hypothesis",
+        "role": "idle_marker",
+        "decode": "F009FFFFFFFFFFFF sporadic",
+        "sessions_seen": 29
+      },
+      {
+        "prefix": "F10E0C",
+        "frames": 57,
+        "pct_of_src_ef00": 0.03,
+        "sample": "F10E0CFFF40024FF",
+        "status": "unknown",
+        "role": "unclassified",
+        "decode": "",
+        "sessions_seen": 2
+      },
+      {
+        "prefix": "4F0601",
+        "frames": 3,
+        "pct_of_src_ef00": 0.0,
+        "sample": "4F060100FF00FFFF",
+        "status": "hypothesis",
+        "role": "master_switch",
+        "decode": "FF00 off / FF01 on",
+        "sessions_seen": 2
+      }
+    ],
+    "coverage_known_pct": 69.3
+  },
+  "mnc_ef00": {
+    "frame_count": 161275,
+    "top_prefix6": [
+      {
+        "prefix": "4F0B03",
+        "frames": 100231,
+        "sample": "4F0B030002FFFFFF"
+      },
+      {
+        "prefix": "4F88FE",
+        "frames": 12947,
+        "sample": "4F88FE01140B0636"
+      },
+      {
+        "prefix": "F68000",
+        "frames": 7915,
+        "sample": "F680000000000000"
+      },
+      {
+        "prefix": "F681BE",
+        "frames": 5689,
+        "sample": "F681BE0A00000001"
+      },
+      {
+        "prefix": "4F0701",
+        "frames": 2353,
+        "sample": "4F0701FFFFFF2AE1"
+      },
+      {
+        "prefix": "F00DFF",
+        "frames": 540,
+        "sample": "F00DFFFFFFFFFFFF"
+      },
+      {
+        "prefix": "F434FF",
+        "frames": 537,
+        "sample": "F434FFFFFFFF0101"
+      },
+      {
+        "prefix": "F68114",
+        "frames": 245,
+        "sample": "F681140B00000001"
+      },
+      {
+        "prefix": "F68100",
+        "frames": 142,
+        "sample": "F681000001000001"
+      },
+      {
+        "prefix": "F68040",
+        "frames": 134,
+        "sample": "F680400300000000"
+      },
+      {
+        "prefix": "F68048",
+        "frames": 111,
+        "sample": "F680480300000000"
+      },
+      {
+        "prefix": "F68044",
+        "frames": 111,
+        "sample": "F680440400000000"
+      },
+      {
+        "prefix": "F680D7",
+        "frames": 108,
+        "sample": "F680D70300000000"
+      },
+      {
+        "prefix": "F6804E",
+        "frames": 106,
+        "sample": "F6804E0400000000"
+      },
+      {
+        "prefix": "F68041",
+        "frames": 105,
+        "sample": "F680410400000000"
+      },
+      {
+        "prefix": "F681BD",
+        "frames": 102,
+        "sample": "F681BD0A00000001"
+      },
+      {
+        "prefix": "F680B9",
+        "frames": 101,
+        "sample": "F680B90200000000"
+      },
+      {
+        "prefix": "F680D5",
+        "frames": 101,
+        "sample": "F680D50200000000"
+      },
+      {
+        "prefix": "F68045",
+        "frames": 101,
+        "sample": "F680450300000000"
+      },
+      {
+        "prefix": "F680DA",
+        "frames": 101,
+        "sample": "F680DA0300000000"
+      },
+      {
+        "prefix": "F6808C",
+        "frames": 99,
+        "sample": "F6808C0300000000"
+      },
+      {
+        "prefix": "F68051",
+        "frames": 99,
+        "sample": "F680510400000000"
+      },
+      {
+        "prefix": "F681BF",
+        "frames": 97,
+        "sample": "F681BF0A00000001"
+      },
+      {
+        "prefix": "F68199",
+        "frames": 97,
+        "sample": "F681990D00000001"
+      },
+      {
+        "prefix": "F68043",
+        "frames": 97,
+        "sample": "F680430300000000"
+      }
+    ]
+  },
+  "roster": {
+    "node_count": 22,
+    "unknown_sas": [
+      {
+        "sa_hex": "0x25",
+        "sa_dec": 37,
+        "frames": 2202
+      },
+      {
+        "sa_hex": "0x2A",
+        "sa_dec": 42,
+        "frames": 1960
+      },
+      {
+        "sa_hex": "0x91",
+        "sa_dec": 145,
+        "frames": 205
+      },
+      {
+        "sa_hex": "0xA1",
+        "sa_dec": 161,
+        "frames": 563
+      },
+      {
+        "sa_hex": "0xBE",
+        "sa_dec": 190,
+        "frames": 55
+      },
+      {
+        "sa_hex": "0xD2",
+        "sa_dec": 210,
+        "frames": 941
+      },
+      {
+        "sa_hex": "0xED",
+        "sa_dec": 237,
+        "frames": 2338
+      },
+      {
+        "sa_hex": "0xEE",
+        "sa_dec": 238,
+        "frames": 2948
+      },
+      {
+        "sa_hex": "0xF8",
+        "sa_dec": 248,
+        "frames": 28
+      },
+      {
+        "sa_hex": "0xFB",
+        "sa_dec": 251,
+        "frames": 2987
+      }
+    ],
+    "nodes": [
+      {
+        "sa_hex": "0xD4",
+        "sa_dec": 212,
+        "label": "MNC",
+        "full_label": "MNC/0xD4/SA212",
+        "in_roster": true,
+        "frames": 1020593,
+        "top_pgns": [
+          {
+            "pgn": "0xCB00",
+            "frames": 766648
+          },
+          {
+            "pgn": "0xEF00",
+            "frames": 161275
+          },
+          {
+            "pgn": "0xE700",
+            "frames": 43844
+          },
+          {
+            "pgn": "0xFFF4",
+            "frames": 22336
+          },
+          {
+            "pgn": "0xFF12",
+            "frames": 22335
+          },
+          {
+            "pgn": "0xFFFB",
+            "frames": 1678
+          },
+          {
+            "pgn": "0xFFFA",
+            "frames": 1388
+          },
+          {
+            "pgn": "0xEB00",
+            "frames": 804
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xE1",
+        "sa_dec": 225,
+        "label": "SRC",
+        "full_label": "SRC/0xE1/SA225",
+        "in_roster": true,
+        "frames": 646201,
+        "top_pgns": [
+          {
+            "pgn": "0xEF00",
+            "frames": 227850
+          },
+          {
+            "pgn": "0xFFF8",
+            "frames": 107184
+          },
+          {
+            "pgn": "0xFFFB",
+            "frames": 53596
+          },
+          {
+            "pgn": "0xE700",
+            "frames": 29224
+          },
+          {
+            "pgn": "0xFE5A",
+            "frames": 26798
+          },
+          {
+            "pgn": "0xFF26",
+            "frames": 26797
+          },
+          {
+            "pgn": "0xFF28",
+            "frames": 26796
+          },
+          {
+            "pgn": "0xFFFE",
+            "frames": 26794
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xF0",
+        "sa_dec": 240,
+        "label": "DISP",
+        "full_label": "DISP/0xF0/SA240",
+        "in_roster": true,
+        "frames": 311783,
+        "top_pgns": [
+          {
+            "pgn": "0xEF00",
+            "frames": 84514
+          },
+          {
+            "pgn": "0xFFF8",
+            "frames": 58958
+          },
+          {
+            "pgn": "0xFFF4",
+            "frames": 32150
+          },
+          {
+            "pgn": "0xFFFE",
+            "frames": 29481
+          },
+          {
+            "pgn": "0xAC00",
+            "frames": 26798
+          },
+          {
+            "pgn": "0xFEF1",
+            "frames": 26797
+          },
+          {
+            "pgn": "0xF022",
+            "frames": 26796
+          },
+          {
+            "pgn": "0xFFFA",
+            "frames": 8044
+          }
+        ]
+      },
+      {
+        "sa_hex": "0x26",
+        "sa_dec": 38,
+        "label": "DISP",
+        "full_label": "DISP/0x26/SA038",
+        "in_roster": true,
+        "frames": 224433,
+        "top_pgns": [
+          {
+            "pgn": "0xE600",
+            "frames": 217553
+          },
+          {
+            "pgn": "0xFFFE",
+            "frames": 3210
+          },
+          {
+            "pgn": "0xFD07",
+            "frames": 2682
+          },
+          {
+            "pgn": "0xEC00",
+            "frames": 653
+          },
+          {
+            "pgn": "0xFEE6",
+            "frames": 267
+          },
+          {
+            "pgn": "0xEA00",
+            "frames": 47
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 17
+          },
+          {
+            "pgn": "0xEB00",
+            "frames": 3
+          }
+        ]
+      },
+      {
+        "sa_hex": "0x1C",
+        "sa_dec": 28,
+        "label": "ATX",
+        "full_label": "ATX/0x1C/SA028",
+        "in_roster": true,
+        "frames": 151285,
+        "top_pgns": [
+          {
+            "pgn": "0xFFFF",
+            "frames": 96464
+          },
+          {
+            "pgn": "0xFEE8",
+            "frames": 13395
+          },
+          {
+            "pgn": "0xFEF3",
+            "frames": 13394
+          },
+          {
+            "pgn": "0xFEE6",
+            "frames": 13393
+          },
+          {
+            "pgn": "0xFAB3",
+            "frames": 5362
+          },
+          {
+            "pgn": "0xE700",
+            "frames": 4599
+          },
+          {
+            "pgn": "0xF010",
+            "frames": 2682
+          },
+          {
+            "pgn": "0xEB00",
+            "frames": 1325
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xCD",
+        "sa_dec": 205,
+        "label": "NZC",
+        "full_label": "NZC/0xCD/SA205",
+        "in_roster": true,
+        "frames": 132652,
+        "top_pgns": [
+          {
+            "pgn": "0xFFF4",
+            "frames": 66985
+          },
+          {
+            "pgn": "0xE700",
+            "frames": 30809
+          },
+          {
+            "pgn": "0xEF00",
+            "frames": 29474
+          },
+          {
+            "pgn": "0xFE40",
+            "frames": 2685
+          },
+          {
+            "pgn": "0xFFFA",
+            "frames": 2682
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 17
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xF7",
+        "sa_dec": 247,
+        "label": "JD_SEC",
+        "full_label": "JD_SEC/0xF7/SA247",
+        "in_roster": true,
+        "frames": 94975,
+        "top_pgns": [
+          {
+            "pgn": "0xCB00",
+            "frames": 94958
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 17
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xBA",
+        "sa_dec": 186,
+        "label": "AUX_E700",
+        "full_label": "AUX_E700/0xBA/SA186",
+        "in_roster": true,
+        "frames": 94408,
+        "top_pgns": [
+          {
+            "pgn": "0xE700",
+            "frames": 93665
+          },
+          {
+            "pgn": "0xD900",
+            "frames": 429
+          },
+          {
+            "pgn": "0xEF00",
+            "frames": 266
+          },
+          {
+            "pgn": "0xD700",
+            "frames": 36
+          },
+          {
+            "pgn": "0xFD32",
+            "frames": 6
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 6
+          }
+        ]
+      },
+      {
+        "sa_hex": "0x8A",
+        "sa_dec": 138,
+        "label": "BHC",
+        "full_label": "BHC/0x8A/SA138",
+        "in_roster": true,
+        "frames": 53610,
+        "top_pgns": [
+          {
+            "pgn": "0xFED9",
+            "frames": 26797
+          },
+          {
+            "pgn": "0xFF23",
+            "frames": 26796
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 17
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xD5",
+        "sa_dec": 213,
+        "label": "AUX_EF00",
+        "full_label": "AUX_EF00/0xD5/SA213",
+        "in_roster": true,
+        "frames": 44105,
+        "top_pgns": [
+          {
+            "pgn": "0xEF00",
+            "frames": 26800
+          },
+          {
+            "pgn": "0xE700",
+            "frames": 10849
+          },
+          {
+            "pgn": "0xFFFA",
+            "frames": 5370
+          },
+          {
+            "pgn": "0xFFFE",
+            "frames": 1074
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 6
+          },
+          {
+            "pgn": "0xFFFB",
+            "frames": 6
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xB9",
+        "sa_dec": 185,
+        "label": "AUX_E700",
+        "full_label": "AUX_E700/0xB9/SA185",
+        "in_roster": true,
+        "frames": 14706,
+        "top_pgns": [
+          {
+            "pgn": "0xCB00",
+            "frames": 14700
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 6
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xCC",
+        "sa_dec": 204,
+        "label": "GRC",
+        "full_label": "GRC/0xCC/SA204",
+        "in_roster": true,
+        "frames": 6452,
+        "top_pgns": [
+          {
+            "pgn": "0xFE47",
+            "frames": 2681
+          },
+          {
+            "pgn": "0xEF00",
+            "frames": 2681
+          },
+          {
+            "pgn": "0xEB00",
+            "frames": 805
+          },
+          {
+            "pgn": "0xEC00",
+            "frames": 268
+          },
+          {
+            "pgn": "0xFF09",
+            "frames": 17
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xFB",
+        "sa_dec": 251,
+        "label": "SA251",
+        "full_label": "0xFB/SA251",
+        "in_roster": false,
+        "frames": 2987,
+        "top_pgns": [
+          {
+            "pgn": "0xE700",
+            "frames": 2337
+          },
+          {
+            "pgn": "0xEF00",
+            "frames": 538
+          },
+          {
+            "pgn": "0xEA00",
+            "frames": 93
+          },
+          {
+            "pgn": "0xF010",
+            "frames": 11
+          },
+          {
+            "pgn": "0xD800",
+            "frames": 4
+          },
+          {
+            "pgn": "0xEB00",
+            "frames": 3
+          },
+          {
+            "pgn": "0xEC00",
+            "frames": 1
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xEE",
+        "sa_dec": 238,
+        "label": "SA238",
+        "full_label": "0xEE/SA238",
+        "in_roster": false,
+        "frames": 2948,
+        "top_pgns": [
+          {
+            "pgn": "0xEF00",
+            "frames": 2680
+          },
+          {
+            "pgn": "0xEA00",
+            "frames": 268
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xED",
+        "sa_dec": 237,
+        "label": "SA237",
+        "full_label": "0xED/SA237",
+        "in_roster": false,
+        "frames": 2338,
+        "top_pgns": [
+          {
+            "pgn": "0xE700",
+            "frames": 2338
+          }
+        ]
+      },
+      {
+        "sa_hex": "0x25",
+        "sa_dec": 37,
+        "label": "SA037",
+        "full_label": "0x25/SA037",
+        "in_roster": false,
+        "frames": 2202,
+        "top_pgns": [
+          {
+            "pgn": "0xEF00",
+            "frames": 1583
+          },
+          {
+            "pgn": "0xFFFA",
+            "frames": 563
+          },
+          {
+            "pgn": "0xFEF7",
+            "frames": 56
+          }
+        ]
+      },
+      {
+        "sa_hex": "0x2A",
+        "sa_dec": 42,
+        "label": "SA042",
+        "full_label": "0x2A/SA042",
+        "in_roster": false,
+        "frames": 1960,
+        "top_pgns": [
+          {
+            "pgn": "0xFFF4",
+            "frames": 848
+          },
+          {
+            "pgn": "0xFFF5",
+            "frames": 559
+          },
+          {
+            "pgn": "0xAD00",
+            "frames": 282
+          },
+          {
+            "pgn": "0xEF00",
+            "frames": 271
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xD2",
+        "sa_dec": 210,
+        "label": "SA210",
+        "full_label": "0xD2/SA210",
+        "in_roster": false,
+        "frames": 941,
+        "top_pgns": [
+          {
+            "pgn": "0xEF00",
+            "frames": 884
+          },
+          {
+            "pgn": "0xFFFF",
+            "frames": 56
+          },
+          {
+            "pgn": "0xFFFE",
+            "frames": 1
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xA1",
+        "sa_dec": 161,
+        "label": "SA161",
+        "full_label": "0xA1/SA161",
+        "in_roster": false,
+        "frames": 563,
+        "top_pgns": [
+          {
+            "pgn": "0xFF22",
+            "frames": 563
+          }
+        ]
+      },
+      {
+        "sa_hex": "0x91",
+        "sa_dec": 145,
+        "label": "SA145",
+        "full_label": "0x91/SA145",
+        "in_roster": false,
+        "frames": 205,
+        "top_pgns": [
+          {
+            "pgn": "0xE600",
+            "frames": 173
+          },
+          {
+            "pgn": "0xEC00",
+            "frames": 32
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xBE",
+        "sa_dec": 190,
+        "label": "SA190",
+        "full_label": "0xBE/SA190",
+        "in_roster": false,
+        "frames": 55,
+        "top_pgns": [
+          {
+            "pgn": "0xC400",
+            "frames": 55
+          }
+        ]
+      },
+      {
+        "sa_hex": "0xF8",
+        "sa_dec": 248,
+        "label": "SA248",
+        "full_label": "0xF8/SA248",
+        "in_roster": false,
+        "frames": 28,
+        "top_pgns": [
+          {
+            "pgn": "0xAB00",
+            "frames": 28
+          }
+        ]
+      }
+    ]
+  }
+}

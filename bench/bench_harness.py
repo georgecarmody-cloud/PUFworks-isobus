@@ -98,7 +98,10 @@ def main():
     seq = 0
 
     try:
-        time.sleep(1.0)
+        time.sleep(0.5)
+        t_wait = time.time()
+        while get_tel("control_authority") is None and time.time() - t_wait < 3.0:
+            time.sleep(0.1)
 
         # --- T1: boot OBSERVE ---
         print("[bench] T1 boot state")

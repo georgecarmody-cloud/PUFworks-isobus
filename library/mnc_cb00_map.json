@@ -1,0 +1,723 @@
+{
+  "frame_count": 766648,
+  "unique_prefix4": 47,
+  "unique_prefix6": 17438,
+  "top_prefix4": [
+    {
+      "prefix": "03110200",
+      "frames": 37721
+    },
+    {
+      "prefix": "13110200",
+      "frames": 36963
+    },
+    {
+      "prefix": "F3100200",
+      "frames": 36566
+    },
+    {
+      "prefix": "23110200",
+      "frames": 35695
+    },
+    {
+      "prefix": "83110200",
+      "frames": 35244
+    },
+    {
+      "prefix": "33110200",
+      "frames": 35105
+    },
+    {
+      "prefix": "73110200",
+      "frames": 34849
+    },
+    {
+      "prefix": "93110200",
+      "frames": 34045
+    },
+    {
+      "prefix": "63110200",
+      "frames": 33680
+    },
+    {
+      "prefix": "53110200",
+      "frames": 33499
+    },
+    {
+      "prefix": "43110200",
+      "frames": 31768
+    },
+    {
+      "prefix": "1300A500",
+      "frames": 14372
+    },
+    {
+      "prefix": "1300A400",
+      "frames": 14160
+    },
+    {
+      "prefix": "1300A300",
+      "frames": 14000
+    },
+    {
+      "prefix": "1300A200",
+      "frames": 13935
+    },
+    {
+      "prefix": "1300A600",
+      "frames": 13840
+    },
+    {
+      "prefix": "1300A100",
+      "frames": 13623
+    },
+    {
+      "prefix": "1300A700",
+      "frames": 13413
+    },
+    {
+      "prefix": "F3100100",
+      "frames": 13405
+    },
+    {
+      "prefix": "03110100",
+      "frames": 13405
+    },
+    {
+      "prefix": "13110100",
+      "frames": 13404
+    },
+    {
+      "prefix": "33110100",
+      "frames": 13404
+    },
+    {
+      "prefix": "23110100",
+      "frames": 13403
+    },
+    {
+      "prefix": "43110100",
+      "frames": 13403
+    },
+    {
+      "prefix": "53110100",
+      "frames": 13403
+    },
+    {
+      "prefix": "73110100",
+      "frames": 13403
+    },
+    {
+      "prefix": "83110100",
+      "frames": 13403
+    },
+    {
+      "prefix": "13005F01",
+      "frames": 13403
+    },
+    {
+      "prefix": "63110100",
+      "frames": 13402
+    },
+    {
+      "prefix": "93110100",
+      "frames": 13402
+    }
+  ],
+  "suffix_families": [
+    {
+      "suffix_hex": "110200",
+      "frames": 348569,
+      "status": "likely",
+      "role": "spray_active_idle_lane",
+      "notes": "Dominant during application"
+    },
+    {
+      "suffix_hex": "110100",
+      "frames": 134032,
+      "status": "likely",
+      "role": "lane_handshake",
+      "notes": "Secondary family; full_short sessions"
+    },
+    {
+      "suffix_hex": "100200",
+      "frames": 36566,
+      "status": "likely",
+      "role": "lane_alt_state",
+      "notes": "F3100200 idle broadcast family"
+    },
+    {
+      "suffix_hex": "00A500",
+      "frames": 14372,
+      "status": "likely",
+      "role": "asc_turn_variant",
+      "notes": "Headland / turn windows"
+    },
+    {
+      "suffix_hex": "00A400",
+      "frames": 14160,
+      "status": "likely",
+      "role": "asc_turn_variant",
+      "notes": "Headland / turn windows"
+    },
+    {
+      "suffix_hex": "00A300",
+      "frames": 14000,
+      "status": "likely",
+      "role": "asc_turn_variant",
+      "notes": "spray_live slowdown +195\u2013215 s"
+    },
+    {
+      "suffix_hex": "00A200",
+      "frames": 13935,
+      "status": "likely",
+      "role": "transport_asc_variant",
+      "notes": "616r_transport + spray slowdown windows"
+    },
+    {
+      "suffix_hex": "00A600",
+      "frames": 13840,
+      "status": "likely",
+      "role": "asc_turn_variant",
+      "notes": "Headland / turn windows"
+    },
+    {
+      "suffix_hex": "00A100",
+      "frames": 13623,
+      "status": "likely",
+      "role": "transport_asc_variant",
+      "notes": "616r_transport; lighter ASC family vs spray 00A4xx"
+    },
+    {
+      "suffix_hex": "00A700",
+      "frames": 13413,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "100100",
+      "frames": 13405,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "005F01",
+      "frames": 13403,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002801",
+      "frames": 13400,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002500",
+      "frames": 13400,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002501",
+      "frames": 13399,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002601",
+      "frames": 13399,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002701",
+      "frames": 13399,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002201",
+      "frames": 13398,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "008D00",
+      "frames": 13397,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002401",
+      "frames": 13396,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002301",
+      "frames": 13395,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "FFFFFF",
+      "frames": 1334,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "002FE0",
+      "frames": 272,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "0034E0",
+      "frames": 264,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "0030E0",
+      "frames": 227,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "0031E0",
+      "frames": 202,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "0033E0",
+      "frames": 202,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "0032E0",
+      "frames": 188,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    },
+    {
+      "suffix_hex": "0035E0",
+      "frames": 58,
+      "status": "unknown",
+      "role": "unclassified",
+      "notes": ""
+    }
+  ],
+  "lane_byte0_map": [
+    {
+      "lane_byte0": "0x03",
+      "section_name": "L5",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x13",
+      "section_name": "L4",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x23",
+      "section_name": "L3",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x33",
+      "section_name": "L2",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x43",
+      "section_name": "L1",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x53",
+      "section_name": "C",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x63",
+      "section_name": "R1",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x73",
+      "section_name": "R2",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x83",
+      "section_name": "R3",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0x93",
+      "section_name": "R4",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0xA3",
+      "section_name": "R5",
+      "status": "hypothesis"
+    },
+    {
+      "lane_byte0": "0xF3",
+      "section_name": "summary_idle",
+      "status": "likely"
+    },
+    {
+      "lane_byte0": "0xFF",
+      "section_name": "broadcast",
+      "status": "likely"
+    }
+  ],
+  "lane_totals": [
+    {
+      "lane_byte0": "0x13",
+      "section_name": "L4",
+      "status": "likely",
+      "frames": 269712
+    },
+    {
+      "lane_byte0": "0x03",
+      "section_name": "L5",
+      "status": "likely",
+      "frames": 64523
+    },
+    {
+      "lane_byte0": "0xF3",
+      "section_name": "summary_idle",
+      "status": "likely",
+      "frames": 49971
+    },
+    {
+      "lane_byte0": "0x23",
+      "section_name": "L3",
+      "status": "likely",
+      "frames": 49098
+    },
+    {
+      "lane_byte0": "0x83",
+      "section_name": "R3",
+      "status": "likely",
+      "frames": 48647
+    },
+    {
+      "lane_byte0": "0x33",
+      "section_name": "L2",
+      "status": "likely",
+      "frames": 48509
+    },
+    {
+      "lane_byte0": "0x73",
+      "section_name": "R2",
+      "status": "likely",
+      "frames": 48252
+    },
+    {
+      "lane_byte0": "0x93",
+      "section_name": "R4",
+      "status": "likely",
+      "frames": 47447
+    },
+    {
+      "lane_byte0": "0x63",
+      "section_name": "R1",
+      "status": "likely",
+      "frames": 47082
+    },
+    {
+      "lane_byte0": "0x53",
+      "section_name": "C",
+      "status": "likely",
+      "frames": 46902
+    },
+    {
+      "lane_byte0": "0x43",
+      "section_name": "L1",
+      "status": "likely",
+      "frames": 45171
+    },
+    {
+      "lane_byte0": "0xFF",
+      "section_name": "broadcast",
+      "status": "likely",
+      "frames": 1334
+    }
+  ],
+  "transition_count": 765048,
+  "sample_transitions": [
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247082,
+      "from": "F3100200",
+      "to": "03110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247083,
+      "from": "03110200",
+      "to": "13110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247084,
+      "from": "13110200",
+      "to": "23110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247085,
+      "from": "23110200",
+      "to": "33110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247086,
+      "from": "33110200",
+      "to": "53110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247087,
+      "from": "53110200",
+      "to": "63110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247087,
+      "from": "63110200",
+      "to": "83110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247088,
+      "from": "83110200",
+      "to": "93110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247095,
+      "from": "93110200",
+      "to": "F3100200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247095,
+      "from": "F3100200",
+      "to": "03110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247096,
+      "from": "03110200",
+      "to": "13110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247097,
+      "from": "13110200",
+      "to": "23110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247098,
+      "from": "23110200",
+      "to": "33110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247098,
+      "from": "33110200",
+      "to": "53110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247099,
+      "from": "53110200",
+      "to": "63110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247100,
+      "from": "63110200",
+      "to": "83110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247101,
+      "from": "83110200",
+      "to": "93110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247108,
+      "from": "93110200",
+      "to": "13002201"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247109,
+      "from": "13002201",
+      "to": "13002301"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247109,
+      "from": "13002301",
+      "to": "13002401"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247109,
+      "from": "13002401",
+      "to": "13002501"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247110,
+      "from": "13002501",
+      "to": "F3100100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247110,
+      "from": "F3100100",
+      "to": "03110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247111,
+      "from": "03110100",
+      "to": "13110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247111,
+      "from": "13110100",
+      "to": "23110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247111,
+      "from": "23110100",
+      "to": "33110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247112,
+      "from": "33110100",
+      "to": "43110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247112,
+      "from": "43110200",
+      "to": "43110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247112,
+      "from": "43110100",
+      "to": "53110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247113,
+      "from": "53110100",
+      "to": "63110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247113,
+      "from": "63110100",
+      "to": "73110200"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247114,
+      "from": "73110200",
+      "to": "73110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247114,
+      "from": "73110100",
+      "to": "83110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247114,
+      "from": "83110100",
+      "to": "93110100"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247123,
+      "from": "93110100",
+      "to": "03008D00"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247123,
+      "from": "03008D00",
+      "to": "13002601"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247124,
+      "from": "13002601",
+      "to": "13002701"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247124,
+      "from": "13002701",
+      "to": "13002801"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247124,
+      "from": "13002801",
+      "to": "13002500"
+    },
+    {
+      "session": "20260611_110727_616r_observe_1",
+      "ts_ms": 1781147247139,
+      "from": "13002500",
+      "to": "13005F01"
+    }
+  ],
+  "grammar": {
+    "prefix4": "byte0 lane key + bytes1-3 state suffix (6 hex chars)",
+    "byte0": "0x03 + n*0x10 per boom lane (11 lanes + 0xF3 special + 0xFF bcast)",
+    "suffix_110200": "dominant spray / lane-active family",
+    "suffix_00A4xx": "ASC / turn / headland variant family",
+    "asc_on_cascade": "93110200 -> 83110200 -> ... descending byte0 during section re-entry"
+  }
+}

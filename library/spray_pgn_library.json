@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "description": "Spray-focused CAN PGN catalog for PUFworks sniff/recorder/monitor.",
+  "categories": [
+    "gps_motion",
+    "rate_section",
+    "flow_pressure",
+    "boom_height",
+    "spray_proprietary"
+  ],
+  "watch_sas": [
+    "0x00",
+    "0x17",
+    "0x1C",
+    "0x26",
+    "0x68",
+    "0x69",
+    "0x8A",
+    "0x94",
+    "0xA2",
+    "0xB9",
+    "0xBA",
+    "0xCC",
+    "0xCD",
+    "0xD4",
+    "0xD5",
+    "0xE1",
+    "0xF0",
+    "0xF7"
+  ],
+  "entries": [
+    {
+      "pgn": 65265,
+      "name": "CCVS Wheel-Based Speed",
+      "category": "gps_motion",
+      "status": "confirmed",
+      "notes": "SPN 84 bytes 1-2, 1/256 km/h. Primary speed for latency budget."
+    },
+    {
+      "pgn": 65256,
+      "name": "Navigation / TCM attitude",
+      "category": "gps_motion",
+      "status": "confirmed",
+      "notes": "ATX 0x1C: heading b0-1, speed b2-3, pitch b4-5, alt b6-7. Prefer FEF1 speed."
+    },
+    {
+      "pgn": 65254,
+      "name": "ATX companion (roll)",
+      "category": "gps_motion",
+      "status": "likely",
+      "notes": "ATX 0x1C bytes 2-3 /128 deg roll; pairs with FEE8."
+    },
+    {
+      "pgn": 65267,
+      "name": "Vehicle Position (GNSS)",
+      "category": "gps_motion",
+      "status": "confirmed",
+      "notes": "Lat/lon for geo-tagging; jd_atx lat offset -210."
+    },
+    {
+      "pgn": 65269,
+      "name": "Vehicle Direction / Heading",
+      "category": "gps_motion",
+      "status": "not_on_ib1",
+      "notes": "Not seen on X119 implement tap; heading from FEE8."
+    },
+    {
+      "pgn": 129026,
+      "name": "SOG/COG Rapid Update",
+      "category": "gps_motion",
+      "status": "not_on_ib1",
+      "notes": "Not seen on X119; may exist on VB1."
+    },
+    {
+      "pgn": 61481,
+      "name": "Gyro / Yaw Rate (SSI2)",
+      "category": "gps_motion",
+      "status": "not_on_ib1",
+      "notes": "Not on X119; derive yaw from FEE8 heading delta."
+    },
+    {
+      "pgn": 65226,
+      "name": "DM1 Active DTCs",
+      "category": "gps_motion",
+      "status": "confirmed",
+      "notes": "Diagnostic context when spray faults (pressure, flow)."
+    },
+    {
+      "pgn": 51968,
+      "name": "TC Process Data / Section Control",
+      "category": "rate_section",
+      "status": "confirmed",
+      "notes": "DDI 141/157/158, section bitmap. Includes SR1 work msgs PF=0xCB."
+    },
+    {
+      "pgn": 160,
+      "name": "PGN 160 Process Data (DDI)",
+      "category": "rate_section",
+      "status": "confirmed",
+      "notes": "PF 0xA0. DDI 157 target rate, DDI 158 applied feedback."
+    },
+    {
+      "pgn": 57344,
+      "name": "TC-GEO Process Data",
+      "category": "rate_section",
+      "status": "confirmed",
+      "notes": "DDI 0x004F prescription zones."
+    },
+    {
+      "pgn": 61184,
+      "name": "JD/GRC Proprietary Process Data",
+      "category": "spray_proprietary",
+      "status": "confirmed",
+      "notes": "GRC rate/master/sections on Goldacres SA 0xCC; probe SRC/GWC on 616R."
+    },
+    {
+      "pgn": 59904,
+      "name": "Request PGN",
+      "category": "rate_section",
+      "status": "confirmed",
+      "notes": "Address claim / DDOP requests \u2014 pairing context only."
+    },
+    {
+      "pgn": 60928,
+      "name": "Address Claimed",
+      "category": "rate_section",
+      "status": "confirmed",
+      "notes": "Roster discovery for spray nodes."
+    },
+    {
+      "pgn": 65263,
+      "name": "Engine Fluid Level / Pressure",
+      "category": "flow_pressure",
+      "status": "likely",
+      "notes": "Auxiliary fluid metrics on some platforms."
+    },
+    {
+      "pgn": 65168,
+      "name": "Direct Lamp Status",
+      "category": "flow_pressure",
+      "status": "hypothesis",
+      "notes": "Low-pressure / tank warnings may correlate."
+    },
+    {
+      "pgn": 59136,
+      "name": "Proprietary E700 family",
+      "category": "spray_proprietary",
+      "status": "likely",
+      "notes": "Dominant from SA 0xBA; identify on Diagnostics Center."
+    },
+    {
+      "pgn": 65280,
+      "name": "Proprietary A (BoomTrac candidate)",
+      "category": "boom_height",
+      "status": "hypothesis",
+      "notes": "Capture all from BHC 0x8A until PGN confirmed."
+    }
+  ]
+}

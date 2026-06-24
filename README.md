@@ -20,6 +20,49 @@ requirements.txt
 recordings/              # OBSERVE/SHADOW session captures (gitignored)
 ```
 
+## Spray PGN library (monitor + recorder + CSV export)
+
+Curated filter for **GPS/motion**, **rate/section**, **flow/pressure**, **boom height**,
+and **proprietary spray** traffic. Source of truth:
+
+- **`library/SPRAY_DECODE.md`** — human decode ledger (JD controller names: SRC, MNC, GRC.001, …)
+- **`library/section_map.json`** — confirmed 11-section SRC `4F0B06` map (R5–L5)
+- `spray_pgn_library.py` / `library/spray_pgn_library.json` — machine catalog + recorder filter
+- `library/field_observations.json` — merged session stats (`compile_pgn_catalog.py`)
+- Recorder: `SET_SNIFF_MODE:spray` (default when profile is `jd_616r`)
+- Bench UI: **Spray library only** preset + per-category toggles + **Export CSV**
+- Post-session catalog merge: `python scripts/compile_pgn_catalog.py`
+
+Exported `frames.csv` columns match the recorder:
+
+`timestamp_ms, dir, can_id, sa_hex, sa_dec, sa_label, pgn_hex, pgn_dec, pgn_name, category, da_hex, dlc, data_hex`
+
+## 616R field sniff (tomorrow-ready)
+
+**OBSERVE only** — zero CAN TX. Uses `SET_CAN_RX_ONLY:1` to seal all transmit
+paths (required when the adapter firmware allows TX, e.g. **CANable 2.0 on COM2**).
+
+Connect to the implement ISOBUS connector (X119, **250 kbps** classic CAN — configure
+CANable for 250k classic, not CAN-FD, for this tap).
+
+```powershell
+# CANable on COM2 (default) — records + spray PGN filter + RX-only seal
+.\scripts\field_sniff_616r.ps1 -Interface COM2 -Label "616r_spray_am" -Record
+
+# Unfiltered discovery capture (larger files — use if roster mode misses traffic)
+python bench/field_sniff_616r.py --interface pcan --sniff-mode 616r_full --record --label 616r_full
+
+# After the pass
+python scripts/analyze_616r_session.py recordings\<session_id>
+```
+
+Bench UI alternative: set profile **jd_616r**, sniff mode **616r** or **616r_full**,
+authority **OBSERVE**, start CAN, then **● Start** recorder.
+
+Correlate with image capture: `PUFworks-agronomy` collector writes
+`session_epoch_ms.txt` in each `colN_DDMMYY/` folder — match timestamps against
+recorder `frames.csv` `timestamp_ms`.
+
 ## Quick start (bench, no hardware)
 
 ```powershell

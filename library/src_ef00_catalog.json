@@ -1,0 +1,177 @@
+{
+  "frame_count": 227850,
+  "unique_prefix4": 17,
+  "catalog": [
+    {
+      "prefix": "4F0B06",
+      "frames": 51801,
+      "pct_of_src_ef00": 22.73,
+      "sample": "4F0B060002000000",
+      "status": "confirmed",
+      "role": "section_control",
+      "decode": "bitmap + FF cmds",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "F70400",
+      "frames": 33498,
+      "pct_of_src_ef00": 14.7,
+      "sample": "F70400FFFFFFFFFF",
+      "status": "unknown",
+      "role": "high_volume_idle",
+      "decode": "F70400FFFFFFFFFF dominant idle family",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "F00DFF",
+      "frames": 26800,
+      "pct_of_src_ef00": 11.76,
+      "sample": "F00DFFFFFFFFFFFF",
+      "status": "hypothesis",
+      "role": "idle_marker",
+      "decode": "F00DFFFFFFFFFFFF static idle",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "F10E4C",
+      "frames": 18495,
+      "pct_of_src_ef00": 8.12,
+      "sample": "F10E4CFFF4F624FF",
+      "status": "likely",
+      "role": "pressure_telemetry_rate_mode",
+      "decode": "F10E family rate-mode; byte6-7 counter (~13% EF00 in rate sessions)",
+      "sessions_seen": 24
+    },
+    {
+      "prefix": "F43401",
+      "frames": 18162,
+      "pct_of_src_ef00": 7.97,
+      "sample": "F43401000100FFFF",
+      "status": "confirmed",
+      "role": "rate_pressure_mode",
+      "decode": "BE u16[3:5]/4.096 kPa",
+      "sessions_seen": 26
+    },
+    {
+      "prefix": "4F0101",
+      "frames": 12945,
+      "pct_of_src_ef00": 5.68,
+      "sample": "4F01015802002AE1",
+      "status": "confirmed",
+      "role": "target_rate_l_ha",
+      "decode": "u16[3:5]/10",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "4F1401",
+      "frames": 12944,
+      "pct_of_src_ef00": 5.68,
+      "sample": "4F14010000002A00",
+      "status": "likely",
+      "role": "flow_or_line_metric",
+      "decode": "u16[3:5] churn ~1Hz during spray",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "4F3601",
+      "frames": 12944,
+      "pct_of_src_ef00": 5.68,
+      "sample": "4F3601707C36002D",
+      "status": "likely",
+      "role": "paired_flow_metric",
+      "decode": "u16[3:5]+ trailing u16; pairs with 4F1401",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "F10E1C",
+      "frames": 10800,
+      "pct_of_src_ef00": 4.74,
+      "sample": "F10E1CFFF47500FF",
+      "status": "confirmed",
+      "role": "pressure_telemetry_transport_mode",
+      "decode": "F10E family transport-mode; pairs with F43400; replaces F10E4C/5C off boom \u2014 616r_transport 2026-06-15",
+      "sessions_seen": 3
+    },
+    {
+      "prefix": "F225FA",
+      "frames": 9059,
+      "pct_of_src_ef00": 3.98,
+      "sample": "F225FAFFFFFFFFFF",
+      "status": "hypothesis",
+      "role": "session_marker",
+      "decode": "F225FAFFFFFFFFFF bookend bursts",
+      "sessions_seen": 26
+    },
+    {
+      "prefix": "F43400",
+      "frames": 8639,
+      "pct_of_src_ef00": 3.79,
+      "sample": "F43400100000FFFF",
+      "status": "confirmed",
+      "role": "transport_mode_selector",
+      "decode": "Transport counterpart to F43401; BE u16[3:5] static ~4096 (0x1000); dominant in 616r_transport \u2014 no kPa spray path",
+      "sessions_seen": 3
+    },
+    {
+      "prefix": "F22500",
+      "frames": 4340,
+      "pct_of_src_ef00": 1.9,
+      "sample": "F22500FFFFFFFFFF",
+      "status": "likely",
+      "role": "transport_idle_marker",
+      "decode": "F22500FFFFFFFFFF; transport sessions alongside F43400/F10E1C",
+      "sessions_seen": 5
+    },
+    {
+      "prefix": "F10E5C",
+      "frames": 4145,
+      "pct_of_src_ef00": 1.82,
+      "sample": "F10E5CFFF4AB01FF",
+      "status": "confirmed",
+      "role": "pressure_telemetry_pressure_mode",
+      "decode": "F10E family pressure-mode (1000 kPa); replaces F10E4C when F43401 kPa active \u2014 spray_live 2026-06-15",
+      "sessions_seen": 2
+    },
+    {
+      "prefix": "4F1C01",
+      "frames": 2677,
+      "pct_of_src_ef00": 1.17,
+      "sample": "4F1C013B00002BE1",
+      "status": "likely",
+      "role": "aux_spray_metric",
+      "decode": "u16[3:5] occasional burst",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "F009FF",
+      "frames": 541,
+      "pct_of_src_ef00": 0.24,
+      "sample": "F009FFFFFFFFFFFF",
+      "status": "hypothesis",
+      "role": "idle_marker",
+      "decode": "F009FFFFFFFFFFFF sporadic",
+      "sessions_seen": 29
+    },
+    {
+      "prefix": "F10E0C",
+      "frames": 57,
+      "pct_of_src_ef00": 0.03,
+      "sample": "F10E0CFFF40024FF",
+      "status": "unknown",
+      "role": "unclassified",
+      "decode": "",
+      "sessions_seen": 2
+    },
+    {
+      "prefix": "4F0601",
+      "frames": 3,
+      "pct_of_src_ef00": 0.0,
+      "sample": "4F060100FF00FFFF",
+      "status": "hypothesis",
+      "role": "master_switch",
+      "decode": "FF00 off / FF01 on",
+      "sessions_seen": 2
+    }
+  ],
+  "coverage_known_pct": 69.3
+}

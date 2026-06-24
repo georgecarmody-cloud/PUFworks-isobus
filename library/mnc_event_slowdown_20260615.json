@@ -1,0 +1,25 @@
+{
+  "session": "20260615_095343_616r_spray_live",
+  "event": "speed_slowdown_headland_candidate",
+  "event_t_s": 201,
+  "operator_context": "25 km/h spray -> ~13 km/h @ +201s -> recover @ +220s",
+  "windows": {
+    "steady_120_190": {
+      "dominant_suffix": "110200",
+      "note": "Normal lane-active spray; balanced lane byte0 counts"
+    },
+    "slowdown_195_215": {
+      "dominant_suffix_shift": ["110200", "00A400", "00A500", "00A300"],
+      "new_prefix4": ["1300A500", "1300A400", "1300A700"],
+      "note": "ASC/turn suffix family appears on lane 0x13 (L4); burst transitions from ~190s"
+    },
+    "recover_220_250": {
+      "dominant_suffix": "110200",
+      "note": "Returns to lane-active; F3100200 idle summary increases"
+    }
+  },
+  "transition_sample_t_190s": [
+    "1300A200 -> 13002201 -> 13002801 -> 13002500 -> F3100200 -> xxx110200 rotation -> 1300A500/A700 ASC burst"
+  ],
+  "status": "likely"
+}
