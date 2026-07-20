@@ -5,5 +5,5 @@ isobus_diagnostics.log
 node_modules/
 dist/
 build/
-# Workshop machine-local hub config (IPs/COM ports)
-isobus_wifi_config.json
+# Workshop machine-local hub config at repo root (IPs/COM ports)
+/isobus_wifi_config.json

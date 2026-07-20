@@ -1,0 +1,28 @@
+{
+  "can_interface": "COM2",
+  "can_bitrate": 250000,
+  "tty_baud": 2000000,
+  "sprayer_profile": "jd_616r",
+  "sniff_mode": "616r",
+  "record_filter": {
+    "categories": ["gps_motion", "rate_section", "flow_pressure", "boom_height", "spray_proprietary"],
+    "nodes": ["0x00", "0x06", "0x17", "0x1C", "0x26", "0x68", "0x69", "0x8A", "0x94", "0xA2", "0xBA", "0xB9", "0xCC", "0xCD", "0xD4", "0xD5", "0xE1", "0xF0", "0xF7"],
+    "pgns": ["0x00A0", "0x00E6", "0x00FE", "0xCB00", "0xE700", "0xEA00", "0xEE00", "0xEF00", "0xFE0D", "0xFEE6", "0xFEE8", "0xFECA", "0xFEF1", "0xFEF3", "0xFFFF"],
+    "node_catchall": true,
+    "include_pf_cb_a0": true
+  },
+  "authority": "OBSERVE",
+  "can_rx_only": true,
+  "udp_port": 5578,
+  "multicast_group": "239.255.42.1",
+  "unicast_client": "192.168.1.103",
+  "nmea_relay": true,
+  "nmea_udp_port": 9999,
+  "nmea_latlon_mode": "jd_atx",
+  "stream_can_rx": true,
+  "can_rx_max_hz": 50,
+  "ui_poll_ms": 500,
+  "web_enabled": false,
+  "web_host": "0.0.0.0",
+  "web_port": 8080
+}
