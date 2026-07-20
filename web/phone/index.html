@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#1a1f16" />
+  <title>PUFworks ISOBUS</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">PUFworks ISOBUS</div>
+    <nav class="top-nav">
+      <a href="/" class="active">Dashboard</a>
+      <a href="/admin">Admin</a>
+    </nav>
+    <div id="conn-pill" class="pill pill-warn">Connecting…</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="speed-block">
+        <div id="speed" class="speed-val">—</div>
+        <div class="speed-unit">km/h</div>
+      </div>
+      <div id="gps-mini" class="gps-mini">GPS: <strong id="gps-line">—</strong></div>
+      <div class="meta-grid">
+        <div class="meta"><span class="lbl">CAN</span><span id="can-status" class="val">—</span></div>
+        <div class="meta"><span class="lbl">Profile</span><span id="profile" class="val">—</span></div>
+        <div class="meta"><span class="lbl">Authority</span><span id="authority" class="val">—</span></div>
+        <div class="meta"><span class="lbl">Sections</span><span id="sections" class="val">—</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Implement nodes</h2>
+      <div id="nodes" class="nodes"></div>
+    </section>
+
+    <section class="card">
+      <h2>Spray CAN (recent)</h2>
+      <div id="frames" class="frames empty">Waiting for frames…</div>
+    </section>
+
+    <section class="card collapsible">
+      <h2>Log <button type="button" id="log-toggle" class="link-btn">hide</button></h2>
+      <div id="logs" class="logs"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span id="uptime">—</span>
+    <span id="poll-hz">—</span>
+  </footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>

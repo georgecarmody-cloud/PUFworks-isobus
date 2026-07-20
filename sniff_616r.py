@@ -51,13 +51,14 @@ SA_LABELS_616R: Dict[int, str] = {
 # PGNs worth retaining beyond the Goldacres-centric default filter.
 EXTRA_WATCH_PGNS_616R: Set[int] = {
     0xCB00, 0xEA00, 0xEE00, 0xFE0D, 0xFEF1, 0xFEE8, 0xFEE6, 0xFEF3,
+    0xFFFF,  # ATX 0x1C GNSS summary multiplex (sats + fix quality, sub-msg 0x51)
     0xFECA, 0xE700, 0xEF00, 65267, 59136,
     0x00A0,  # PGN 160 process data (DDI 157/158)
     0x00E6,  # VT transport
     0x00FE,  # multipacket / transport family
 }
 
-SNIFF_MODES = ("filtered", "spray", "616r", "616r_full")
+SNIFF_MODES = ("filtered", "spray", "616r", "616r_full", "custom")
 
 
 def sa_label(sa: int) -> str:

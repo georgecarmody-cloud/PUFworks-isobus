@@ -45,10 +45,10 @@
     },
     {
       "pgn": 65254,
-      "name": "ATX companion (roll)",
+      "name": "ATX companion (roll candidate)",
       "category": "gps_motion",
-      "status": "likely",
-      "notes": "ATX 0x1C bytes 2-3 /128 deg roll; pairs with FEE8."
+      "status": "parked",
+      "notes": "On wire ATX 0x1C ~5 Hz; bytes 2-3 /128 decode DISPROVEN (2026-06-24). Not exported by gps_bridge until re-sniffed."
     },
     {
       "pgn": 65267,
@@ -56,6 +56,13 @@
       "category": "gps_motion",
       "status": "confirmed",
       "notes": "Lat/lon for geo-tagging; jd_atx lat offset -210."
+    },
+    {
+      "pgn": 65535,
+      "name": "JD GNSS quality multiplex",
+      "category": "gps_motion",
+      "status": "confirmed",
+      "notes": "ATX 0x1C only. Sub-msg 0x51: byte3=sats used, byte7=fix quality (hypothesis). SA-gate; ignore DISP 0xF0."
     },
     {
       "pgn": 65269,

@@ -209,6 +209,7 @@ def run_live_can(bridge: GpsBridge, args):
                     print(
                         f"[gps] lat={fix.latitude:.7f} lon={fix.longitude:.7f} "
                         f"spd={fix.speed_kmh or 0:.1f} km/h hdg={fix.heading_deg or 0:.0f} "
+                        f"fixq={fix.fix_quality} sats={fix.satellites if fix.satellites is not None else '?'} "
                         f"pitch={fix.pitch_deg or 0:.1f} roll={fix.roll_deg or 0:.1f} "
                         f"yaw={fix.yaw_rate_deg_s or 0:.1f} alt={fix.altitude_m or 0:.0f}m",
                         flush=True,
@@ -242,12 +243,16 @@ def main():
                     help="Send GpsFixV2 JSON to host:port (e.g. 127.0.0.1:5577). Default off.")
     ap.add_argument("--stdout-nmea", action="store_true", help="Write NMEA to stdout (pipe to virtual COM)")
     ap.add_argument("--stdout-json", action="store_true", help="Write GpsFixV2 JSON lines to stdout")
+    ap.add_argument("--gnss-debug", action="store_true",
+                    help="Log raw PGN 0xFFFF/0x51 byte7 (GNSS quality candidate) to "
+                         "stderr on change — use to confirm the RTK->GGA mapping live")
     args = ap.parse_args()
 
     if args.no_nmea_udp:
         args.nmea_udp = None
 
-    bridge = GpsBridge(latlon_mode=args.latlon_mode, big_endian=args.be)
+    bridge = GpsBridge(latlon_mode=args.latlon_mode, big_endian=args.be,
+                       gnss_debug=args.gnss_debug)
 
     if args.replay:
         return run_replay(args.replay, bridge, args.replay_speed, args)

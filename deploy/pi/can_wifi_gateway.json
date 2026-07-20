@@ -1,0 +1,8 @@
+{
+  "can_interface": "can0",
+  "bitrate": 250000,
+  "udp_port": 5578,
+  "multicast_group": "239.255.42.1",
+  "unicast_client": null,
+  "notes": "616R implement bus X119 tap — classic CAN 250 kbps. RX-only gateway."
+}

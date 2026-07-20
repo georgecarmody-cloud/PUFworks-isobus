@@ -4,8 +4,10 @@
 Primary sources on 616R X119 tap (field-confirmed):
   ATX 0x1C  PGN 0xFEF3 (65267) — lat/lon ~5 Hz
   ATX 0x1C  PGN 0xFEE8       — heading, speed, pitch, altitude (TCM)
-  ATX 0x1C  PGN 0xFEE6       — roll (bytes 2-3, likely)
+  ATX 0x1C  PGN 0xFFFF       — GNSS sats + fix quality (sub-msg 0x51)
   DISP 0xF0 PGN 0xFEF1       — wheel speed rebroadcast ~10 Hz
+
+FEE6 roll decode is parked (disproven) — not included in track export.
 
 Output: merged fix CSV (GpsBridge state) for QGIS / pandas; optional GeoJSON.
 
@@ -27,7 +29,7 @@ if str(SCRIPT_DIR) not in sys.path:
 from gps_bridge_lib import GpsBridge
 
 
-GPS_PGNS = frozenset({"0xFEF3", "0xFEE8", "0xFEE6", "0xFEF1"})
+GPS_PGNS = frozenset({"0xFEF3", "0xFEE8", "0xFFFF", "0xFEF1"})
 
 
 def extract_track(sess: Path, big_endian: bool, latlon_mode: str) -> list[dict]:
@@ -40,7 +42,7 @@ def extract_track(sess: Path, big_endian: bool, latlon_mode: str) -> list[dict]:
     for r in frames:
         if r["pgn_hex"] not in GPS_PGNS:
             continue
-        if r["pgn_hex"] in ("0xFEF3", "0xFEE8", "0xFEE6") and r["sa_hex"] != "0x1C":
+        if r["pgn_hex"] in ("0xFEF3", "0xFEE8", "0xFFFF") and r["sa_hex"] != "0x1C":
             continue
         ts = int(r["timestamp_ms"])
         fix = bridge.update_from_frame(
@@ -62,6 +64,9 @@ def extract_track(sess: Path, big_endian: bool, latlon_mode: str) -> list[dict]:
             "roll_deg": fix.roll_deg if fix.roll_deg is not None else "",
             "yaw_rate_deg_s": fix.yaw_rate_deg_s if fix.yaw_rate_deg_s is not None else "",
             "altitude_m": fix.altitude_m if fix.altitude_m is not None else "",
+            "satellites": fix.satellites if fix.satellites is not None else "",
+            "fix_quality": fix.fix_quality,
+            "gnss_quality_raw": fix.gnss_quality_raw if fix.gnss_quality_raw is not None else "",
         })
     return rows
 
@@ -70,6 +75,7 @@ def write_csv(rows: list[dict], out: Path):
     fields = [
         "timestamp_ms", "t_s", "latitude", "longitude", "speed_kmh",
         "heading_deg", "pitch_deg", "roll_deg", "yaw_rate_deg_s", "altitude_m",
+        "satellites", "fix_quality", "gnss_quality_raw",
     ]
     with open(out, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields)

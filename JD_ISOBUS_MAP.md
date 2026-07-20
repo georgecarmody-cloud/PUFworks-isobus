@@ -350,13 +350,18 @@ Based on Diagnostic Technical Specifications of John Deere control modules (SR1,
 
 ### 5.4 Steering, Velocity, & GPS Navigation
 
+> **616R X119 field truth:** Sniff-validated PGN roster, SA gating, and byte layouts live in `library/SPRAY_DECODE.md` § "GPS / motion on X119". The table below is the original design reference; prefer SPRAY_DECODE for implement-bus decode work.
+
 | PGN / Source | Parameter Name | Scope | Resolution | Intended Purpose |
 | :--- | :--- | :--- | :--- | :--- |
-| **PGN 65256** | Navigation Wheel-Based Speed | J1939 Standard | Velocity km/h | **CRITICAL**: Controls delay offsets between frame capture and solenoid fire. |
-| **PGN 129026**| SOG / COG Rapid Update | J1939 Standard | GPS Heading & Speed | Secondary speed reference used if wheel slip is detected. |
-| **PGN 65267** | GPS Position Coordinates | Lat / Lon | Under degrees | Geo-marks coordinates of weed detections. |
-| **PGN 61481** | Gyro Yaw Rate / Lat Accel | J1939 Standard | Rad/s | Compiles inner vs. outer sweep velocities during boom turns. |
-| **ATX 1025** | Wheel Angle Curvature | John Deere ATX | deg/m | Compensates for camera parallax offset on curves. |
+| **PGN 65265 (`0xFEF1`)** | Wheel-Based Vehicle Speed | **DISP `0xF0`** (+ others) @ ~10 Hz on X119 | SPN 84 bytes 1–2, 1/256 km/h | **Primary speed** for latency budget and interlocks |
+| **PGN 65256 (`0xFEE8`)** | TCM attitude | **ATX `0x1C`** @ ~5 Hz | Heading b0–1 `/128`°; pitch b4–5; alt b6–7; nav speed b2–3 (phantom when stopped — prefer FEF1) | Heading, pitch, altitude; yaw derived from heading Δt |
+| **PGN 65267 (`0xFEF3`)** | GNSS position | **ATX `0x1C`** @ ~5 Hz | Lat/lon LE, jd_atx −210° lat offset | Geo-tags weed detections |
+| **PGN 65535 (`0xFFFF`)** | JD GNSS quality multiplex | **ATX `0x1C`** only @ ~5 Hz | Sub-msg `0x51`: byte3 sats used; byte7 fix quality (hypothesis) | `$GGA`/`$PANDA` fix + sat count via `gps_bridge_lib` |
+| **PGN 65254 (`0xFEE6`)** | Roll candidate | **ATX `0x1C`** on wire | bytes 2–3 `/128` — **decode disproven** | Parked — do not use until re-sniffed |
+| **PGN 129026 (`0x1F802`)** | SOG / COG Rapid Update | J1939 Standard | — | **Not on X119** implement tap |
+| **PGN 61481 (`0xF029`)** | Gyro Yaw Rate | J1939 Standard | — | **Not on X119** — derive yaw from FEE8 heading Δt |
+| **ATX 1025** | Wheel Angle Curvature | John Deere ATX | deg/m | Compensates for camera parallax offset on curves |
 
 ### 5.5 Height Controls (BH1 / Monitor)
 

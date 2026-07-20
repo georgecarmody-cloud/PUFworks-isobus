@@ -63,6 +63,26 @@ Correlate with image capture: `PUFworks-agronomy` collector writes
 `session_epoch_ms.txt` in each `colN_DDMMYY/` folder — match timestamps against
 recorder `frames.csv` `timestamp_ms`.
 
+## CAN WiFi hub (full ISOBUS decode)
+
+Stream **full `bus_engine` decode** (TelemetryV1, enriched CAN_RX, logs) over UDP.
+**RX-only / OBSERVE** — GPS and monitoring, not section actuation.
+
+```powershell
+# Build standalone exe (double-click on laptop)
+powershell -ExecutionPolicy Bypass -File scripts\build_isobus_wifi_hub.ps1
+
+# Edit COM port in dist\IsobusWifiHub\isobus_wifi_config.json
+dist\IsobusWifiHub\IsobusWifiHub.exe
+
+# Cab tablet / second laptop
+dist\IsobusWifiHub\IsobusWifiHub.exe client --gps --status
+```
+
+See `docs/CAN_WIFI.md` (hub protocol) and `deploy/pi/README.md` (Pi CAN HAT).
+
+Legacy raw-CAN-only path (GPS without full decode): `scripts/isobus_wifi.py`.
+
 ## Quick start (bench, no hardware)
 
 ```powershell

@@ -45,6 +45,7 @@ from sniff_616r import (
     short_sa_label,
 )
 from spray_pgn_library import frame_in_spray_library, pgn_info
+from record_filter_lib import frame_matches_custom_filter, normalize_record_filter
 from contract_import import load as _load_contracts
 
 _contracts = _load_contracts()
@@ -142,6 +143,8 @@ class ISOBUSController:
         }
         self.control_authority = "OBSERVE"
         self.armed = False
+        self.bench_mapping_verified = os.environ.get("PUF_BENCH_MAPPING_OK", "").strip().lower() in (
+            "1", "true", "yes", "on")
         self.speed_interlock = True
         self.min_ground_speed_kmh = 0.5
         self.ui_watchdog_enabled = True
@@ -164,6 +167,7 @@ class ISOBUSController:
         self.sniffed_grc_ddi157 = None
         # filtered = legacy Goldacres-centric capture; 616r = roster + watch PGNs; 616r_full = all frames
         self.sniff_mode = "filtered"
+        self.record_filter = normalize_record_filter(None)
         self._node_last_rx = {}
         self._node_rx_counts = {}
         self.recordings_root = os.path.normpath(
@@ -321,6 +325,8 @@ class ISOBUSController:
     def _record_should_capture(self, pf, sa, pgn):
         if self.record_active and self.sniff_mode == "616r_full":
             return True
+        if self.sniff_mode == "custom":
+            return frame_matches_custom_filter(pf, sa, pgn, self.record_filter)
         if self.sniff_mode == "spray":
             return frame_in_spray_library(pf, sa, pgn)
         if pf in (0xA0, 0xCB):
@@ -328,7 +334,8 @@ class ISOBUSController:
         if sa in self._record_watch_sas():
             return True
         watch_pgns = (
-            0xCB00, 0xEA00, 0xEE00, 0xFE0D, 0xFEF1, 0xFEE8, 0xFEF3,
+            0xCB00, 0xEA00, 0xEE00, 0xFE0D, 0xFEF1, 0xFEE8, 0xFEE6, 0xFEF3,
+            0xFFFF,  # ATX 0x1C GNSS summary (sub-msg 0x51) — gps_bridge + recorder
             0xFECA, 0xE700, 0xEF00, 65267, 59136,
         )
         if pgn in watch_pgns:
@@ -656,6 +663,11 @@ class ISOBUSController:
         if armed and self._authority_level() < self.AUTHORITY_ORDER["RATE_ONLY"]:
             self.log_isobus_event("ARM refused: raise authority to RATE_ONLY or higher first")
             return False
+        if armed and not getattr(self, "bench_mapping_verified", False):
+            self.log_isobus_event(
+                "ARM refused: Goldacres bit-mapping bench check not signed off "
+                "(set bench_mapping_verified or PUF_BENCH_MAPPING_OK=1 after §5 procedure)")
+            return False
         self.armed = armed
         self.log_isobus_event(f"{'ARMED' if armed else 'DISARMED'} at authority {self.control_authority}")
         return True
@@ -794,15 +806,44 @@ class ISOBUSController:
             self.log_isobus_event(f"VISION_BITMAP parse error: {e}")
             return False
 
+    def _remap_vision_to_grc_ddi141(self, vision_bitmap):
+        """Translate a vision SectionBitmapV1 mask (LSB = left-most section,
+        1 = OPEN) into the Goldacres GRC DDI 141 bit-space (bit0 unused,
+        bit1 = left-most section, 1 = OPEN).
+
+        Per Plans/SectionOutput/SECTION_MAPPING.md the net transform is a single
+        1-bit LEFT SHIFT (skip GRC bit0). No reversal, no center-out reindex;
+        polarity is already identical (1 = open both sides). Applied to the
+        vision feed BEFORE the cooperative AND-gate so section_bitmap is already
+        in GRC bit-space when AND-ed with jd_commanded_sections.
+
+        SAFETY: camera-left == driver-left == GRC bit1 is BENCH-UNCONFIRMED
+        (SECTION_MAPPING.md §4.1/§5). This remap only relabels which bit drives
+        which section; it never changes gating. Live actuation stays gated by
+        _tx_allowed("section") + ARM until the bench mapping check is signed off.
+        """
+        return (vision_bitmap << 1) & 0xFFFF
+
     def update_sections_from_inputs(self):
         """Resolve self.section_bitmap from the external inputs.
 
         Priority: fresh vision feed > manual bench vector. A stale vision feed
         (publisher death) forces all sections CLOSED — never falls back to the
         manual vector mid-session, and never holds the last bitmap.
+
+        For the goldacres_grc profile ONLY, the fresh vision mask is remapped
+        into GRC DDI 141 bit-space (SECTION_MAPPING.md) before it becomes
+        section_bitmap / the AND-gate input. Other profiles (e.g. 616R, which
+        uses vision_weeds_present(), not the bitmap) are unaffected.
         """
         if self.vision_seen:
-            self.section_bitmap = self.vision_bitmap if self._vision_fresh() else 0
+            if self._vision_fresh():
+                if self.sprayer_profile == self.PROFILE_GOLDACRES_GRC:
+                    self.section_bitmap = self._remap_vision_to_grc_ddi141(self.vision_bitmap)
+                else:
+                    self.section_bitmap = self.vision_bitmap
+            else:
+                self.section_bitmap = 0
         elif self.manual_section_bitmap is not None:
             self.section_bitmap = self.manual_section_bitmap
 
@@ -1634,8 +1675,12 @@ def main():
             continue  # high-rate path: skip the command echo below
 
         # UI_HEARTBEAT arrives at 1 Hz from the UI host — echoing it floods the log.
+        # Windowed hub child: print+flush can raise OSError 22 on Windows pipes — never abort.
         if line != 'UI_HEARTBEAT':
-            print(f"Bus engine received command: {line}", flush=True)
+            try:
+                print(f"Bus engine received command: {line}", flush=True)
+            except OSError:
+                pass
 
         if line == 'STOP_CAN':
             ctrl.stop()
@@ -1847,6 +1892,27 @@ def main():
                     ctrl.log_isobus_event(f"Sniff mode -> {mode}")
                 else:
                     ctrl.log_isobus_event(f"Rejected sniff mode '{mode}' — valid: {list(SNIFF_MODES)}")
+        elif line.startswith('SET_RECORD_FILTER:'):
+            payload = line[len('SET_RECORD_FILTER:'):].strip()
+            if payload:
+                try:
+                    ctrl.record_filter = normalize_record_filter(json.loads(payload))
+                    ctrl.log_isobus_event(
+                        f"Record filter updated: {len(ctrl.record_filter.get('categories', []))} categories, "
+                        f"{len(ctrl.record_filter.get('nodes', []))} nodes, "
+                        f"{len(ctrl.record_filter.get('pgns', []))} PGNs"
+                    )
+                except json.JSONDecodeError as exc:
+                    ctrl.log_isobus_event(f"SET_RECORD_FILTER invalid JSON: {exc}")
+        elif line.startswith('SET_RECORDINGS_ROOT:'):
+            root = line[len('SET_RECORDINGS_ROOT:'):].strip().strip('"')
+            if root:
+                try:
+                    os.makedirs(root, exist_ok=True)
+                    ctrl.recordings_root = os.path.normpath(root)
+                    ctrl.log_isobus_event(f"Recordings root -> {ctrl.recordings_root}")
+                except OSError as exc:
+                    ctrl.log_isobus_event(f"SET_RECORDINGS_ROOT failed: {exc}")
         elif line.startswith('START_RECORD_SESSION'):
             label = line.split(':', 1)[1].strip() if ':' in line else ""
             ctrl.start_record_session(label)

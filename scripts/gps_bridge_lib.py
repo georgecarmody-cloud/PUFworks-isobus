@@ -5,12 +5,15 @@ Import this module from other programs:
     from gps_bridge_lib import GpsFix, GpsBridge, decode_fef3, nmea_gga
 
 Field sources (X119 tap, StarFire/ATX SA 0x1C):
-  PGN 0xFEF3 — lat/lon ~5 Hz
+  PGN 0xFEF3 — lat/lon ~5 Hz (uint32 LE × 1e-7°, −210° offset both axes)
   PGN 0xFEE8 — heading, speed, pitch, altitude (TCM / SPN 517, 583, 580)
-  PGN 0xFEE6 — roll (bytes 2-3, JD companion message — likely)
+  PGN 0xFEE6 — on wire ATX 0x1C ~5 Hz; roll decode PARKED (disproven — do not export)
   PGN 0xFFFF — JD proprietary GNSS-quality multiplex; sub-msg 0x51 byte3 =
-               satellites used (~5 Hz). SA-gated to 0x1C (DISP 0xF0 also
-               emits 0xFFFF with unrelated content). See SPRAY_DECODE.md.
+               satellites used, byte7 = GNSS solution-status (RTK/float/DGPS/
+               autonomous — HYPOTHESIS, mapped to NMEA GGA fix-quality via
+               JD_GNSS_QUALITY_TO_GGA; run `gps_bridge.py --gnss-debug` to lock
+               it live). ~5 Hz. SA-gated to 0x1C (DISP 0xF0 also emits 0xFFFF
+               with unrelated content). See SPRAY_DECODE.md.
   Any SA     PGN 0xFEF1 — wheel speed fallback
 
 Yaw rate: derived from consecutive FEE8 headings (PGN 61482 not on X119 tap).
@@ -24,6 +27,7 @@ from __future__ import annotations
 import json
 import math
 import struct
+import sys
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -57,6 +61,10 @@ class GpsFix:
     altitude_m: float | None = None
     ts_ms: int = field(default_factory=lambda: int(time.time() * 1000))
     source: str = ""
+    # Raw JD GNSS solution-status byte (PGN 0xFFFF / 0x51 byte7) BEFORE mapping to
+    # GGA fix_quality. Exposed for diagnostics / mapping confirmation; None until a
+    # 0x51 summary frame is decoded. Never faked.
+    gnss_quality_raw: int | None = None
 
     @property
     def valid(self) -> bool:
@@ -77,7 +85,29 @@ class GpsFix:
             "satellites": self.satellites,
             "altitude_m": self.altitude_m,
             "source": self.source,
+            # Additive (GpsFixV2 superset): consumers that don't know this key
+            # ignore it; useful for confirming the RTK mapping live.
+            "gnss_quality_raw": self.gnss_quality_raw,
         }, separators=(",", ":"))
+
+
+def normalize_latlon_mode(mode: str | None) -> str:
+    """Canonical FEF3 decode mode. Unknown / empty → jd_atx (616R StarFire)."""
+    m = (mode or "").strip().lower().replace(" ", "_").replace("-", "_")
+    aliases = {
+        "jd_atx": "jd_atx",
+        "atx": "jd_atx",
+        "starfire": "jd_atx",
+        "616r": "jd_atx",
+        "j1939": "j1939",
+        "sae_j1939": "j1939",
+        "both_offset": "j1939",
+        "raw": "raw",
+        "no_offset": "raw",
+        # Legacy mistaken mode (signed lon, no offset) — map to correct decode.
+        "legacy_signed": "jd_atx",
+    }
+    return aliases.get(m, "jd_atx")
 
 
 def decode_fef3(
@@ -86,21 +116,28 @@ def decode_fef3(
     big_endian: bool = False,
     mode: str = "jd_atx",
 ) -> tuple[float | None, float | None]:
-    b = bytes.fromhex(data_hex)
+    """PGN 65267 Vehicle Position (ATX 0x1C).
+
+    SAE J1939: both lat and lon are uint32, 1e-7 deg/bit, offset −210°.
+    Longitude east of ~4.7° overflows int32 when the +210 wire offset is applied,
+    so it MUST be read as unsigned. Reading lon as int32 yields ≈ −98° for WA
+    (~121°E) — the hub “stuck at −90” bug. Confirmed on
+    recordings/20260611_131017_616r_observe_3_long (jd_atx==j1939==correct).
+    """
+    b = bytes.fromhex(data_hex.replace(" ", ""))
     if len(b) < 8:
         return None, None
-    fmt = ">ii" if big_endian else "<ii"
-    lat_raw, lon_raw = struct.unpack(fmt, b[0:8])
+    fmt_u = ">II" if big_endian else "<II"
+    lat_u, lon_u = struct.unpack(fmt_u, b[0:8])
     scale = 1e-7
-    if mode == "j1939":
-        lat = lat_raw * scale - 210.0
-        lon = lon_raw * scale - 210.0
-    elif mode == "raw":
-        lat = lat_raw * scale
-        lon = lon_raw * scale
+    mode = normalize_latlon_mode(mode)
+    if mode == "raw":
+        lat = lat_u * scale
+        lon = lon_u * scale
     else:
-        lat = lat_raw * scale - 210.0
-        lon = lon_raw * scale
+        # jd_atx and j1939 are the same correct ATX decode (uint32 − 210 both axes).
+        lat = lat_u * scale - 210.0
+        lon = lon_u * scale - 210.0
     if not (-90 <= lat <= 90 and -180 <= lon <= 180):
         return None, None
     return lat, lon
@@ -147,7 +184,11 @@ def decode_fee8_atx(data_hex: str) -> dict[str, float] | None:
 
 
 def decode_fee6_atx_roll(data_hex: str) -> float | None:
-    """Companion ATX message — roll in bytes 2-3 (/128 deg), field-validated."""
+    """Companion ATX message — roll candidate in bytes 2-3 (/128 deg).
+
+    PARKED (2026-06-24): field RTK check showed a constant bogus value vs cab TCM.
+    Do not call from GpsBridge until re-sniffed with deliberate roll excitation.
+    """
     b = bytes.fromhex(data_hex)
     if len(b) < 4:
         return None
@@ -178,6 +219,70 @@ def decode_gnss_sats_ffff(data_hex: str) -> int | None:
     if sats == 0 or sats > 64:
         return None
     return sats
+
+
+# JD GNSS solution-status (PGN 0xFFFF / 0x51 byte7) -> NMEA-0183 GGA fix-quality.
+#
+# HYPOTHESIS — NEEDS LIVE RTK CONFIRMATION (see SPRAY_DECODE.md "GPS / motion").
+# Field captures on an RTK machine show byte7 sits at 0x01 in steady operation and
+# ticks 0x02/0x03/0x04 transiently during headland turns (correction degradation).
+# Best-supported reading: byte7 is a solution-status enum where LOWER = better fix.
+# So 0x01 (the steady value while the receiver is confirmed RTK) -> GGA 4 (RTK
+# fixed), and the transient higher values map to progressively degraded states.
+# Override per-app by passing GpsBridge(quality_map=...) — no code edit needed.
+#
+# NMEA GGA quality: 0 invalid, 1 autonomous GPS, 2 DGPS/SBAS, 4 RTK fixed,
+#                   5 RTK float, 9 PPP.
+JD_GNSS_QUALITY_TO_GGA: dict[int, int] = {
+    0x00: 0,   # no / invalid fix
+    0x01: 4,   # RTK fixed   (steady value observed while receiver is RTK)
+    0x02: 5,   # RTK float   (transient during turns — lower confidence)
+    0x03: 2,   # DGPS / SBAS (further degraded — lower confidence)
+    0x04: 1,   # autonomous  (correction lost — lower confidence)
+}
+# Unknown raw byte -> autonomous: NEVER claim RTK for a value we haven't mapped.
+GGA_QUALITY_FALLBACK = 1
+
+GGA_QUALITY_NAMES: dict[int, str] = {
+    0: "invalid", 1: "autonomous", 2: "DGPS/SBAS", 4: "RTK fixed",
+    5: "RTK float", 9: "PPP",
+}
+
+
+def decode_gnss_quality_ffff(data_hex: str) -> int | None:
+    """RAW JD GNSS solution-status byte from PGN 0xFFFF / sub-msg 0x51 (byte 7).
+
+    Same 0x51 summary frame as the satellite count; byte7 is the candidate
+    solution-status (RTK / float / DGPS / autonomous). Returns the RAW byte
+    (caller maps via JD_GNSS_QUALITY_TO_GGA), or None if the frame isn't a valid
+    0x51 summary (signature byte1=0x03, byte2=0x02) or is too short. SA-gate to
+    0x1C upstream (DISP 0xF0 also emits 0xFFFF). HYPOTHESIS — confirm live with
+    `gps_bridge.py --gnss-debug` (see module docstring / SPRAY_DECODE.md).
+    """
+    b = bytes.fromhex(data_hex)
+    if len(b) < 8 or b[0] != 0x51 or b[1] != 0x03 or b[2] != 0x02:
+        return None
+    return b[7]
+
+
+def gga_quality_from_jd(qraw: int | None, quality_map: dict[int, int] | None = None) -> int:
+    """Map a raw JD status byte -> GGA fix-quality (fallback = autonomous)."""
+    if qraw is None:
+        return GGA_QUALITY_FALLBACK
+    qmap = quality_map if quality_map is not None else JD_GNSS_QUALITY_TO_GGA
+    return qmap.get(qraw, GGA_QUALITY_FALLBACK)
+
+
+def format_gnss_quality_debug(data_hex: str, qraw: int, gga: int,
+                              sats: int | None) -> str:
+    """One-line diagnostic for the candidate quality byte (to stderr)."""
+    b = bytes.fromhex(data_hex)
+    payload = " ".join(f"{x:02X}" for x in b[:8])
+    name = GGA_QUALITY_NAMES.get(gga, "?")
+    sats_s = str(sats) if sats is not None else "?"
+    return (f"[gnss] 0xFFFF/0x51 [{payload}]  sats(b3)={sats_s}  "
+            f"qual_raw(b7)=0x{qraw:02X} -> GGA fix={gga} ({name})  "
+            f"[CONFIRM: while the cab shows RTK, expect b7 steady -> fix=4]")
 
 
 def heading_delta_deg(new_deg: float, prev_deg: float) -> float:
@@ -254,12 +359,17 @@ def nmea_panda(fix: GpsFix) -> str | None:
     alt = (fix.altitude_m if fix.altitude_m is not None else 0.0)
     speed = fix.speed_kmh or 0.0
     heading = fix.heading_deg if fix.heading_deg is not None else 0.0
-    roll = fix.roll_deg if fix.roll_deg is not None else 0.0
-    pitch = fix.pitch_deg if fix.pitch_deg is not None else 0.0
-    yaw = fix.yaw_rate_deg_s if fix.yaw_rate_deg_s is not None else 0.0
+    # Leave roll/pitch empty when unknown — do not send "0.00" (looks live and
+    # previously armed pitch-only terrain-comp on the tablet). FEE6 roll is
+    # parked; FEE8 pitch is forwarded for diagnostics when present.
+    roll = f"{fix.roll_deg:.2f}" if fix.roll_deg is not None else ""
+    pitch = f"{fix.pitch_deg:.2f}" if fix.pitch_deg is not None else ""
+    yaw = (
+        f"{fix.yaw_rate_deg_s:.2f}" if fix.yaw_rate_deg_s is not None else ""
+    )
     return _nmea_wrap(
         f"$PANDA,{t},{lat},{ns},{lon},{ew},{fix.fix_quality},{sats},{hdop},"
-        f"{alt:.1f},0.0,{speed:.2f},{heading:.1f},{roll:.2f},{pitch:.2f},{yaw:.2f}"
+        f"{alt:.1f},0.0,{speed:.2f},{heading:.1f},{roll},{pitch},{yaw}"
     )
 
 
@@ -303,15 +413,23 @@ def bearing_deg(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
 class GpsBridge:
     """Stateful decoder: CAN frames / recorder rows -> GpsFix updates."""
 
-    def __init__(self, latlon_mode: str = "jd_atx", big_endian: bool = False):
-        self.latlon_mode = latlon_mode
+    def __init__(self, latlon_mode: str = "jd_atx", big_endian: bool = False,
+                 quality_map: dict[int, int] | None = None,
+                 gnss_debug: bool = False):
+        self.latlon_mode = normalize_latlon_mode(latlon_mode)
         self.big_endian = big_endian
+        # Raw-JD -> GGA fix-quality map (override per-app without editing code).
+        self.quality_map = quality_map if quality_map is not None else JD_GNSS_QUALITY_TO_GGA
+        # When True, log the raw 0x51 quality byte to STDERR on change (mapping
+        # confirmation aid; stderr so it never corrupts --stdout-json/-nmea).
+        self.gnss_debug = gnss_debug
         self.fix = GpsFix()
         self._prev_lat: float | None = None
         self._prev_lon: float | None = None
         self._prev_heading_deg: float | None = None
         self._prev_heading_ts_ms: int | None = None
         self._fef1_speed_seen = False
+        self._last_qraw: int | None = None
 
     def _apply_fee8(self, data_hex: str, ts: int) -> bool:
         att = decode_fee8_atx(data_hex)
@@ -369,18 +487,26 @@ class GpsBridge:
                 changed = True
         elif sa == ATX_SA and pgn == PGN_FEE8:
             changed = self._apply_fee8(data_hex, ts)
-        elif sa == ATX_SA and pgn == PGN_FEE6:
-            roll = decode_fee6_atx_roll(data_hex)
-            if roll is not None:
-                self.fix.roll_deg = roll
-                self.fix.source = self.fix.source or "atx_fee6"
-                changed = True
+        # FEE6 roll decode parked — see decode_fee6_atx_roll() / SPRAY_DECODE.md
         elif sa == ATX_SA and pgn == PGN_FFFF:
             sats = decode_gnss_sats_ffff(data_hex)
             if sats is not None:
                 self.fix.satellites = sats
                 self.fix.source = self.fix.source or "atx_ffff"
                 changed = True
+            qraw = decode_gnss_quality_ffff(data_hex)
+            if qraw is not None:
+                # Replace the never-assigned constant default with the decoded,
+                # mapped GNSS solution quality (RTK shows here once confirmed).
+                self.fix.gnss_quality_raw = qraw
+                self.fix.fix_quality = gga_quality_from_jd(qraw, self.quality_map)
+                self.fix.source = self.fix.source or "atx_ffff"
+                changed = True
+                if self.gnss_debug and qraw != self._last_qraw:
+                    print(format_gnss_quality_debug(
+                        data_hex, qraw, self.fix.fix_quality, sats),
+                        file=sys.stderr, flush=True)
+                    self._last_qraw = qraw
         elif pgn == PGN_FEF1:
             spd = decode_speed_fef1(data_hex)
             if spd is not None:

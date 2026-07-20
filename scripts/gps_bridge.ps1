@@ -11,13 +11,21 @@ param(
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
 
-$pyArgs = @("scripts/gps_bridge.py", "--interface", $Interface, "--nmea-udp", $NmeaUdp)
-if ($JsonUdp) { $pyArgs += @("--json-udp", $JsonUdp) }
-if ($StdoutJson) { $pyArgs += "--stdout-json" }
+$exe = Join-Path $Root 'dist\gps_bridge.exe'
+$useExe = Test-Path $exe
+
 if ($Replay -and $Session) {
-    $pyArgs = @("scripts/gps_bridge.py", "--replay", "recordings\$Session", "--nmea-udp", $NmeaUdp)
-    if ($JsonUdp) { $pyArgs += @("--json-udp", $JsonUdp) }
+    $bridgeArgs = @("--replay", "recordings\$Session", "--nmea-udp", $NmeaUdp)
+} else {
+    $bridgeArgs = @("--interface", $Interface, "--nmea-udp", $NmeaUdp)
 }
+if ($JsonUdp) { $bridgeArgs += @("--json-udp", $JsonUdp) }
+if ($StdoutJson) { $bridgeArgs += "--stdout-json" }
 
 Write-Host "616R GPS bridge (OBSERVE CAN only on $Interface)" -ForegroundColor Cyan
-python @pyArgs
+if ($useExe) {
+    Write-Host "Using standalone: $exe" -ForegroundColor DarkGray
+    & $exe @bridgeArgs
+} else {
+    python @("scripts/gps_bridge.py") @bridgeArgs
+}

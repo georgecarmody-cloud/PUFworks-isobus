@@ -313,7 +313,8 @@ Dominant in long sessions (~53k frames aggregate). **99% PGN `0xE700`**. Also **
 | `0xCB00` | TC process / section / work msgs | `rate_section` | MNC, JD_SEC, GRC.001 |
 | `0xEF00` | JD proprietary process data | `spray_proprietary` | SRC, MNC, GRC.001, DISP |
 | `0x00A0` | PGN 160 DDI process data | `rate_section` | GRC.001 |
-| `0xFEF1` | Wheel-based speed | `gps_motion` | ATX, ENG |
+| `0xFEF1` | Wheel-based speed | `gps_motion` | ATX, DISP, ENG |
+| `0xFFFF` | JD GNSS quality multiplex | `gps_motion` | ATX `0x1C` only |
 | `0xE600` | VT / transport | `spray_proprietary` | DISP |
 | `0xFFF8` | Proprietary | `spray_proprietary` | SRC |
 | `0xE700` | Proprietary | `spray_proprietary` | MNC, SA `0xBA` (unidentified) |
@@ -547,7 +548,7 @@ From operator Section Setup (2026-06-11). **38.1 cm** spacing all sections. Mach
 | :--- | :--- | :---: | :--- | :--- |
 | `0xFEF3` (65267) | **ATX `0x1C`** | ~5 Hz | Lat / lon | **On wire** — export via `decode_gps_track.py` |
 | `0xFEE8` (65256) | **ATX `0x1C`** | ~5 Hz | **TCM attitude** — see byte layout below | **Confirmed** (`observe_3_long`) |
-| `0xFEE6` | **ATX `0x1C`** | ~5 Hz | **Roll** — bytes 2–3 `/128` deg | **Likely** (stable ~12° in capture) |
+| `0xFEE6` | **ATX `0x1C`** | ~5 Hz | **Roll** — bytes 2–3 `/128` deg | **DISPROVEN scale/offset** — see roll note (live `+12.1°` const vs JD display `−3.3°` max) |
 | `0xFFFF` (65535) | **ATX `0x1C`** | ~5 Hz | **GNSS satellites used** — proprietary multiplex, sub-msg `0x51` byte3 (see below) | **Confirmed** |
 | `0xFEF1` | **DISP `0xF0`** (+ others) | ~10 Hz | Wheel speed SPN 84 | **Confirmed** |
 | `0xF029` (61481) | — | — | SSI2 pitch/roll (standard) | **Not on X119** |
@@ -564,7 +565,7 @@ From operator Section Setup (2026-06-11). **38.1 cm** spacing all sections. Mach
 | 4–5 | Pitch (SPN 583) | `u16 / 128 − 210` deg |
 | 6–7 | Altitude (SPN 580) | `u16 × 0.125 − 2500` m |
 
-**PGN `0xFEE6` roll (field hypothesis):** bytes 2–3 `u16 / 128` deg (no −210 offset). Validated stable during straight + headland in `observe_3_long`; not in standard 65256 layout.
+**PGN `0xFEE6` roll (field hypothesis — DISPROVEN, 2026-06-24):** bytes 2–3 `u16 / 128` deg (no −210 offset). Was thought validated as stable during straight + headland in `observe_3_long`; not in standard 65256 layout. **Live field check (transport, COM2/RTK) contradicts it:** bridge reported roll pinned at a constant `+12.1°` while the JD cab TCM display read `−3.3°` max. So the FEE6 byte selection and/or scale/offset is wrong (the "stable ~12°" earlier was a fixed/constant value, not real attitude). **PARKED per user (2026-06-24) — not blocking; revisit before the mosaic relies on TCM roll for oblique rectification.** TODO when resumed: re-sniff `0xFEE6` while deliberately rolling the machine, confirm which byte pair tracks, and re-derive scale/offset (candidate: signed int16, or different byte pair). Until fixed, treat `roll_deg` from FEE6 as unreliable.
 
 **Yaw rate:** no `0xF02A` on implement tap — `gps_bridge_lib` differentiates consecutive FEE8 headings (~5 Hz). Headland window in `observe_3_long`: roughly −17 to +6 deg/s.
 
@@ -578,7 +579,27 @@ From operator Section Setup (2026-06-11). **38.1 cm** spacing all sections. Mach
 | 1–2 | Signature | constant `0x03 0x02` (use to validate) | confirmed |
 | **3** | **Satellites used** | uint8 — feeds GGA field 7 / `$PANDA` field 7 | **confirmed** |
 | 4–6 | Per-constellation sat counts (GPS/GLONASS/Galileo) | uint8 each; **fall together with byte3** during signal loss → counts, **not** DOP | likely |
-| 7 | Fix/status flag (hypothesis) | mostly `0x01`; ticks `0x02`/`0x03`/`0x04` during headland turn — not mapped to GGA fix-quality (no ground truth) | hypothesis |
+| **7** | **GNSS solution-status → GGA fix-quality** | uint8 enum, **mapped** to NMEA GGA quality (see mapping below). `0x01` steady; ticks `0x02`/`0x03`/`0x04` during headland turns | **hypothesis (decoded; needs live RTK confirmation)** |
+
+**fix_quality — root cause + fix (2026-06-24):** `GpsFix.fix_quality` was the dataclass **default `1`** and was **never assigned** from CAN, so RTK could never appear (only the sat count was decoded). Now `decode_gnss_quality_ffff()` reads **0x51 byte7** and `GpsBridge` maps it via `JD_GNSS_QUALITY_TO_GGA` into `fix.fix_quality`, flowing to GpsFixV2 (`fix_quality` + new raw `gnss_quality_raw`), `$GPGGA` field 7, and `$PANDA` field 7.
+
+**Hypothesis mapping** (byte7 → GGA; lower raw = better fix — best reading of the field data, **not yet ground-truthed**):
+
+| 0x51 byte7 | → GGA | Meaning | Confidence |
+| :---: | :---: | :--- | :--- |
+| `0x00` | 0 | invalid / no fix | hypothesis |
+| **`0x01`** | **4** | **RTK fixed** (steady value while the test machine was RTK) | **hypothesis — primary** |
+| `0x02` | 5 | RTK float (transient in turns) | low |
+| `0x03` | 2 | DGPS / SBAS | low |
+| `0x04` | 1 | autonomous (correction lost) | low |
+| other | 1 | autonomous (safe fallback — never claim RTK for an unmapped byte) | — |
+
+> **Confirm the mapping live:** with the cab/receiver **confirmed RTK fixed**, run
+> `python scripts/gps_bridge.py --interface COM2 --gnss-debug`. Watch **STDERR** for the
+> `[gnss] 0xFFFF/0x51 [...] qual_raw(b7)=0x.. -> GGA fix=..` line. **Expected:** byte7 steady at `0x01`
+> → `fix=4`. If the steady RTK value is **not** `0x01`, update `JD_GNSS_QUALITY_TO_GGA` in
+> `gps_bridge_lib.py` (or pass `GpsBridge(quality_map=...)`). Drop RTK→SF3 and re-watch byte7 to map the
+> other correction levels. Unit test: `python scripts/test_gps_quality_decode.py`.
 
 Satellite count range across 25+ sessions: **≈ 25–39**, slowly varying, drops during headland turns (`observe_3_long` +381 s: byte3=36 but byte4-6 collapse 9/5/8 as used-sats fall). Confirmed in `616r_spray_live`, `observe_3_long`, `spray_gps`, `transport`, and all single-section captures.
 
@@ -586,7 +607,7 @@ Satellite count range across 25+ sessions: **≈ 25–39**, slowly varying, drop
 
 **HDOP / PDOP / VDOP — NOT on the X119 tap.** No NMEA-2000 GNSS DOP / sats-in-view fast packet (`129539`/`129540`) on this classic 250 kbps bus. Other ATX `0x1C` proprietary PGNs were checked and ruled out as DOP: `0xFAB3` (~5 Hz, two interleaved frames `0x10…`/`0x18…`) is fine position/velocity; `0xF010` is a per-frame rolling counter (+10000/frame); `0xFFFF` sub-msgs `0x52`/`0x53` carry high-entropy tails (checksum / fine data). DOP fields stay blank in the bridge — never faked.
 
-**Implementation:** `gps_bridge_lib.decode_gnss_sats_ffff()` + `GpsBridge.update_from_frame` (PGN `0xFFFF`, SA `0x1C`) → `GpsFix.satellites`; `gps_bridge.py` replay + live filters now pass `0xFFFF` (SA-gated to `0x1C`). GGA/`$PANDA` already emit `satellites` when present; HDOP field left empty.
+**Implementation:** `gps_bridge_lib.decode_gnss_sats_ffff()` (sats, byte3) + `decode_gnss_quality_ffff()` (solution status, byte7) + `GpsBridge.update_from_frame` (PGN `0xFFFF`, SA `0x1C`) → `GpsFix.satellites` / `GpsFix.fix_quality` (+ `gnss_quality_raw`); `gps_bridge.py` replay + live filters pass `0xFFFF` (SA-gated to `0x1C`) and add `--gnss-debug`. GGA/`$PANDA` emit `satellites` + the mapped `fix_quality` when present; HDOP field left empty.
 
 **Not on implement tap:** full vehicle-bus GPS roster may include more PGNs (incl. DOP) on **VB1** (Premium Server / MTG). X119 gives speed + position + **satellite count** for laptop/tablet export.
 

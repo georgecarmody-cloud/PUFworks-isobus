@@ -1,0 +1,18 @@
+[Unit]
+Description=PUFworks ISOBUS CAN WiFi gateway (RX-only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/pufworks-isobus
+Environment=PYTHONUNBUFFERED=1
+ExecStartPre=/bin/sh -c 'ip link set can0 type can bitrate 250000 restart-ms 100 || true'
+ExecStartPre=/bin/sh -c 'ip link set can0 up || true'
+ExecStart=/opt/pufworks-isobus/.venv/bin/python scripts/isobus_wifi.py gateway --config /etc/pufworks/can_wifi_gateway.json
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

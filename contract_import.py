@@ -9,6 +9,11 @@ def _contracts_python_root():
         here.parent / "PUFworks-contracts" / "python",
         here / "External" / "PUFworks-contracts" / "python",
     ]
+    frozen = getattr(sys, "frozen", False)
+    if frozen:
+        meipass = Path(getattr(sys, "_MEIPASS", here))
+        candidates.insert(0, meipass / "PUFworks-contracts" / "python")
+        candidates.insert(0, meipass)
     for path in candidates:
         init = path / "pufworks_contracts" / "__init__.py"
         if init.is_file():
