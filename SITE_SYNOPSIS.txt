@@ -9,8 +9,8 @@ SYNOPSIS
 - Consumes SectionBitmapV1 from PUFworks-vision (VISION_BITMAP: stdin); no camera, OpenCV, or YOLO in this repo.
 - Boots in OBSERVE (zero CAN TX); operator must climb Control Authority and ARM before section or rate commands go on the wire.
 - Fail-safes: >300 ms without fresh vision → all sections closed; no UI heartbeat >3 s while armed → demote and disarm; speed <0.5 km/h → sections closed.
-- Platform paths (closed decisions): Goldacres GRC = DDI 141 sections to 0xCC; JD 616R = GreenSeeker serial + whole-boom blanking only — no CAN section injection.
-- Also provides spray PGN decode library, session recorder, 616R field sniff tools, GPS/CAN WiFi hub, and bench harness for virtual-bus smoke tests.
+- Platform paths (closed decisions): John Deere / ISOBUS = DDI 141 section TX; 616R = GreenSeeker serial + whole-boom blanking only — no CAN section injection.
+- Also provides spray PGN decode library (catalog + element decodes at https://pufworks.farm/decode/), hardware guide at https://pufworks.farm/isobus/hardware/, session recorder, 616R field sniff tools, GPS/CAN WiFi hub, and bench harness for virtual-bus smoke tests.
 - Does NOT run vision inference, agronomy capture, or direct solenoid GPIO (use PUFworks-actuation for non-ISOBUS hardware).
 
 SOURCES
