@@ -1,5 +1,5 @@
 MODULE: PUFworks-isobus
-ROLE: CAN / ISOBUS bus engine & safety gate
+ROLE: ISO 11783 / J1939 bus engine & safety gate
 STATUS: active
 
 ONE-LINER
@@ -9,7 +9,8 @@ SYNOPSIS
 - Consumes SectionBitmapV1 from PUFworks-vision (VISION_BITMAP: stdin); no camera, OpenCV, or YOLO in this repo.
 - Boots in OBSERVE (zero CAN TX); operator must climb Control Authority and ARM before section or rate commands go on the wire.
 - Fail-safes: >300 ms without fresh vision → all sections closed; no UI heartbeat >3 s while armed → demote and disarm; speed <0.5 km/h → sections closed.
-- Platform paths (closed decisions): John Deere / ISOBUS = DDI 141 section TX; 616R = GreenSeeker serial + whole-boom blanking only — no CAN section injection.
+- Platform paths (closed decisions, machine-specific, not AEF-certified): GRC-class DDI 141 section TX; 616R = GreenSeeker serial + whole-boom blanking only — no CAN section injection.
+- Not a drop-in sprayer ECU or Virtual Terminal; not affiliated with AEF, John Deere, or Goldacres. Boots listen-only (OBSERVE).
 - Also provides spray PGN decode library (catalog + element decodes at https://pufworks.farm/decode/), hardware guide at https://pufworks.farm/isobus/hardware/, session recorder, 616R field sniff tools, GPS/CAN WiFi hub, and bench harness for virtual-bus smoke tests.
 - Does NOT run vision inference, agronomy capture, or direct solenoid GPIO (use PUFworks-actuation for non-ISOBUS hardware).
 

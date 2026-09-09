@@ -10,12 +10,19 @@
   ░      ░░░  ░     ░   ░  ░░░  ░   ░ ░   ░ ░░░░  
 ```
 
-Standalone CAN / ISOBUS engine for the PUFworks sprayer stack. Extracted from
-the PUFVision monolith (tag `v1-monolith-baseline`) per `BOUNDARY.md` Phase 1.
+ISO 11783 / J1939 bus engine for the PUFworks sprayer stack — listen-first,
+TX gated. Extracted from the PUFVision monolith (tag `v1-monolith-baseline`)
+per `BOUNDARY.md` Phase 1.
 
 **Bus-only**: no camera, no OpenCV, no YOLO. Section intent arrives as
 `SectionBitmapV1` messages from `PUFworks-vision` (or the bench harness);
-everything this repo does is decide what is allowed onto the wire.
+everything this repo does is decide what (if anything) is allowed onto the wire.
+
+**ISOBUS** here means ISO 11783. Workshop software — not AEF-certified, not a
+drop-in sprayer ECU or Virtual Terminal, and not a John Deere, Goldacres, or
+AEF product. Boots listen-only (`OBSERVE`). Any transmit is explicit and
+owner-operated. Interop is experimental and machine-specific. Field use on a
+live machine is at the operator’s risk; keep OEM interlocks in charge.
 
 Read `SAFETY.md` and `JD_ISOBUS_MAP.md` before changing any TX behaviour.
 
@@ -23,9 +30,9 @@ Read `SAFETY.md` and `JD_ISOBUS_MAP.md` before changing any TX behaviour.
 
 ```
 bus_engine.py            # ISOBUSController + stdin/stdout line protocol (the engine)
-greenseeker_emitter.py   # 616R sanctioned serial rate path (Pathway G) + boom blanking (E)
+greenseeker_emitter.py   # 616R GreenSeeker serial rate path (Pathway G) + boom blanking (E)
 bench/bench_harness.py   # heartbeat + test-vector driver for virtual-bus smoke tests
-JD_ISOBUS_MAP.md         # authoritative ISOBUS architecture & field decisions
+JD_ISOBUS_MAP.md         # workshop ISO 11783 / J1939 map & field decisions
 requirements.txt
 recordings/              # OBSERVE/SHADOW session captures (gitignored)
 ```
@@ -138,8 +145,8 @@ rejected by the engine — see `bus_engine.py` tail and BOUNDARY.md §4.5.
 | Camera/vision IPC commands | Not ported — rejected with a log line |
 
 Everything else — authority ladder, interlocks, sprayer profiles, GRC EF00
-decode, VT handshake, TC announce, recorder, GreenSeeker emitter — is ported
-verbatim ("move first, refactor second").
+decode, experimental VT/TC message handling (not a drop-in Virtual Terminal),
+recorder, GreenSeeker emitter — is ported verbatim ("move first, refactor second").
 
 ---
 
